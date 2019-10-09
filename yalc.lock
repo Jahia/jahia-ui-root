@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "@jahia/moonstone": {
+      "signature": "a3c39a227decbf23067e047751bfc173",
+      "file": true
+    }
+  }
+}

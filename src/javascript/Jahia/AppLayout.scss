@@ -1,0 +1,25 @@
+$open-width: 250px;
+$close-width: 50px;
+
+.AppLayout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+
+    &_nav {
+        overflow: hidden;
+
+        &.open {
+            flex: 0 0 $open-width;
+        }
+
+        &.close {
+            flex: 0 0 $close-width;
+        }
+    }
+
+    &_main {
+        flex: 1 1 0;
+        display: flex
+    }
+}
