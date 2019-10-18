@@ -1,3 +1,3 @@
-import Jahia from './Jahia';
+import JahiaContainer from './Jahia.container';
 
-export default Jahia;
+export default JahiaContainer;

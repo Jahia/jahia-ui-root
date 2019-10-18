@@ -20,7 +20,7 @@
             targetId: 'react-root'
         };
     </script>
-    <script src="${renderContext.request.contextPath}/modules/jahia-ui-root/javascript/apps/jahia.bundle.js"></script>
+    <script src="${renderContext.request.contextPath}/jahia-ui-root/javascript/apps/jahia.bundle.js"></script>
 </head>
 
 <body style="overflow: hidden; margin: 0; box-sizing: border-box">

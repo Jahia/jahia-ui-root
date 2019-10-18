@@ -1,18 +1,29 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
-import routes from './Jahia.routes';
-import actions from './Jahia.actions';
 import {registry} from '@jahia/registry';
-import AppLayout from './AppLayout';
+import {Route, Switch} from 'react-router';
+import {Link} from 'react-router-dom';
+import {GlobalStyle, LayoutApp, Typography} from '@jahia/moonstone'
 
-const Jahia = () => {
-    routes(registry);
-    actions(registry);
-    return (
-        <BrowserRouter basename="/cms/moonstone">
-            <AppLayout/>
-        </BrowserRouter>
-    );
-};
+export const Jahia = ({routes}) => (
+    <>
+        <GlobalStyle/>
+        <LayoutApp
+            navigation={
+                <div style={{backgroundColor: 'grey', height: '100%', width: '56px'}}>
+                    <Typography variant="page">NAV</Typography>
+                    <ul>
+                        {routes.map(l => <li><Link to={l.defaultPath}>{l.defaultPath}</Link></li>)}
+                    </ul>
+                </div>
+            }
+            content={
+                <Switch>
+                    {routes.map(r =>
+                        <Route key={r.key} path={r.path} render={r.render}/>
+                    )}
+                </Switch>
+            }
+        />
+    </>
+);
 
-export default Jahia;

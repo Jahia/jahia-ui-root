@@ -190,6 +190,7 @@
                     <instructions>
                         <jahia-depends>dx-commons-webpack</jahia-depends>
                         <Import-Package>org.springframework.web.servlet,${jahia.plugin.projectPackageImport},*</Import-Package>
+                        <_dsannotations>*</_dsannotations>
                     </instructions>
                 </configuration>
             </plugin>
