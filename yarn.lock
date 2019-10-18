@@ -732,8 +732,10 @@
     eslint-plugin-react "^7.11.1"
     eslint-plugin-react-hooks "^1.6.0"
 
-"@jahia/moonstone@file:.yalc/@jahia/moonstone":
-  version "0.1.0-a3c39a22"
+"@jahia/moonstone@0.1.1-canary.234ff4d":
+  version "0.1.1-canary.234ff4d"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.1.1-canary.234ff4d.tgz#a07ab86ba3583d2fff7d76726b9fb7db68ce6159"
+  integrity sha512-vthu6HwirjpWHr55xS3JI81Wms3fCGirNCQokunJ1sK3T8CoujVwfc5xxJKUAD8mHSvEJbWwD10lbHkA1Vlvfg==
   dependencies:
     classnames "^2.2.6"
     prop-types "^15.7.2"
