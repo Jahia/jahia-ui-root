@@ -1,24 +1,29 @@
 {
   "name": "@jahia/jahia-ui-root",
   "version": "0.0.1",
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn lint:fix"
+    }
+  },
   "scripts": {
-    "build": "yarn webpack",
+    "build": "yarn ./node_modules/.bin/lint:fix && yarn ./node_modules/.bin/webpack",
+    "dev": "yarn webpack --watch",
     "webpack": "node --max_old_space_size=2048 node_modules/webpack/bin/webpack.js",
     "build:analyze": "yarn build --analyze",
     "build:production": "yarn build -p",
     "build:production-analyze": "yarn build -p --analyze",
-    "watch": "yarn webpack --watch",
     "clean": "rimraf *.log src/main/resources/javascript/apps",
     "clean:all": "yarn clean && rimraf node_modules node",
-    "lint": "eslint --ext js,jsx .",
-    "lint:fix": "eslint --ext js,jsx --fix ."
+    "lint": "./node_modules/.bin/eslint --ext js,jsx .",
+    "lint:fix": "./node_modules/.bin/eslint --ext js,jsx --fix ."
   },
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@jahia/moonstone": "0.1.1-canary.234ff4d",
+    "@jahia/moonstone": "^0.1.0",
     "@jahia/registry": "^1.0.0-beta.20190927123951",
-    "classnames": "^2.2.6",
+    "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -30,12 +35,14 @@
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
-    "@jahia/eslint-config": "^1.0.0-beta.20190927123944",
+    "@jahia/eslint-config": "^1.0.0-beta.20190920132338",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
-    "eslint": "^6.5.1",
+    "eslint": "5.16.0",
     "eslint-loader": "^3.0.2",
+    "husky": "^3.0.9",
     "node-sass": "^4.12.0",
     "path": "^0.12.7",
     "rimraf": "^3.0.0",

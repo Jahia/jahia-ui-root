@@ -1,10 +1,22 @@
 const path = require('path');
+const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+// Get manifest
+const normalizedPath = require('path').join(__dirname, './target/dependency');
+let manifest = '';
+
+require('fs').readdirSync(normalizedPath).forEach(function (file) {
+    manifest = './target/dependency/' + file;
+    console.log('Jahia UI Root uses manifest: ' + manifest);
+});
 
 module.exports = (env, argv) => {
     let config = {
         entry: {
-            main: [path.resolve(__dirname, 'src/javascript/publicPath'), path.resolve(__dirname, 'src/javascript/JahiaApp')]
+            main: [path.resolve(__dirname, 'src/javascript/publicPath'), path.resolve(__dirname, 'src/javascript/JahiaApp.loader')]
         },
         output: {
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
@@ -12,8 +24,16 @@ module.exports = (env, argv) => {
             chunkFilename: '[name].jahia.[chunkhash:6].js'
         },
         resolve: {
+            alias: {
+                react: path.resolve(__dirname, "node_modules/react")
+            },
             mainFields: ['module', 'main'],
             extensions: ['.mjs', '.js', '.jsx', 'json']
+        },
+        optimization: {
+            splitChunks: {
+                maxSize: 400000
+            }
         },
         module: {
             rules: [
@@ -47,6 +67,16 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
+            new webpack.DllReferencePlugin({
+                manifest: require(manifest)
+            }),
+            new CleanWebpackPlugin({verbose: false}),
+            new webpack.HashedModuleIdsPlugin({
+                hashFunction: 'sha256',
+                hashDigest: 'hex',
+                hashDigestLength: 20
+            }),
+            new CopyWebpackPlugin([{from: './package.json', to: ''}])
         ],
         mode: 'development'
     };

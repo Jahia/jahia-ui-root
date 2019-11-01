@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography, LayoutModule} from '@jahia/moonstone'
+import {Typography, LayoutModule} from '@jahia/moonstone';
 
 export const TestWithoutNav = () => {
     return (

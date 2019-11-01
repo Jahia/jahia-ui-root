@@ -1,21 +1,40 @@
 import React from 'react';
-import {registry} from '@jahia/registry';
+import PropTypes from 'prop-types';
 import {Route, Switch} from 'react-router';
-import {Link} from 'react-router-dom';
-import {GlobalStyle, LayoutApp, Typography} from '@jahia/moonstone'
+import {
+    GlobalStyle,
+    LayoutApp,
+    PrimaryNav,
+    PrimaryNavItem,
+    PrimaryNavItemsGroup
+} from '@jahia/moonstone';
 
 export const Jahia = ({routes}) => (
     <>
         <GlobalStyle/>
         <LayoutApp
-            navigation={
-                <div style={{backgroundColor: 'grey', height: '100%', width: '56px'}}>
-                    <Typography variant="page">NAV</Typography>
-                    <ul>
-                        {routes.map(l => <li><Link to={l.defaultPath}>{l.defaultPath}</Link></li>)}
-                    </ul>
-                </div>
-            }
+            navigation={<PrimaryNav
+                headerLogo={<img src="logo.gif"/>}
+                headerCaption="development"
+                top={
+                    <>
+                        <PrimaryNavItemsGroup>
+                            <PrimaryNavItem label="NavItem not selected" icon="hello"/>
+                            <PrimaryNavItem isSelected label="NavItem selected" icon="there"/>
+                        </PrimaryNavItemsGroup>
+                        <PrimaryNavItemsGroup isDisplayedWhenCollapsed={false}>
+                            <PrimaryNavItem variant="link" label="Link"/>
+                        </PrimaryNavItemsGroup>
+                    </>
+                }
+                bottom={
+                    <>
+                        <PrimaryNavItemsGroup>
+                            <PrimaryNavItem label="Bottom item" icon="You"/>
+                        </PrimaryNavItemsGroup>
+                    </>
+                }
+            />}
             content={
                 <Switch>
                     {routes.map(r =>
@@ -26,4 +45,8 @@ export const Jahia = ({routes}) => (
         />
     </>
 );
+
+Jahia.propTypes = {
+    routes: PropTypes.array
+};
 

@@ -6,4 +6,4 @@ function render() {
     ReactDOM.render(<Jahia/>, document.getElementById(window.contextJsParameters.targetId));
 }
 
-window.onload = render;
+export {render};

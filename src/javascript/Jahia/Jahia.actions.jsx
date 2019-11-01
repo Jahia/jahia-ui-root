@@ -1,4 +1,4 @@
-function actions(registry) {
+function actions() {
 }
 
 export default actions;

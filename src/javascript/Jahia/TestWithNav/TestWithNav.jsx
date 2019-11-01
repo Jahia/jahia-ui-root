@@ -1,6 +1,5 @@
 import React from 'react';
-import {registry} from '@jahia/registry';
-import {LayoutModule, Typography} from '@jahia/moonstone'
+import {LayoutModule, Typography} from '@jahia/moonstone';
 
 export const TestWithNav = () => {
     return (

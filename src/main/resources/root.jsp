@@ -13,18 +13,29 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Jahia</title>
-    <script>
-        window.contextJsParameters = {
-            contextPath: '${renderContext.request.contextPath}',
-            targetId: 'react-root'
-        };
-    </script>
-    <script src="${renderContext.request.contextPath}/jahia-ui-root/javascript/apps/jahia.bundle.js"></script>
+    <title>${fn:escapeXml(renderContext.mainResource.node.displayableName)}</title>
+    <script src="/modules/dx-commons-webpack/javascript/js-load.js"></script>
 </head>
 
 <body style="overflow: hidden; margin: 0; box-sizing: border-box">
+<script>window["jahia-extends"] = []</script>
 
-    <div id="react-root">loading..</div>
+<%--<internal:gwtGenerateDictionary/>--%>
+<%--<internal:gwtInit/>--%>
+<%--<internal:gwtImport module="empty"/>--%>
+
+<c:set var="targetId" value="reactComponent${fn:replace(currentNode.identifier,'-','_')}"/>
+<div id="${targetId}">loading..</div>
+
+<div id="gwt-root"></div>
+
+<script type="text/javascript">
+    window.contextJsParameters = {
+        targetId: '${targetId}',
+        contextPath: ''
+    };
+    window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
+    bootstrap(window['jahia-extends']);
+</script>
 
 </body>
