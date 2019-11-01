@@ -7,9 +7,9 @@
     }
   },
   "scripts": {
-    "build": "yarn ./node_modules/.bin/lint:fix && yarn ./node_modules/.bin/webpack",
+    "build": "yarn lint:fix && yarn webpack",
     "dev": "yarn webpack --watch",
-    "webpack": "node --max_old_space_size=2048 node_modules/webpack/bin/webpack.js",
+    "webpack": "node --max_old_space_size=2048 node_modules/.bin/webpack",
     "build:analyze": "yarn build --analyze",
     "build:production": "yarn build -p",
     "build:production-analyze": "yarn build -p --analyze",
