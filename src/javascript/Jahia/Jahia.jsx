@@ -4,10 +4,10 @@ import {Route, Switch} from 'react-router';
 import {
     GlobalStyle,
     LayoutApp,
-    PrimaryNav
+    PrimaryNav,
+    Separator
 } from '@jahia/moonstone';
 import JahiaLogo from './JahiaLogo';
-// TODO fix this
 import Star from '@jahia/moonstone/dist/icons/Star';
 
 export const Jahia = ({routes}) => (
@@ -18,6 +18,9 @@ export const Jahia = ({routes}) => (
                 headerLogo={<JahiaLogo/>}
                 headerCaption="Test environment"
                 modeIcon={<Star/>}
+                top={
+                    <Separator/>
+                }
             />}
             content={
                 <Switch>
