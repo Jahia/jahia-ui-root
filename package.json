@@ -24,6 +24,7 @@
   "dependencies": {
     "@jahia/moonstone": "^0.1.0",
     "@jahia/registry": "^1.0.0-beta.20190927123951",
+    "@svgr/webpack": "^4.3.3",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",

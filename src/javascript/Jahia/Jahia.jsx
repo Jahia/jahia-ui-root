@@ -6,6 +6,8 @@ import {
     LayoutApp,
     PrimaryNav
 } from '@jahia/moonstone';
+import JahiaLogo from './JahiaLogo';
+// TODO fix this
 import Star from '@jahia/moonstone/dist/icons/Star';
 
 export const Jahia = ({routes}) => (
@@ -13,8 +15,8 @@ export const Jahia = ({routes}) => (
         <GlobalStyle/>
         <LayoutApp
             navigation={<PrimaryNav
-                headerLogo={<img src="logo.gif"/>}
-                headerCaption="development"
+                headerLogo={<JahiaLogo/>}
+                headerCaption="Test environment"
                 modeIcon={<Star/>}
             />}
             content={
