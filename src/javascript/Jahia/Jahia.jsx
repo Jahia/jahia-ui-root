@@ -4,10 +4,9 @@ import {Route, Switch} from 'react-router';
 import {
     GlobalStyle,
     LayoutApp,
-    PrimaryNav,
-    PrimaryNavItem,
-    PrimaryNavItemsGroup
+    PrimaryNav
 } from '@jahia/moonstone';
+import Star from '@jahia/moonstone/dist/icons/Star';
 
 export const Jahia = ({routes}) => (
     <>
@@ -16,24 +15,7 @@ export const Jahia = ({routes}) => (
             navigation={<PrimaryNav
                 headerLogo={<img src="logo.gif"/>}
                 headerCaption="development"
-                top={
-                    <>
-                        <PrimaryNavItemsGroup>
-                            <PrimaryNavItem label="NavItem not selected" icon="hello"/>
-                            <PrimaryNavItem isSelected label="NavItem selected" icon="there"/>
-                        </PrimaryNavItemsGroup>
-                        <PrimaryNavItemsGroup isDisplayedWhenCollapsed={false}>
-                            <PrimaryNavItem variant="link" label="Link"/>
-                        </PrimaryNavItemsGroup>
-                    </>
-                }
-                bottom={
-                    <>
-                        <PrimaryNavItemsGroup>
-                            <PrimaryNavItem label="Bottom item" icon="You"/>
-                        </PrimaryNavItemsGroup>
-                    </>
-                }
+                modeIcon={<Star/>}
             />}
             content={
                 <Switch>
