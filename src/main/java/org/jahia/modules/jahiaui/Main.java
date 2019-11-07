@@ -28,7 +28,7 @@ import java.util.Locale;
         property = {"alias=/moonstone", "jmx.objectname=graphql.servlet:type=root", "osgi.http.whiteboard.servlet.asyncSupported=true"}
 )
 public class Main extends HttpServlet {
-    private Logger logger = LoggerFactory.getLogger(Main.class);
+    private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
