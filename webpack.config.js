@@ -63,6 +63,17 @@ module.exports = (env, argv) => {
                         },
                         'sass-loader'
                     ]
+                },
+                {
+                    test: /\.svg$/,
+                    use: [
+                        {
+                            loader: '@svgr/webpack',
+                            options: {
+                                native: false,
+                            }
+                        }
+                    ]
                 }
             ]
         },
