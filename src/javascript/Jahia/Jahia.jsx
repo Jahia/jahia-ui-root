@@ -16,7 +16,7 @@ export const Jahia = ({routes}) => (
         <LayoutApp
             navigation={<PrimaryNav
                 headerLogo={<JahiaLogo/>}
-                headerCaption="Test environment"
+                headerCaption={'Test environment ' + window.contextJsParameters.locale}
                 modeIcon={<Star/>}
                 top={
                     <Separator/>
