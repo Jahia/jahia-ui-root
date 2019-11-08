@@ -2,6 +2,7 @@
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="script" type="org.jahia.services.render.scripting.Script"--%>
 <%--@elvariable id="contextPath" type="java.lang.String"--%>
+<%--@elvariable id="currentResource" type="org.jahia.services.render.Resource"--%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="template" uri="http://www.jahia.org/tags/templateLib" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -33,7 +34,8 @@
 <script type="text/javascript">
     window.contextJsParameters = {
         targetId: '${targetId}',
-        contextPath: '${contextPath}'
+        contextPath: '${contextPath}',
+        locale: '${currentResource.locale}'
     };
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);

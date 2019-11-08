@@ -45,12 +45,12 @@ public class Main extends HttpServlet {
             RenderContext context = new RenderContext(request, response, null);
             JCRNodeWrapper node = currentUserSession.getNode("/");
             Resource resource = new Resource(node, null, null, null);
-            resource.getLocale();
             context.setMainResource(resource);
             context.setForceUILocaleForJCRSession(true);
             context.setEditMode(true);
             request.setAttribute("renderContext", context);
             request.setAttribute("contextPath", Jahia.getContextPath());
+            request.setAttribute("currentResource", resource);
             request.getRequestDispatcher("/modules/jahia-ui-root/root.jsp").include(request, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
