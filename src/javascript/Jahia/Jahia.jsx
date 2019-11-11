@@ -21,17 +21,17 @@ export const Jahia = ({routes, topNavGroups, bottomNavGroups}) => (
                 top={
                     topNavGroups.map(g => {
                         return [
-                            <Separator/>,
+                            <Separator key={`seperator_${g.key}`}/>,
                             g.render()
-                        ]
+                        ];
                     })
                 }
                 bottom={
                     bottomNavGroups.map(g => {
                         return [
-                            <Separator/>,
+                            <Separator key={`seperator_${g.key}`}/>,
                             g.render()
-                        ]
+                        ];
                     })
                 }
             />}

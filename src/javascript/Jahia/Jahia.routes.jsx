@@ -1,6 +1,6 @@
 import React from 'react';
 import {registry} from '@jahia/registry';
-import {PrimaryNavItem, PrimaryNavItemsGroup} from "@jahia/moonstone";
+import {PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
 
 const DocumentationGroup = () => {
     return (
@@ -8,7 +8,7 @@ const DocumentationGroup = () => {
             <PrimaryNavItem variant="link" label="New at jahia.com"/>
             <PrimaryNavItem variant="link" label="Documentation"/>
         </PrimaryNavItemsGroup>
-    )
+    );
 };
 
 registry.add('bottomDocNavGroup', {

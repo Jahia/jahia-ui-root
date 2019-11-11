@@ -34,13 +34,15 @@ const Group = () => {
     return (
         <PrimaryNavItemsGroup>
             <PrimaryNavItem isSelected={history.location.pathname.endsWith('/dashboard')}
-                            label="Dashboard" icon={<Bars/>}
+                            label="Dashboard"
+                            icon={<Bars/>}
                             onClick={() => history.push('/dashboard')}/>
             <PrimaryNavItem isSelected={history.location.pathname.endsWith('/workflows')}
-                            label="Workflows" icon={<Workflow/>}
+                            label="Workflows"
+                            icon={<Workflow/>}
                             onClick={() => history.push('/workflows')}/>
         </PrimaryNavItemsGroup>
-    )
+    );
 };
 
 registry.add('group1', {
@@ -71,13 +73,15 @@ const GroupTwo = () => {
     return (
         <PrimaryNavItemsGroup>
             <PrimaryNavItem isSelected={history.location.pathname.endsWith('/edit-mode')}
-                            label="Edit mode" icon={<Feather/>}
+                            label="Edit mode"
+                            icon={<Feather/>}
                             onClick={() => history.push('/edit-mode')}/>
             <PrimaryNavItem isSelected={history.location.pathname.endsWith('/cmm')}
-                            label="Content & Media Manager" icon={<Apps/>}
+                            label="Content & Media Manager"
+                            icon={<Apps/>}
                             onClick={() => history.push('/cmm')}/>
         </PrimaryNavItemsGroup>
-    )
+    );
 };
 
 registry.add('group2', {
@@ -85,5 +89,4 @@ registry.add('group2', {
     target: ['nav-root-top:1'],
     render: () => <GroupTwo/>
 });
-
 
