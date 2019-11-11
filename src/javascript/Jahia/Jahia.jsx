@@ -10,7 +10,7 @@ import {
 import JahiaLogo from './JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
 
-export const Jahia = ({routes}) => (
+export const Jahia = ({routes, topNavGroups, bottomNavGroups}) => (
     <>
         <GlobalStyle/>
         <LayoutApp
@@ -19,7 +19,20 @@ export const Jahia = ({routes}) => (
                 headerCaption={'Test environment ' + window.contextJsParameters.locale}
                 modeIcon={<Star/>}
                 top={
-                    <Separator/>
+                    topNavGroups.map(g => {
+                        return [
+                            <Separator/>,
+                            g.render()
+                        ]
+                    })
+                }
+                bottom={
+                    bottomNavGroups.map(g => {
+                        return [
+                            <Separator/>,
+                            g.render()
+                        ]
+                    })
                 }
             />}
             content={
@@ -34,6 +47,8 @@ export const Jahia = ({routes}) => (
 );
 
 Jahia.propTypes = {
-    routes: PropTypes.array
+    routes: PropTypes.array,
+    topNavGroups: PropTypes.array,
+    bottomNavGroups: PropTypes.array
 };
 

@@ -1,23 +1,18 @@
 import React from 'react';
-import TestWithoutNav from './TestWithoutNav';
-import TestWithNav from './TestWithNav';
+import {registry} from '@jahia/registry';
+import {PrimaryNavItem, PrimaryNavItemsGroup} from "@jahia/moonstone";
 
-function routes(registry) {
-    registry.add('route-test-nav', {
-        type: 'route',
-        target: ['jahia:1'],
-        path: '/test-nav',
-        defaultPath: '/test-nav',
-        render: () => <TestWithNav/>
-    });
+const DocumentationGroup = () => {
+    return (
+        <PrimaryNavItemsGroup isDisplayedWhenCollapsed={false}>
+            <PrimaryNavItem variant="link" label="New at jahia.com"/>
+            <PrimaryNavItem variant="link" label="Documentation"/>
+        </PrimaryNavItemsGroup>
+    )
+};
 
-    registry.add('route-test-nonav', {
-        type: 'route',
-        target: ['jahia:1'],
-        path: '/test-nonav',
-        defaultPath: '/test-nonav',
-        render: () => <TestWithoutNav/>
-    });
-}
-
-export default routes;
+registry.add('bottomDocNavGroup', {
+    type: 'bottomNavGroup',
+    target: ['nav-root-bottom:1'],
+    render: () => <DocumentationGroup/>
+});
