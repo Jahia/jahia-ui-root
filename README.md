@@ -9,20 +9,21 @@
     Project name can either be the full length project name (if there is one) or just the repo name. For example: Digital Experience Manager.
 -->
 
-Sandbox
-======================
+# Jahia UI Root
 
 <!--
     A one-liner about the project, like a subtitle. For example: Jahia Digital Experience Manager Core
 -->
-<p align="center">A sandbox project to try out configuration settings for Jahia repositories</p>
+<p align="center">From version 8, Jahia is getting a new navigation, this repo contains the React App </p>
 
 <!--
     A short technical description (not more than one paragraph) about the project, eventually with tech/tools/framework used.
 -->
-<p align="center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus semper erat, in scelerisque augue imperdiet at. Vestibulum hendrerit leo id neque posuere ultricies nec at diam. Curabitur euismod congue mauris ut aliquet. Curabitur vestibulum nisl eget quam porttitor, sed volutpat arcu fringilla. Mauris at ante gravida, feugiat nisi vel.</p>
+<p align="center">This new navigation was designed to rething the way our users navigate within Jahia. Two levels of navigation are available: Level 1 to navigation at a platform level, between apps and platform features, Level 2 to navigate within one of the app (jContent, jExperience). The navigation has been built to be extensible, adding elements to it by deploying modules. </p>
 
-![screenshot](./img/sandbox.jpg)
+<p align="center">
+  <a href="https://www.jahia.com" target="_blank"><img alt="Navigation" title="Jahia Navigation menu" src="./img/jahia-navigation.png" height="640" /></a>
+</p>
 
 <!--
     Open Source badges, see https://shields.io/
@@ -43,27 +44,31 @@ Sandbox
 -->
 
 ## Presentation
-<!-- 
+
+<!--
     (Optional) Technical presentation of the project
 -->
 
 ## Dev environment
 
-<!-- 
+<!--
     Instructions to help a new developer get its environment setup and understands contraints and dependencies and run tests
 -->
 
 ## Build
-<!-- 
+
+<!--
     Instructions to build
 -->
 
 ## Installation
-<!-- 
+
+<!--
     Instructions to install
 -->
 
 ## Links
-<!-- 
+
+<!--
     Relevant links
 -->
