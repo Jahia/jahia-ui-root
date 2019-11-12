@@ -4,8 +4,7 @@ import {Route, Switch} from 'react-router';
 import {
     GlobalStyle,
     LayoutApp,
-    PrimaryNav,
-    Separator
+    PrimaryNav
 } from '@jahia/moonstone';
 import JahiaLogo from './JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
@@ -18,22 +17,8 @@ export const Jahia = ({routes, topNavGroups, bottomNavGroups}) => (
                 headerLogo={<JahiaLogo/>}
                 headerCaption={'Test environment ' + window.contextJsParameters.locale}
                 modeIcon={<Star/>}
-                top={
-                    topNavGroups.map(g => {
-                        return [
-                            <Separator key={`seperator_${g.key}`}/>,
-                            g.render()
-                        ];
-                    })
-                }
-                bottom={
-                    bottomNavGroups.map(g => {
-                        return [
-                            <Separator key={`seperator_${g.key}`}/>,
-                            g.render()
-                        ];
-                    })
-                }
+                top={topNavGroups.map(g => g.render())}
+                bottom={bottomNavGroups.map(g => g.render())}
             />}
             content={
                 <Switch>
