@@ -11,6 +11,7 @@ node
 node_modules
 yarn-error.log
 /src/main/resources/javascript/apps
+/src/main/resources/javascript/__tests__/screenshots/*
 /.externalToolBuilders
 graphql.config.json
 graphql.schema.json
