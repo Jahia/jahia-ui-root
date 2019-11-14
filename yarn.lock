@@ -1120,11 +1120,12 @@
     eslint-plugin-react "^7.11.1"
     eslint-plugin-react-hooks "^1.6.0"
 
-"@jahia/moonstone@^0.1.0":
-  version "0.1.0"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.1.0.tgz#271a9a3512d032b43d5a1aaabd86214c8f5800d9"
-  integrity sha512-SUs8GYgeASdQqJ5PG+86U1+dKjxQ6dGS4nX7C2QLKeEkwPCjs40DNt75WMi/45JHGQ21CL81GC6dlt/sCCtDRw==
+"@jahia/moonstone@^0.2.0":
+  version "0.2.0"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.2.0.tgz#ad6c00c739b3f1f3052948201b0afead1d4eb25e"
+  integrity sha512-aHxS9BpaLSSw5FH6hTxKr5LARTppKhPoBIr64aW4dJqO6vaVl7CtDD0UrY7sNSQkHyRwa/1nI8z9H7nxoBD/wA==
   dependencies:
+    "@svgr/webpack" "^4.3.3"
     classnames "^2.2.6"
     prop-types "^15.7.2"
 

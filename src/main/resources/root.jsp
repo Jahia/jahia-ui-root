@@ -16,11 +16,13 @@
 <head>
     <meta charset="utf-8">
     <title>${fn:escapeXml(renderContext.mainResource.node.displayableName)}</title>
+<%--    TODO remove this and fix /modules/modules issue in dx-commons--%>
     <script src="/modules/dx-commons-webpack/javascript/js-load.js"></script>
+    <js:loader target="jahia-extends"/>
 </head>
 
 <body style="overflow: hidden; margin: 0; box-sizing: border-box">
-<script>window["jahia-extends"] = []</script>
+
 
 <%--<internal:gwtGenerateDictionary/>--%>
 <%--<internal:gwtInit/>--%>
