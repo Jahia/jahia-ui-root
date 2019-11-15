@@ -35,7 +35,7 @@ const ProfileGroup = () => {
     );
     return (
         <PrimaryNavItemsGroup>
-            <PrimaryNavItem icon={<Person/>} subtitle="root@jahia.com" label="My Profile" button={button}/>
+            <PrimaryNavItem icon={<Person/>} subtitle={window.contextJsParameters.user.fullname + ' ('+window.contextJsParameters.user.email+')'} label="My Profile" button={button}/>
         </PrimaryNavItemsGroup>
     );
 };
