@@ -30,7 +30,7 @@ const ProfileGroup = () => {
                 label="Sign out"
                 onClick={() => {
                     console.log('test');
-                    window.location.assign('/cms/logout');
+                    window.location.assign('/cms/logout?redirect=/start');
                 }}/>
     );
     return (
