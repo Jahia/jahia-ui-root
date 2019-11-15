@@ -22,7 +22,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@jahia/moonstone": "^0.1.0",
+    "@jahia/moonstone": "^0.2.0",
     "@jahia/registry": "^1.0.0-beta.20190927123951",
     "@svgr/webpack": "^4.3.3",
     "clsx": "^1.0.4",

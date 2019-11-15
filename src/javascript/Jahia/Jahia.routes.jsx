@@ -1,23 +1,49 @@
 import React from 'react';
-import TestWithoutNav from './TestWithoutNav';
-import TestWithNav from './TestWithNav';
+import {registry} from '@jahia/registry';
+import {PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
+import Person from '@jahia/moonstone/dist/icons/Person';
+import Settings from '@jahia/moonstone/dist/icons/Setting';
 
-function routes(registry) {
-    registry.add('route-test-nav', {
-        type: 'route',
-        target: ['jahia:1'],
-        path: '/test-nav',
-        defaultPath: '/test-nav',
-        render: () => <TestWithNav/>
-    });
+const DocumentationGroup = () => {
+    return (
+        <PrimaryNavItemsGroup isDisplayedWhenCollapsed={false}>
+            <PrimaryNavItem textVariant="caption" url="https://www.jahia.com" label="New at jahia.com"/>
+            <PrimaryNavItem textVariant="caption" url="https://academy.jahia.com/jahia-resource-center" label="Documentation"/>
+        </PrimaryNavItemsGroup>
+    );
+};
 
-    registry.add('route-test-nonav', {
-        type: 'route',
-        target: ['jahia:1'],
-        path: '/test-nonav',
-        defaultPath: '/test-nonav',
-        render: () => <TestWithoutNav/>
-    });
-}
+registry.add('bottomDocNavGroup', {
+    type: 'bottomNavGroup',
+    target: ['nav-root-bottom:1'],
+    render: () => <DocumentationGroup/>
+});
 
-export default routes;
+const ProfileGroup = () => {
+    return (
+        <PrimaryNavItemsGroup>
+            <PrimaryNavItem icon={<Person/>} label="My Profile"/>
+        </PrimaryNavItemsGroup>
+    );
+};
+
+registry.add('bottomProfileNavGroup', {
+    type: 'bottomNavGroup',
+    target: ['nav-root-bottom:1'],
+    render: () => <ProfileGroup/>
+});
+
+
+const AdministrationGroup = () => {
+    return (
+        <PrimaryNavItemsGroup>
+            <PrimaryNavItem icon={<Settings/>} subtitle="root@jahia.com" label="Administration"/>
+        </PrimaryNavItemsGroup>
+    );
+};
+
+registry.add('bottomAdminNavGroup', {
+    type: 'bottomNavGroup',
+    target: ['nav-root-bottom:1'],
+    render: () => <AdministrationGroup/>
+});
