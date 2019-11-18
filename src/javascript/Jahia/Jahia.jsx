@@ -9,6 +9,9 @@ import {
 import JahiaLogo from './JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
 
+window.navRoot = PrimaryNav;
+window.reactRoot = React;
+
 export const Jahia = ({routes, topNavGroups, bottomNavGroups}) => (
     <>
         <GlobalStyle/>
@@ -17,8 +20,8 @@ export const Jahia = ({routes, topNavGroups, bottomNavGroups}) => (
                 headerLogo={<JahiaLogo/>}
                 headerCaption={'Test environment ' + window.contextJsParameters.locale}
                 modeIcon={<Star/>}
-                top={topNavGroups.map(g => g.render())}
-                bottom={bottomNavGroups.map(g => g.render())}
+                top={topNavGroups}
+                bottom={bottomNavGroups}
             />}
             content={
                 <Switch>

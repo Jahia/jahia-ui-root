@@ -1,49 +1,44 @@
 import React from 'react';
 import {registry} from '@jahia/registry';
-import {PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
+import {PrimaryNavItem} from '@jahia/moonstone';
 import Person from '@jahia/moonstone/dist/icons/Person';
 import Settings from '@jahia/moonstone/dist/icons/Setting';
 
 const DocumentationGroup = () => {
     return (
-        <PrimaryNavItemsGroup isDisplayedWhenCollapsed={false}>
-            <PrimaryNavItem textVariant="caption" url="https://www.jahia.com" label="New at jahia.com"/>
-            <PrimaryNavItem textVariant="caption" url="https://academy.jahia.com/jahia-resource-center" label="Documentation"/>
-        </PrimaryNavItemsGroup>
+        <>
+            <PrimaryNavItem url="https://www.jahia.com" label="New at jahia.com"/>
+            <PrimaryNavItem url="https://academy.jahia.com/jahia-resource-center" label="Documentation"/>
+        </>
     );
 };
 
 registry.add('bottomDocNavGroup', {
-    type: 'bottomNavGroup',
+    type: 'bottomDocumentationGroup',
     target: ['nav-root-bottom:1'],
     render: () => <DocumentationGroup/>
 });
 
 const ProfileGroup = () => {
     return (
-        <PrimaryNavItemsGroup>
-            <PrimaryNavItem icon={<Person/>} label="My Profile"/>
-        </PrimaryNavItemsGroup>
+        <PrimaryNavItem icon={<Person/>} label="My Profile"/>
     );
 };
 
 registry.add('bottomProfileNavGroup', {
-    type: 'bottomNavGroup',
+    type: 'bottomProfileGroup',
     target: ['nav-root-bottom:1'],
     render: () => <ProfileGroup/>
 });
 
-
 const AdministrationGroup = () => {
     return (
-        <PrimaryNavItemsGroup>
-            <PrimaryNavItem icon={<Settings/>} subtitle="root@jahia.com" label="Administration"/>
-        </PrimaryNavItemsGroup>
+        <PrimaryNavItem icon={<Settings/>} subtitle="root@jahia.com" label="Administration"/>
     );
 };
 
 registry.add('bottomAdminNavGroup', {
-    type: 'bottomNavGroup',
+    type: 'bottomAdminGroup',
     target: ['nav-root-bottom:1'],
     render: () => <AdministrationGroup/>
 });
