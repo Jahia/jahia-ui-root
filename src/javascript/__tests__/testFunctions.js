@@ -10,6 +10,14 @@ const assertElemExistence = async function (selector, exists) {
     }
 };
 
+const assertElemExistenceByXpath = async function (xpath, exists) {
+    if (exists) {
+        await expect(page.$x(xpath)).resolves.not.toBeNull();
+    } else {
+        await expect(page.$x(xpath)).resolves.toBeNull();
+    }
+};
+
 /*
     Name will be set to the name of the created .png file that will be the screenshot
  */
@@ -46,6 +54,14 @@ async function getElement(selector) {
     }
 }
 
+async function getElementByXpath(xpath) {
+    try {
+        return await page.$x(xpath);
+    } catch (e) {
+        return 'failed to find element with xpath: ' + xpath;
+    }
+}
+
 async function getElements(selector) {
     try {
         return await page.$$(selector);
@@ -56,9 +72,9 @@ async function getElements(selector) {
 
 async function clickOnElementByHandle(elementHandle) {
     try {
-        await elementHandle.click();
+        await elementHandle.click({delay: 100});
     } catch (e) {
-        return e.getExceptionMessage();
+        return e;
     }
 }
 
@@ -92,5 +108,7 @@ module.exports = {
     clickOnElementByHandle,
     sleep,
     removeElement,
-    assertVisibilityOfElementByXpath
+    assertVisibilityOfElementByXpath,
+    getElementByXpath,
+    assertElemExistenceByXpath
 };
