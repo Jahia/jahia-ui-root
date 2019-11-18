@@ -1,4 +1,4 @@
-// const presets = [
+// Const presets = [
 //     [
 //         '@babel/env',
 //         {
