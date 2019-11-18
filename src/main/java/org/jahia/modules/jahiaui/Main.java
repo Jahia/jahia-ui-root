@@ -11,7 +11,9 @@ import org.jahia.services.render.RenderContext;
 import org.jahia.services.render.Resource;
 import org.jahia.services.usermanager.JahiaUser;
 import org.jahia.services.usermanager.JahiaUserManagerService;
+import org.jahia.settings.SettingsBean;
 import org.jahia.utils.LanguageCodeConverters;
+import org.json.JSONObject;
 import org.osgi.service.component.annotations.Component;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +53,12 @@ public class Main extends HttpServlet {
             request.setAttribute("renderContext", context);
             request.setAttribute("contextPath", Jahia.getContextPath());
             request.setAttribute("currentResource", resource);
+            JSONObject jsonObject = new JSONObject();
+            SettingsBean settingsBean = SettingsBean.getInstance();
+            jsonObject.put("documentation", settingsBean.getString("documentation.link", "https://academy.jahia.com/documentation/"));
+            Boolean isWhatsNewDisplayable = Boolean.valueOf(settingsBean.getString("whatsNew.display", "true"));
+            jsonObject.put("whatsNew", isWhatsNewDisplayable ? settingsBean.getString("whatsNew.link", "") : "https://academy.jahia.com/whats-new");
+            request.setAttribute("links",jsonObject.toString());
             request.getRequestDispatcher("/modules/jahia-ui-root/root.jsp").include(request, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);

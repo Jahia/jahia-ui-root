@@ -7,8 +7,10 @@ import Settings from '@jahia/moonstone/dist/icons/Setting';
 const DocumentationGroup = () => {
     return (
         <PrimaryNavItemsGroup isDisplayedWhenCollapsed={false}>
-            <PrimaryNavItem textVariant="caption" url="https://www.jahia.com" label="New at jahia.com"/>
-            <PrimaryNavItem textVariant="caption" url="https://academy.jahia.com/jahia-resource-center" label="Documentation"/>
+            <PrimaryNavItem textVariant="caption" url={window.contextJsParameters.links.whatsNew} label="New at jahia.com"/>
+            <PrimaryNavItem textVariant="caption"
+                            url={window.contextJsParameters.links.documentation}
+                            label="Documentation"/>
         </PrimaryNavItemsGroup>
     );
 };
@@ -32,7 +34,6 @@ registry.add('bottomProfileNavGroup', {
     target: ['nav-root-bottom:1'],
     render: () => <ProfileGroup/>
 });
-
 
 const AdministrationGroup = () => {
     return (

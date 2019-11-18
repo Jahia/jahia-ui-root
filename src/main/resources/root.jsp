@@ -37,7 +37,8 @@
     window.contextJsParameters = {
         targetId: '${targetId}',
         contextPath: '${contextPath}',
-        locale: '${currentResource.locale}'
+        locale: '${currentResource.locale}',
+        links: ${links}
     };
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);
