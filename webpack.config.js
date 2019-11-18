@@ -25,9 +25,6 @@ module.exports = (env, argv) => {
             chunkFilename: '[name].jahia.[chunkhash:6].js'
         },
         resolve: {
-            alias: {
-                react: path.resolve(__dirname, "node_modules/react")
-            },
             mainFields: ['module', 'main'],
             extensions: ['.mjs', '.js', '.jsx', 'json']
         },
