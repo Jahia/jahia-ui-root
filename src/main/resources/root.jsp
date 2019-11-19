@@ -25,7 +25,6 @@
 
 <body style="overflow: hidden; margin: 0; box-sizing: border-box">
 
-
 <%--<internal:gwtGenerateDictionary/>--%>
 <%--<internal:gwtInit/>--%>
 <%--<internal:gwtImport module="empty"/>--%>
