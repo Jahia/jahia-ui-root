@@ -8,10 +8,8 @@ import Power from '@jahia/moonstone/dist/icons/Power';
 const DocumentationGroup = () => {
     return (
         <>
-            <PrimaryNavItem textVariant="caption" url={window.contextJsParameters.links.whatsNew} label="New at jahia.com"/>
-            <PrimaryNavItem textVariant="caption"
-                            url={window.contextJsParameters.links.documentation}
-                            label="Documentation"/>
+            <PrimaryNavItem url={window.contextJsParameters.links.whatsNew} label="New at jahia.com"/>
+            <PrimaryNavItem url={window.contextJsParameters.links.documentation} label="Documentation"/>
         </>
     );
 };
@@ -34,7 +32,7 @@ const ProfileGroup = () => {
                 }}/>
     );
     return (
-        <PrimaryNavItem icon={<Person/>} subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'} label="My Profile" button={button}/>
+            <PrimaryNavItem icon={<Person/>} subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'} label="My Profile" button={button}/>
     );
 };
 
@@ -46,7 +44,7 @@ registry.add('bottomProfileNavGroup', {
 
 const AdministrationGroup = () => {
     return (
-        <PrimaryNavItem icon={<Settings/>} label="Administration"/>
+            <PrimaryNavItem icon={<Settings/>} label="Administration"/>
     );
 };
 
