@@ -1,23 +1,23 @@
 import React from 'react';
 import {registry} from '@jahia/registry';
-import {Button, PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
+import {Button, PrimaryNavItem} from '@jahia/moonstone';
 import Person from '@jahia/moonstone/dist/icons/Person';
 import Settings from '@jahia/moonstone/dist/icons/Setting';
 import Power from '@jahia/moonstone/dist/icons/Power';
 
 const DocumentationGroup = () => {
     return (
-        <PrimaryNavItemsGroup isDisplayedWhenCollapsed={false}>
+        <>
             <PrimaryNavItem textVariant="caption" url={window.contextJsParameters.links.whatsNew} label="New at jahia.com"/>
             <PrimaryNavItem textVariant="caption"
                             url={window.contextJsParameters.links.documentation}
                             label="Documentation"/>
-        </PrimaryNavItemsGroup>
+        </>
     );
 };
 
 registry.add('bottomDocNavGroup', {
-    type: 'bottomNavGroup',
+    type: 'bottomDocumentationGroup',
     target: ['nav-root-bottom:1'],
     render: () => <DocumentationGroup/>
 });
@@ -34,28 +34,24 @@ const ProfileGroup = () => {
                 }}/>
     );
     return (
-        <PrimaryNavItemsGroup>
             <PrimaryNavItem icon={<Person/>} subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'} label="My Profile" button={button}/>
-        </PrimaryNavItemsGroup>
     );
 };
 
 registry.add('bottomProfileNavGroup', {
-    type: 'bottomNavGroup',
+    type: 'bottomProfileGroup',
     target: ['nav-root-bottom:1'],
     render: () => <ProfileGroup/>
 });
 
 const AdministrationGroup = () => {
     return (
-        <PrimaryNavItemsGroup>
             <PrimaryNavItem icon={<Settings/>} label="Administration"/>
-        </PrimaryNavItemsGroup>
     );
 };
 
 registry.add('bottomAdminNavGroup', {
-    type: 'bottomNavGroup',
+    type: 'bottomAdminGroup',
     target: ['nav-root-bottom:1'],
     render: () => <AdministrationGroup/>
 });

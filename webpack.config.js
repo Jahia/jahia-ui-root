@@ -19,14 +19,12 @@ module.exports = (env, argv) => {
             main: [path.resolve(__dirname, 'src/javascript/publicPath'), path.resolve(__dirname, 'src/javascript/JahiaApp.loader')]
         },
         output: {
+            jsonpFunction: 'jahiaUIRootJsonp',
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
             filename: 'jahia.bundle.js',
             chunkFilename: '[name].jahia.[chunkhash:6].js'
         },
         resolve: {
-            alias: {
-                react: path.resolve(__dirname, "node_modules/react")
-            },
             mainFields: ['module', 'main'],
             extensions: ['.mjs', '.js', '.jsx', 'json']
         },
