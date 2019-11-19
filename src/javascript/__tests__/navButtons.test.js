@@ -6,7 +6,7 @@ expect.extend({toMatchImageSnapshot});
 
 beforeAll(async () => {
     await page.goto(url, {waitUntil: 'domcontentloaded'});
-    tf.sleep(500);
+    tf.sleep(200);
 });
 
 //checks that navigation of nav bar items works and sends you to the correct page
@@ -20,6 +20,7 @@ async function assertNavigateTo(buttonXpath, location) {
 
 describe('Navigation Bar Tests - Nav Buttons', () => {
 
+    //define xpath for each nav button
     let dashboardBtn      = "//ul[@class='flexFluid']//li[2]//ul[1]//li[1]//div[1]";
     let workflowsBtn      = "//li[2]//ul[1]//li[2]//div[1]";
     let editModeBtn       = "//ul[@class='flexFluid']//li[4]//ul[1]//li[1]//div[1]";
