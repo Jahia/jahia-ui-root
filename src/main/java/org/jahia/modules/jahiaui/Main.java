@@ -2,7 +2,6 @@ package org.jahia.modules.jahiaui;
 
 import org.jahia.api.Constants;
 import org.jahia.bin.Jahia;
-import org.jahia.services.content.JCRContentUtils;
 import org.jahia.services.content.JCRNodeWrapper;
 import org.jahia.services.content.JCRSessionFactory;
 import org.jahia.services.content.JCRSessionWrapper;
@@ -73,7 +72,7 @@ import java.util.Set;
         }
     }
 
-    public static String replacePlaceholders(String value, RenderContext renderContext, Locale locale) {
+    static String replacePlaceholders(String value, RenderContext renderContext, Locale locale) {
         if (value.contains("$site-servername") && renderContext.getSite() != null) {
             try {
                 value = value.replace("$site-servername", ((String) renderContext.getSite().getProperty("j:serverName").getString()));
