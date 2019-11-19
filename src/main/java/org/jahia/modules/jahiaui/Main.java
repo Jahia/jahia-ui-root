@@ -44,7 +44,7 @@ public class Main extends HttpServlet {
                 locale = LanguageCodeConverters.resolveLocaleForGuest(request);
             }
             JCRSessionWrapper currentUserSession = JCRSessionFactory.getInstance().getCurrentUserSession(Constants.EDIT_WORKSPACE, locale);
-            RenderContext context = new RenderContext(request, response, null);
+            RenderContext context = new RenderContext(request, response, currentUser);
             JCRNodeWrapper node = currentUserSession.getNode("/");
             Resource resource = new Resource(node, null, null, null);
             context.setMainResource(resource);
@@ -53,6 +53,8 @@ public class Main extends HttpServlet {
             request.setAttribute("renderContext", context);
             request.setAttribute("contextPath", Jahia.getContextPath());
             request.setAttribute("currentResource", resource);
+            request.setAttribute("currentUser", currentUser);
+            request.setAttribute("userEmail", currentUser.getProperty("j:email"));
             JSONObject jsonObject = new JSONObject();
             SettingsBean settingsBean = SettingsBean.getInstance();
             jsonObject.put("documentation", settingsBean.getString("documentation.link", "https://academy.jahia.com/documentation/"));
