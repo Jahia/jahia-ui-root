@@ -6,6 +6,7 @@ import Person from '@jahia/moonstone/dist/icons/Person';
 import Settings from '@jahia/moonstone/dist/icons/Setting';
 import Power from '@jahia/moonstone/dist/icons/Power';
 
+// TODO separate into different folders
 const DocumentationGroup = () => {
     const {t} = useTranslation();
     return (
