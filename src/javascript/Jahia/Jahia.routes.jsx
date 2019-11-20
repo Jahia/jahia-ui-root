@@ -29,7 +29,7 @@ const ProfileGroup = () => {
         <Button icon={<Power/>}
                 variant="ghost"
                 color="reverse"
-                label="Sign out"
+                label={t('primaryNavigation.profile.signOut')}
                 onClick={() => {
                     console.log('test');
                     window.location.assign('/cms/logout?redirect=/start');
