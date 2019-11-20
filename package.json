@@ -23,13 +23,15 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@jahia/moonstone": "^0.2.0",
+    "@jahia/i18next": "^1.0.0-beta.20191108125240",
+    "@jahia/moonstone": "file:.yalc/@jahia/moonstone",
     "@jahia/registry": "^1.0.0-beta.20190927123951",
     "@svgr/webpack": "^4.3.3",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
+    "react-i18next": "^11.2.2",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2"
   },

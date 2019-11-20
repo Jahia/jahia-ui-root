@@ -1,0 +1,14 @@
+{
+  "primaryNavigation" : {
+    "documentation": {
+      "label": "Documentation",
+      "newAtJahia": "New at Jahia.com"
+    },
+    "profile": {
+      "label": "My Profile"
+    },
+    "administration": {
+      "label": "Administration"
+    }
+  }
+}
