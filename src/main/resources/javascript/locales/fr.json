@@ -5,7 +5,8 @@
       "newAtJahia": "FR New at Jahia.com"
     },
     "profile": {
-      "label": "FR My Profile"
+      "label": "FR My Profile",
+      "signOut": "FR Sign out"
     },
     "administration": {
       "label": "FR Administration"

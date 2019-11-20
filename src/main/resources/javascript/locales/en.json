@@ -5,7 +5,8 @@
       "newAtJahia": "New at Jahia.com"
     },
     "profile": {
-      "label": "My Profile"
+      "label": "My Profile",
+      "signOut": "Sign out"
     },
     "administration": {
       "label": "Administration"

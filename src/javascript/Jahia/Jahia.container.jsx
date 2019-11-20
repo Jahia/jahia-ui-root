@@ -22,7 +22,7 @@ const JahiaContainer = ({jahiaCtx}) => {
         <I18nextProvider i18n={getI18n({
             lng: jahiaCtx.locale,
             contextPath: jahiaCtx.contextPath,
-            ns: [],
+            ns: jahiaCtx.i18nNamespaces,
             defaultNS: DEFAULT_NS,
             namespaceResolvers: NAMESPACE_RESOLVERS
         })}

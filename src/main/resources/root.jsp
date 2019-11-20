@@ -12,6 +12,10 @@
 <%@ taglib prefix="user" uri="http://www.jahia.org/tags/user" %>
 <%@ taglib prefix="js" uri="http://www.jahia.org/tags/dxwebpack" %>
 <%@ taglib prefix="internal" uri="http://www.jahia.org/tags/internalLib" %>
+<%@ taglib prefix="jur" uri="http://www.jahia.org/tags/jahia-ui-root/functions" %>
+
+<%--Get namespaces of dependant modules--%>
+<c:set var="i18nNamespaces" value="${jur:getI18nNamespaces()}"/>
 
 <html>
 
@@ -42,7 +46,8 @@
             fullname:'${user:fullName(currentUser)}',
             email:'${userEmail}'
         },
-        links: ${links}
+        links: ${links},
+        i18nNamespaces: ${i18nNamespaces}
     };
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);
