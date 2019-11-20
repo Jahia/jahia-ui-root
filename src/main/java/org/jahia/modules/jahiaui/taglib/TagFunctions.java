@@ -11,6 +11,9 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Tag functions for Jahia UI Root project
+ */
 public class TagFunctions {
 
     /**
