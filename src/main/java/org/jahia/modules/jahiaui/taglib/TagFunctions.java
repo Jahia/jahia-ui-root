@@ -22,9 +22,9 @@ public class TagFunctions {
      * @return a string representation of an array with all i18n namespaces
      */
     public static String getI18nNameSpaces() {
-        // Note that for now I look at all the bundles wheres in the future it may make sense to be a bit more specific
+        // TODO Strengthen once module ecosystem is more mature to include only modules that are supposed to work with ui-root
         Collection<Bundle> bundles = Arrays.stream(FrameworkService.getBundleContext().getBundles())
-                .filter(bundle -> bundle.getState() == Bundle.ACTIVE)
+                .filter(bundle -> bundle.getState() == Bundle.ACTIVE && BundleUtils.isJahiaModuleBundle(bundle))
                 .collect(Collectors.toList());
         Set<String> namespaces = new LinkedHashSet<>();
         for (Bundle bundle : bundles) {
