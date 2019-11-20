@@ -25,7 +25,6 @@
 
 <body style="overflow: hidden; margin: 0; box-sizing: border-box">
 
-
 <%--<internal:gwtGenerateDictionary/>--%>
 <%--<internal:gwtInit/>--%>
 <%--<internal:gwtImport module="empty"/>--%>
@@ -42,7 +41,8 @@
         user: {
             fullname:'${user:fullName(currentUser)}',
             email:'${userEmail}'
-        }
+        },
+        links: ${links}
     };
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);

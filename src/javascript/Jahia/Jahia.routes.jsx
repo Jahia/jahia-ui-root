@@ -8,8 +8,8 @@ import Power from '@jahia/moonstone/dist/icons/Power';
 const DocumentationGroup = () => {
     return (
         <>
-            <PrimaryNavItem url="https://www.jahia.com" label="New at jahia.com"/>
-            <PrimaryNavItem url="https://academy.jahia.com/jahia-resource-center" label="Documentation"/>
+            <PrimaryNavItem url={window.contextJsParameters.links.whatsNew} label="New at jahia.com"/>
+            <PrimaryNavItem url={window.contextJsParameters.links.documentation} label="Documentation"/>
         </>
     );
 };
