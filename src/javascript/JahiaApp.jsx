@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Jahia from './Jahia';
 
 function render() {
-    ReactDOM.render(<Jahia/>, document.getElementById(window.contextJsParameters.targetId));
+    ReactDOM.render(<Jahia jahiaCtx={window.contextJsParameters}/>, document.getElementById(window.contextJsParameters.targetId));
 }
 
 export {render};
