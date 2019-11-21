@@ -10,9 +10,6 @@ import JahiaLogo from './JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
 import JahiaContext from './Jahia.context';
 
-window.navRoot = PrimaryNav;
-window.reactRoot = React;
-
 export const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const jahiaContext = useContext(JahiaContext);
     return (
@@ -21,7 +18,7 @@ export const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
             <LayoutApp
                 navigation={<PrimaryNav
                     headerLogo={<JahiaLogo/>}
-                    headerCaption={`${jahiaContext.environment} - ${window.contextJsParameters.locale}`}
+                    headerCaption={`${jahiaContext.environment} - ${jahiaContext.locale}`}
                     modeIcon={<Star/>}
                     top={topNavGroups}
                     bottom={bottomNavGroups}
