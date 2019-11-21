@@ -28,7 +28,7 @@ const JahiaContainer = ({jahiaCtx}) => {
         })}
         >
             <BrowserRouter basename="/modules/moonstone">
-                <JahiaContext.Provider values={jahiaCtx}>
+                <JahiaContext.Provider value={jahiaCtx}>
                     <Jahia routes={registry.find({type: 'route', target: 'nav-root-top'})}
                            topNavGroups={[
                                <PrimaryNavGroup key="topNavGroup"
