@@ -1,3 +1,5 @@
+const testURL = new URL(url + 'modules/moonstone');
+
 const assertPageTitle = async function (title) {
     await expect(page.title()).resolves.toMatch(title);
 };
@@ -98,6 +100,7 @@ async function assertVisibilityOfElementByXpath(xpath, visible) {
 }
 
 module.exports = {
+    testURL,
     assertPageTitle,
     assertElemExistence,
     takeScreenshot,
