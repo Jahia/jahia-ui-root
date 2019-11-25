@@ -3,7 +3,7 @@ module.exports = {
     launch: {
         headless: process.env.HEADLESS ? process.env.HEADLESS : true,
         slowMo: process.env.SLOWMO ? process.env.SLOWMO : 200,
-        devtools: true,
+        devtools: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
         defaultViewport: {
             width: 900,

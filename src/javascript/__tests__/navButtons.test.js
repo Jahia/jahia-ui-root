@@ -1,12 +1,14 @@
 import tf from './testFunctions';
 
+
 const timeout = process.env.SLOWMO ? 40000 : 20000;
 const {toMatchImageSnapshot} = require('jest-image-snapshot');
 expect.extend({toMatchImageSnapshot});
 
 beforeAll(async () => {
-    await page.goto(url, {waitUntil: 'domcontentloaded'});
+    await page.goto(tf.testURL, {waitUntil: 'domcontentloaded'});
     tf.sleep(200);
+    await tf.assertPageTitle('')
 });
 
 //checks that navigation of nav bar items works and sends you to the correct page

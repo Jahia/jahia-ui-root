@@ -1,11 +1,13 @@
 import tf from './testFunctions';
 
+const testURL = new URL(url + 'modules/moonstone');
 const timeout = process.env.SLOWMO ? 30000 : 10000;
 const {toMatchImageSnapshot} = require('jest-image-snapshot');
 expect.extend({toMatchImageSnapshot});
 
 beforeAll(async () => {
-    await page.goto(url, {waitUntil: 'domcontentloaded'});
+    await page.goto(testURL, {waitUntil: 'domcontentloaded'});
+
 });
 
 describe('Navigation Bar Tests - expand/collapse', () => {
