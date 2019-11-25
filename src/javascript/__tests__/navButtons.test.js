@@ -23,26 +23,16 @@ async function assertNavigateTo(buttonXpath, location) {
 describe('Navigation Bar Tests - Nav Buttons', () => {
 
     //define xpath for each nav button
-    let dashboardBtn      = "//ul[@class='flexFluid']//li[2]//ul[1]//li[1]//div[1]";
-    let workflowsBtn      = "//li[2]//ul[1]//li[2]//div[1]";
-    let editModeBtn       = "//ul[@class='flexFluid']//li[4]//ul[1]//li[1]//div[1]";
-    let cmmBtn            = "//li[4]//ul[1]//li[2]//div[1]";
-    let userProfileBtn    = "//ul[2]//li[2]//ul[1]//li[1]//div[1]";
-    let administrationBtn = "//body/div[@id='reactComponent']/div[@class='qAh-BlmoV13gOhT73qD6_ flexRow_center flexRow']/div[@class='_30Q75u6SNFh3Z3Mcws0tmT']/nav[@class='fhzrZozxHiPszfqUV2Iw8 flexCol_nowrap']/ul[2]/li[4]/ul[1]/li[1]/div[1]";
+    let hamburgerBtn      = "//nav/div/div[1]/button";
+    let userProfileBtn    = "//nav/ul[2]/li[2]/ul/li/div[1]";
+    let administrationBtn = "//nav/ul[2]/li[4]/ul/li/div[1]";
 
-    test('existence of nav buttons', async () => {
-        await tf.assertElemExistenceByXpath(dashboardBtn, true);
-        await tf.assertElemExistenceByXpath(workflowsBtn, true);
-        await tf.assertElemExistenceByXpath(editModeBtn, true);
-        await tf.assertElemExistenceByXpath(cmmBtn, true);
+    test('existence of root navigation buttons', async () => {
+        await tf.assertElemExistenceByXpath(hamburgerBtn, true);
         await tf.assertElemExistenceByXpath(userProfileBtn, true);
+        await page.$x(userProfileBtn).then(element => expect(element[0].screenshot({"encoding":"base64"})).resolves.toMatchImageSnapshot());
         await tf.assertElemExistenceByXpath(administrationBtn, true);
+        await page.$x(administrationBtn).then(element => expect(element[0].screenshot({"encoding":"base64"})).resolves.toMatchImageSnapshot());
     }, timeout);
 
-    test('click on nav buttons', async () => {
-        await assertNavigateTo(dashboardBtn, "Dashboard");
-        await assertNavigateTo(workflowsBtn, "Workflows");
-        await assertNavigateTo(editModeBtn, "Edit mode");
-        await assertNavigateTo(cmmBtn, "Content & Media Manager");
-    }, timeout);
 });

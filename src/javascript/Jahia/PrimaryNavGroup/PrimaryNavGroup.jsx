@@ -1,9 +1,14 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import PropTypes from 'prop-types';
 import {PrimaryNavItemsGroup} from '@jahia/moonstone';
 
 const PrimaryNavGroup = ({isDisplayedWhenCollapsed, navItems}) => (
-    <PrimaryNavItemsGroup isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}>{navItems.map(item => item.render())}</PrimaryNavItemsGroup>
+    <Suspense fallback="loading...">
+        <PrimaryNavItemsGroup
+            isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}
+        >{navItems.map(item => item.render())}
+        </PrimaryNavItemsGroup>
+    </Suspense>
 );
 
 PrimaryNavGroup.defaultProps = {

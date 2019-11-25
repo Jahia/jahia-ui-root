@@ -4,19 +4,23 @@ const assertPageTitle = async function (title) {
     await expect(page.title()).resolves.toMatch(title);
 };
 
-const assertElemExistence = async function (selector, exists) {
+const assertElemExistence = function (selector, exists) {
     if (exists) {
-        await expect(page.$(selector)).resolves.not.toBeNull();
+        return expect(page.$(selector)).resolves.not.toBeNull();
     } else {
-        await expect(page.$(selector)).resolves.toBeNull();
+        return expect(page.$(selector)).resolves.toBeNull();
     }
 };
 
-const assertElemExistenceByXpath = async function (xpath, exists) {
+const assertElemExistenceByXpath = function (xpath, exists) {
+    let $x = page.$x(xpath);
+    $x.then(element => {
+        console.log(xpath + ' resolved to : ', element);
+    });
     if (exists) {
-        await expect(page.$x(xpath)).resolves.not.toBeNull();
+        return expect($x).resolves.not.toHaveLength(0);
     } else {
-        await expect(page.$x(xpath)).resolves.toBeNull();
+        return expect($x).resolves.toHaveLength(0);
     }
 };
 
