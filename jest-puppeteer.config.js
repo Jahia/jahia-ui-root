@@ -4,7 +4,7 @@ module.exports = {
         headless: process.env.HEADLESS ? process.env.HEADLESS : true,
         slowMo: process.env.SLOWMO ? process.env.SLOWMO : 200,
         devtools: false,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-fullscreen'],
         defaultViewport: {
             width: 900,
             height: 1200
