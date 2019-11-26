@@ -1,13 +1,11 @@
 import tf from './testFunctions';
 
-const testURL = new URL(url + 'modules/moonstone');
-const timeout = process.env.SLOWMO ? 30000 : 10000;
+const timeout = process.env.SLOWMO ? 40000 : 20000;
 const {toMatchImageSnapshot} = require('jest-image-snapshot');
 expect.extend({toMatchImageSnapshot});
 
 beforeAll(async () => {
-    await page.goto(testURL, {waitUntil: 'domcontentloaded'});
-
+    await page.goto(tf.testURL, {waitUntil: 'domcontentloaded'});
 });
 
 describe('Navigation Bar Tests - expand/collapse', () => {
@@ -19,14 +17,14 @@ describe('Navigation Bar Tests - expand/collapse', () => {
         initialScreenshot = await tf.takeScreenshot('initial-view', 900, 1200);
         await tf.assertElemExistence('nav.flexCol_nowrap', true);
         await tf.clickOnElem('button');
-        await tf.assertVisibilityOfElementByXpath('//div[contains(text(), \'Test environment en\')]', true);
+        await tf.assertVisibilityOfElementByXpath('//div[contains(text(), \'Test environment - en\')]', true);
         expandedScreenshot = await tf.takeScreenshot('expanded-view', 900, 1200);
     }, timeout);
 
     test('collapse nav bar', async () => {
         expect(expandedScreenshot).toMatchImageSnapshot();
         await tf.clickOnElem('button');
-        await tf.assertVisibilityOfElementByXpath('//div[contains(text(), \'Test environment en\')]', false);
+        await tf.assertVisibilityOfElementByXpath('//div[contains(text(), \'Test environment - en\')]', false);
         expect(initialScreenshot).toMatchImageSnapshot();
     }, timeout);
 });
