@@ -1,30 +1,31 @@
 import tf from './testFunctions';
 
-const timeout = process.env.SLOWMO ? 40000 : 20000;
+
 const {toMatchImageSnapshot} = require('jest-image-snapshot');
 expect.extend({toMatchImageSnapshot});
 
-beforeAll(async () => {
+beforeEach(async () => {
     await page.goto(tf.testURL, {waitUntil: 'domcontentloaded'});
 });
 
 describe('Navigation Bar Tests - expand/collapse', () => {
 
-    let initialScreenshot;
-    let expandedScreenshot;
-
     test('expand nav bar', async () => {
-        initialScreenshot = await tf.takeScreenshot('initial-view', 900, 1200);
-        await tf.assertElemExistence('nav.flexCol_nowrap', true);
+
+        await tf.assertElemExistence('nav', true);
         await tf.clickOnElem('button');
         await tf.assertVisibilityOfElementByXpath('//div[contains(text(), \'Test environment - en\')]', true);
-        expandedScreenshot = await tf.takeScreenshot('expanded-view', 900, 1200);
-    }, timeout);
+
+        await page.$x("//nav").then(element => expect(element[0].screenshot({"encoding":"base64"})).resolves.toMatchImageSnapshot());
+    }, tf.timeout);
 
     test('collapse nav bar', async () => {
-        expect(expandedScreenshot).toMatchImageSnapshot();
+
+        await tf.clickOnElem('button');
+        await tf.assertVisibilityOfElementByXpath('//div[contains(text(), \'Test environment - en\')]', true);
         await tf.clickOnElem('button');
         await tf.assertVisibilityOfElementByXpath('//div[contains(text(), \'Test environment - en\')]', false);
-        expect(initialScreenshot).toMatchImageSnapshot();
-    }, timeout);
+
+        await page.$x("//nav").then(element => expect(element[0].screenshot({"encoding":"base64"})).resolves.toMatchImageSnapshot());
+    }, tf.timeout);
 });

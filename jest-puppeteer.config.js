@@ -5,9 +5,6 @@ module.exports = {
         slowMo: process.env.SLOWMO ? process.env.SLOWMO : 200,
         devtools: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox', '--start-fullscreen'],
-        defaultViewport: {
-            width: 900,
-            height: 1200
-        }
+        defaultViewport: null
     }
 };
