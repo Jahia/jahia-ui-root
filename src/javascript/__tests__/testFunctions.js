@@ -1,4 +1,5 @@
 const testURL = new URL(url + 'modules/moonstone');
+const timeout = process.env.SLOWMO ? 40000 : 20000;
 
 const assertPageTitle = async function (title) {
     await expect(page.title()).resolves.toMatch(title);
@@ -116,6 +117,7 @@ async function setPageLang(lang) {
 
 module.exports = {
     testURL,
+    timeout,
     assertPageTitle,
     assertElemExistence,
     takeScreenshot,
