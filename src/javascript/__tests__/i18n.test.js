@@ -9,7 +9,7 @@ expect.extend({toMatchImageSnapshot});
 beforeEach(async () => {
     await page.goto(tf.testURL, {waitUntil: 'domcontentloaded'});
     tf.sleep(200);
-    //await tf.assertPageTitle(tf.getBaseUrl() + "modules/moonstone");
+    //await tf.assertPageTitle('')
 });
 
 

@@ -6,6 +6,7 @@ expect.extend({toMatchImageSnapshot});
 
 beforeEach(async () => {
     await page.goto(tf.testURL, {waitUntil: 'domcontentloaded'});
+    //await tf.assertPageTitle('')
 });
 
 describe('Navigation Bar Tests - expand/collapse', () => {
