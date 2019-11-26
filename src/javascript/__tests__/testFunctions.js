@@ -100,7 +100,18 @@ const sleep = function (milliseconds) {
 };
 
 async function assertVisibilityOfElementByXpath(xpath, visible) {
-    await page.waitForXPath(xpath, {visible: visible});
+    try {
+        await page.waitForXPath(xpath, {visible: visible});
+    } catch (e) {
+        return e
+    }
+
+}
+
+async function setPageLang(lang) {
+    await page.setExtraHTTPHeaders({
+        'Accept-Language': lang
+    });
 }
 
 module.exports = {
@@ -117,5 +128,6 @@ module.exports = {
     removeElement,
     assertVisibilityOfElementByXpath,
     getElementByXpath,
-    assertElemExistenceByXpath
+    assertElemExistenceByXpath,
+    setPageLang
 };

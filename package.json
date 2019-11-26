@@ -57,6 +57,7 @@
     "eslint": "5.16.0",
     "eslint-loader": "^3.0.2",
     "eslint-plugin-json": "^2.0.1",
+    "franc": "^4.1.1",
     "husky": "^3.0.9",
     "jest": "^24.9.0",
     "jest-image-snapshot": "^2.11.0",
