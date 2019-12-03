@@ -1,16 +1,14 @@
 import tf from './testFunctions';
 
 
-const {toMatchImageSnapshot} = require('jest-image-snapshot');
-expect.extend({toMatchImageSnapshot});
-
 beforeEach(async () => {
-    await page.goto(tf.testURL, {waitUntil: 'domcontentloaded'});
+    await page.goto(tf.testURL, {waitUntil: 'networkidle0'});
 });
 
 describe('Navigation - test signout', () => {
 
     test('Sign out exists', async () => {
+        await page.waitForSelector('nav');
 
         await tf.assertElemExistence('nav', true);
         await tf.clickOnElem('button');
@@ -20,6 +18,8 @@ describe('Navigation - test signout', () => {
     }, tf.timeout);
 
     test('logout from jahia', async () => {
+        await page.waitForSelector('nav');
+
         await tf.assertElemExistence('nav', true);
         await tf.clickOnElem('button');
 
@@ -28,7 +28,6 @@ describe('Navigation - test signout', () => {
         await page.waitForNavigation({waitUntil: 'load'});
 
         await tf.assertElemExistence(".login-form", true)
-        //expect(page.$('.login-form')).toHaveLength(1)
 
     }, tf.timeout);
 });

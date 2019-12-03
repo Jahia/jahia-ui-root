@@ -1,6 +1,16 @@
 const testURL = new URL(url + 'modules/moonstone');
 const timeout = process.env.SLOWMO ? 40000 : 20000;
 
+const { configureToMatchImageSnapshot } = require('jest-image-snapshot');
+
+const customConfig = { threshold: 0 };
+const toMatchImageSnapshot = configureToMatchImageSnapshot({
+    customDiffConfig: customConfig,
+    customDiffDir: "target/__diff_output__"
+});
+expect.extend({ toMatchImageSnapshot });
+
+
 const assertPageTitle = async function (title) {
     await expect(page.title()).resolves.toMatch(title);
 };
@@ -118,6 +128,7 @@ async function setPageLang(lang) {
 module.exports = {
     testURL,
     timeout,
+    toMatchImageSnapshot,
     assertPageTitle,
     assertElemExistence,
     takeScreenshot,
