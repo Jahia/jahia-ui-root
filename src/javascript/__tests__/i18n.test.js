@@ -1,14 +1,11 @@
 import tf from './testFunctions';
 
-const {toMatchImageSnapshot} = require('jest-image-snapshot');
-expect.extend({toMatchImageSnapshot});
 
 //this can be used to detect the language from any string
 //const franc = require('franc');  // see doc here: https://github.com/wooorm/franc
 
 beforeEach(async () => {
-    await page.goto(tf.testURL, {waitUntil: 'domcontentloaded'});
-    tf.sleep(200);
+    await page.goto(tf.testURL, {waitUntil: 'networkidle0'});
     //await tf.assertPageTitle(tf.getBaseUrl() + "modules/moonstone");
 });
 
@@ -16,6 +13,8 @@ beforeEach(async () => {
 describe('Navigation - i18n tests', () => {
 
     test('switch to french', async () => {
+        await page.waitForSelector('nav');
+
         await tf.setPageLang('fr');
         await page.reload({waitUntil: 'domcontentloaded'});
         await tf.clickOnElem('button');

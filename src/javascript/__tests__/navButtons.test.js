@@ -1,12 +1,7 @@
 import tf from './testFunctions';
 
-const {toMatchImageSnapshot} = require('jest-image-snapshot');
-expect.extend({toMatchImageSnapshot});
-
 beforeEach(async () => {
-    await page.goto(tf.testURL, {waitUntil: 'domcontentloaded'});
-    tf.sleep(200);
-    //await tf.assertPageTitle('')
+    await page.goto(tf.testURL, {waitUntil: 'networkidle0'});
 });
 
 describe('Navigation Bar Tests - Nav Buttons', () => {
@@ -17,6 +12,8 @@ describe('Navigation Bar Tests - Nav Buttons', () => {
     let administrationBtn = "//nav/ul[2]/li[4]/ul/li/div[1]";
 
     test('existence of root navigation buttons', async () => {
+        await page.waitForSelector('nav');
+
         //await page.$x("//nav").then(element => expect(element[0].screenshot({"encoding":"base64"})).resolves.toMatchImageSnapshot());
         await tf.assertElemExistenceByXpath(hamburgerBtn, true);
         await tf.assertElemExistenceByXpath(userProfileBtn, true);
