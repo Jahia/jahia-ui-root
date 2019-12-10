@@ -7,3 +7,5 @@ src/main/resources/javascript/polyfills.js
 src/javascript/__tests__/*
 src/javascript/publicPath.js
 webpack.config.js
+jest-puppeteer-react.config.js
+src/javascript/__mocks__

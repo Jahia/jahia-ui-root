@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`primary nav group collapsed and empty nav bar 1`] = `
+Array [
+  <li
+    className="flexRow flexRow_center alignCenter"
+  >
+    <svg
+      fill="none"
+      height="1"
+      viewBox="0 0 56 1"
+      width="56"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        fill="#7A7F88"
+        fillOpacity="0.4"
+        height="1"
+        rx="0.5"
+        width="24"
+        x="16"
+      />
+    </svg>
+  </li>,
+  <li>
+    <ul />
+  </li>,
+]
+`;
+
+exports[`primary nav group collapsed and not empty nav bar 1`] = `
+Array [
+  <li
+    className="flexRow flexRow_center alignCenter"
+  >
+    <svg
+      fill="none"
+      height="1"
+      viewBox="0 0 56 1"
+      width="56"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        fill="#7A7F88"
+        fillOpacity="0.4"
+        height="1"
+        rx="0.5"
+        width="24"
+        x="16"
+      />
+    </svg>
+  </li>,
+  <li>
+    <ul>
+      <span>
+        mock_content
+      </span>
+    </ul>
+  </li>,
+]
+`;
+
+exports[`primary nav group expanded and empty nav bar 1`] = `null`;
+
+exports[`primary nav group expanded and not empty nav bar 1`] = `null`;

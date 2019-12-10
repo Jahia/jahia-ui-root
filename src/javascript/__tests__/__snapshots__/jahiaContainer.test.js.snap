@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Jahia container full app 1`] = `
+<div
+  className="qAh-BlmoV13gOhT73qD6_ flexRow_center flexRow"
+>
+  <div
+    className="_30Q75u6SNFh3Z3Mcws0tmT"
+  >
+    <nav
+      className="fhzrZozxHiPszfqUV2Iw8 flexCol_nowrap"
+    >
+      <div
+        className="flexRow_nowrap Xq_qsfgTbf_rPhNvYMPrO"
+      >
+        <div
+          className="_1Hb2U3wyv1rAtkwe7xtl6s flexRow flexRow_center"
+        >
+          <svg
+            className="_38E1a13EgTPwSckpPpy2Jl moonstone-icon moonstone-icon_default"
+            fill="none"
+            size="default"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"
+              fill="currentColor"
+            />
+          </svg>
+          <button
+            onClick={[Function]}
+            type="button"
+          >
+            <svg
+              className=" moonstone-icon moonstone-icon_default"
+              fill="none"
+              size="default"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+        <div
+          className="flexCol flexCol_center alignCenter flexFluid x7coZ32SUhrlZqyKQHmvD"
+        >
+          <svg />
+          <div
+            className="flexRow_nowrap alignCenter _1izgQNMCMCJc4gSR3zuNBQ"
+          >
+            <svg
+              className="_1ZItR0AWUiJLpbSu-rzfbX moonstone-icon moonstone-icon_default"
+              fill="none"
+              size="default"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"
+                fill="currentColor"
+              />
+            </svg>
+            undefined - en
+          </div>
+        </div>
+      </div>
+      <ul
+        className="flexFluid"
+      >
+        <li
+          className="flexRow flexRow_center alignCenter"
+        >
+          <svg
+            fill="none"
+            height="1"
+            viewBox="0 0 56 1"
+            width="56"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              fill="#7A7F88"
+              fillOpacity="0.4"
+              height="1"
+              rx="0.5"
+              width="24"
+              x="16"
+            />
+          </svg>
+        </li>
+        <li>
+          <ul />
+        </li>
+      </ul>
+      <ul>
+        <li
+          className="flexRow flexRow_center alignCenter"
+        >
+          <svg
+            fill="none"
+            height="1"
+            viewBox="0 0 56 1"
+            width="56"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              fill="#7A7F88"
+              fillOpacity="0.4"
+              height="1"
+              rx="0.5"
+              width="24"
+              x="16"
+            />
+          </svg>
+        </li>
+        <li>
+          <ul>
+            <li
+              className="_38IL5xx6MzHEv52EctnPV_"
+            >
+              <div
+                className="_3Wbxt6soOkNE807wmyu_iI"
+              >
+                <div
+                  className="_1Ai3EiPwY-pZNUwN6mrrmu"
+                >
+                  <svg
+                    className=" moonstone-icon moonstone-icon_default"
+                    fill="none"
+                    size="default"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+                <div
+                  className="_3ejht2paDjYw7X613AENsu"
+                >
+                  <span
+                    className="_2UHrI1QWqxLhuY_tZNdPZo _3Jnldq9UavKB8387Kxg_LU _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
+                  >
+                    primaryNavigation.profile.label
+                  </span>
+                  <div
+                    className="_2UHrI1QWqxLhuY_tZNdPZo _2FviE9uz6qAPg_E5Dqr_5W _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
+                  >
+                    mock_fullname (mock_email)
+                  </div>
+                </div>
+              </div>
+              <div
+                className="ZgcqhWSs--AqdmVMuLrBi"
+              >
+                <button
+                  className="_3_Ozh1xIkutWoTIuxPhs4N _3slF4xgjdDtFrP1ZcyBffu _2w6j1jrniCARwwHovk9Ycr _1LQ77fynycbnHQ463dWcSm"
+                  onClick={[Function]}
+                  type="button"
+                >
+                  <i>
+                    <svg
+                      className=" moonstone-icon moonstone-icon_default"
+                      fill="none"
+                      size="default"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42A6.92 6.92 0 0119 12c0 3.87-3.13 7-7 7A6.995 6.995 0 017.58 6.58L6.17 5.17A8.932 8.932 0 003 12a9 9 0 0018 0c0-2.74-1.23-5.18-3.17-6.83z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </i>
+                  primaryNavigation.profile.signOut
+                </button>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li
+          className="flexRow flexRow_center alignCenter"
+        >
+          <svg
+            fill="none"
+            height="1"
+            viewBox="0 0 56 1"
+            width="56"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect
+              fill="#7A7F88"
+              fillOpacity="0.4"
+              height="1"
+              rx="0.5"
+              width="24"
+              x="16"
+            />
+          </svg>
+        </li>
+        <li>
+          <ul>
+            <li
+              className="_38IL5xx6MzHEv52EctnPV_"
+            >
+              <div
+                className="_3Wbxt6soOkNE807wmyu_iI"
+              >
+                <div
+                  className="_1Ai3EiPwY-pZNUwN6mrrmu"
+                >
+                  <svg
+                    className=" moonstone-icon moonstone-icon_default"
+                    fill="none"
+                    size="default"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      clipRule="evenodd"
+                      d="M18.941 12c0 .306-.027.594-.064.882l1.952 1.485a.446.446 0 01.11.576l-1.85 3.114a.457.457 0 01-.564.198l-2.304-.9c-.481.351-1 .657-1.564.882l-.351 2.385a.448.448 0 01-.454.378h-3.7a.447.447 0 01-.454-.378l-.352-2.385a6.808 6.808 0 01-1.563-.882l-2.304.9a.471.471 0 01-.564-.198l-1.851-3.114a.446.446 0 01.111-.576l1.952-1.485A6.946 6.946 0 015.063 12c0-.297.027-.594.064-.882L3.175 9.633a.436.436 0 01-.111-.576l1.85-3.114a.457.457 0 01.565-.198l2.304.9a7.16 7.16 0 011.563-.882l.352-2.385A.447.447 0 0110.151 3h3.701c.232 0 .426.162.454.378l.351 2.385a6.81 6.81 0 011.564.882l2.304-.9a.471.471 0 01.564.198l1.85 3.114a.446.446 0 01-.11.576l-1.953 1.485c.037.288.065.576.065.882zM8.763 12c0 1.737 1.453 3.15 3.239 3.15 1.785 0 3.238-1.413 3.238-3.15 0-1.737-1.453-3.15-3.238-3.15-1.786 0-3.239 1.413-3.239 3.15z"
+                      fill="currentColor"
+                      fillRule="evenodd"
+                    />
+                  </svg>
+                </div>
+                <div
+                  className="_3ejht2paDjYw7X613AENsu"
+                >
+                  <span
+                    className="_2UHrI1QWqxLhuY_tZNdPZo _3Jnldq9UavKB8387Kxg_LU _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
+                  >
+                    primaryNavigation.administration.label
+                  </span>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div
+    className="flexFluid flexRow"
+  />
+</div>
+`;
