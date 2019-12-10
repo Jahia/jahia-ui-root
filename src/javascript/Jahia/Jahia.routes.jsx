@@ -31,7 +31,6 @@ const ProfileGroup = () => {
                 color="reverse"
                 label={t('primaryNavigation.profile.signOut')}
                 onClick={() => {
-                    console.log('test');
                     window.location.assign('/cms/logout?redirect=/start');
                 }}/>
     );
