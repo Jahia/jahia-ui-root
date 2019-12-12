@@ -7,7 +7,7 @@ import Settings from '@jahia/moonstone/dist/icons/Setting';
 import Power from '@jahia/moonstone/dist/icons/Power';
 
 // TODO separate into different folders
-const DocumentationGroup = () => {
+export const DocumentationGroup = () => {
     const {t} = useTranslation();
     return (
         <>
@@ -23,7 +23,7 @@ registry.add('bottomDocNavGroup', {
     render: () => <DocumentationGroup/>
 });
 
-const ProfileGroup = () => {
+export const ProfileGroup = () => {
     const {t} = useTranslation();
     let button = (
         <Button icon={<Power/>}
@@ -46,7 +46,7 @@ registry.add('bottomProfileNavGroup', {
     render: () => <ProfileGroup/>
 });
 
-const AdministrationGroup = () => {
+export const AdministrationGroup = () => {
     const {t} = useTranslation();
     return (
         <PrimaryNavItem icon={<Settings/>} label={t('primaryNavigation.administration.label')}/>
