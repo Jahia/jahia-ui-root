@@ -8,7 +8,7 @@
     <bean name="org.jahia.modules.jahiaui.Main" class="org.jahia.modules.jahiaui.Main">
     </bean>
 
-    <bean name="contentmanagerRendererMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <bean name="jahiauirootRendererMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="urlMap">
             <map>
                 <entry key="/moonstone/**" value-ref="org.jahia.modules.jahiaui.Main"/>

@@ -25,20 +25,28 @@
 <%--    TODO remove this and fix /modules/modules issue in dx-commons--%>
     <script src="/modules/dx-commons-webpack/javascript/js-load.js"></script>
     <js:loader target="jahia-extends"/>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_en.css'/>" />
+    <script type="text/javascript" src="<c:url value='/engines/jahia-anthracite/js/dist/build/anthracite-min.js'/>"></script>
 </head>
 
 <body style="overflow: hidden; margin: 0; box-sizing: border-box">
 
-<%--<internal:gwtGenerateDictionary/>--%>
-<%--<internal:gwtInit/>--%>
-<%--<internal:gwtImport module="empty"/>--%>
+<internal:gwtGenerateDictionary/>
+<internal:gwtInit/>
+<internal:gwtImport module="empty"/>
 
 <c:set var="targetId" value="reactComponent${fn:replace(currentNode.identifier,'-','_')}"/>
 <div id="${targetId}">loading..</div>
 
+
 <div id="gwt-root"></div>
 <script type="text/javascript">
-    window.contextJsParameters = {
+    window.contextJsParameters = window.contextJsParameters || {};
+    window.contextJsParameters = Object.assign({}, window.contextJsParameters, {
+        config: {
+            actions: []
+        },
         targetId: '${targetId}',
         contextPath: '${contextPath}',
         locale: '${currentResource.locale}',
@@ -49,7 +57,7 @@
         links: ${links},
         environment: '${environment}',
         i18nNamespaces: ${i18nNamespaces}
-    };
+    });
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);
 </script>
