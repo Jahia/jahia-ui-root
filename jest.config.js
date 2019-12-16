@@ -7,5 +7,5 @@ module.exports = {
             '<rootDir>/src/javascript/__mocks__/fileMock.js',
         '\\.svg$': '<rootDir>/src/javascript/__mocks__/svgMock.js'
     },
-    testResultsProcessor: "jest-teamcity-reporter"
+    testResultsProcessor: 'jest-teamcity-reporter'
 };
