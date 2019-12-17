@@ -1,6 +1,6 @@
 module.exports = {
     modulePaths: [
-        '<rootDir>'
+        '<rootDir>/src/javascript/'
     ],
     testPathIgnorePatterns: [
         '<rootDir>/node_modules/'
