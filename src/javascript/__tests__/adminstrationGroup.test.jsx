@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {AdministrationGroup} from '../Jahia/jahia.routes';
+import {AdministrationGroup} from '../Jahia/Jahia.routes';
 
 describe('administration group', () => {
 
