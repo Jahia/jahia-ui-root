@@ -22,8 +22,7 @@
 <head>
     <meta charset="utf-8">
     <title>${fn:escapeXml(renderContext.mainResource.node.displayableName)}</title>
-<%--    TODO remove this and fix /modules/modules issue in dx-commons--%>
-    <script src="/modules/dx-commons-webpack/javascript/js-load.js"></script>
+    <script src="${contextPath}/modules/dx-commons-webpack/javascript/js-load.js"></script>
     <js:loader target="jahia-extends"/>
 
     <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_en.css'/>" />
