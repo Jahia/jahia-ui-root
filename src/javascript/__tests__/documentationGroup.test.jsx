@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {DocumentationGroup} from '../Jahia/jahia.routes.jsx';
+import {DocumentationGroup} from '../Jahia/Jahia.routes';
 
 describe('documentation group', () => {
 

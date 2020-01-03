@@ -22,6 +22,7 @@ import javax.jcr.RepositoryException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashSet;
@@ -29,9 +30,10 @@ import java.util.Locale;
 import java.util.Set;
 
 @Component(service = { javax.servlet.http.HttpServlet.class, javax.servlet.Servlet.class }, property = { "alias=/moonstone",
-        "jmx.objectname=graphql.servlet:type=root", "osgi.http.whiteboard.servlet.asyncSupported=true" }) public class Main
-        extends HttpServlet {
+        "jmx.objectname=graphql.servlet:type=root", "osgi.http.whiteboard.servlet.asyncSupported=true" })
+public class Main extends HttpServlet {
     private static final String $_UI_LANG = "$ui-lang(";
+    private static final String SITE_SERVERNAME = "$site-servername";
     private static Logger logger = LoggerFactory.getLogger(Main.class);
 
     @Override protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -45,7 +47,12 @@ import java.util.Set;
                 locale = LanguageCodeConverters.resolveLocaleForGuest(request);
             }
             JCRSessionWrapper currentUserSession = JCRSessionFactory.getInstance().getCurrentUserSession(Constants.EDIT_WORKSPACE, locale);
-            RenderContext context = new RenderContext(request, response, currentUser);
+            HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request) {
+                @Override public String getContextPath() {
+                    return Jahia.getContextPath();
+                }
+            };
+            RenderContext context = new RenderContext(wrapper, response, currentUser);
             JCRNodeWrapper node = currentUserSession.getNode("/");
             Resource resource = new Resource(node, null, null, null);
             context.setMainResource(resource);
@@ -74,42 +81,47 @@ import java.util.Set;
     }
 
     static String replacePlaceholders(String value, RenderContext renderContext, Locale locale) {
-        if (value.contains("$site-servername") && renderContext.getSite() != null) {
+        if (value.contains(SITE_SERVERNAME) && renderContext.getSite() != null) {
             try {
-                value = value.replace("$site-servername", ((String) renderContext.getSite().getProperty("j:serverName").getString()));
+                value = value.replace(SITE_SERVERNAME, ((String) renderContext.getSite().getProperty("j:serverName").getString()));
             } catch (RepositoryException e) {
-                value = value.replace("$site-servername", "");
+                value = value.replace(SITE_SERVERNAME, "");
             }
         }
         if (value.contains($_UI_LANG)) {
-            // handle pattern like: $uiLang([fr,en],en)
-            int uiLangIndex = value.indexOf($_UI_LANG);
-            int startLangIndex = uiLangIndex + $_UI_LANG.length();
-            int endLangIndex = value.indexOf(")", startLangIndex);
-
-            String paramStr = value.substring(startLangIndex, endLangIndex);
-            String[] params = paramStr.split(",");
-
-            Set<String> acceptedLangs = new HashSet<String>();
-            String defaultLang = params[params.length - 1].trim();
-
-            for (int i = 0; i < (params.length - 1); i++) {
-                String param = params[i].trim();
-                if (param.startsWith("[")) {
-                    param = param.substring(1);
-                }
-                if (param.endsWith("]")) {
-                    param = param.substring(0, param.length() - 1);
-                }
-                acceptedLangs.add(param);
-            }
-
-            String finalLang = acceptedLangs.contains(locale.toString()) ? locale.toString() : defaultLang;
-            value = value.replace(value.substring(uiLangIndex, endLangIndex + 1), finalLang);
+            value = handleUILang(value, locale);
         }
         if (value.contains("$dx-version")) {
             value = value.replace("$dx-version", Jahia.VERSION);
         }
+        return value;
+    }
+
+    private static String handleUILang(String value, Locale locale) {
+        // handle pattern like: $uiLang([fr,en],en)
+        int uiLangIndex = value.indexOf($_UI_LANG);
+        int startLangIndex = uiLangIndex + $_UI_LANG.length();
+        int endLangIndex = value.indexOf(')', startLangIndex);
+
+        String paramStr = value.substring(startLangIndex, endLangIndex);
+        String[] params = paramStr.split(",");
+
+        Set<String> acceptedLangs = new HashSet<>();
+        String defaultLang = params[params.length - 1].trim();
+
+        for (int i = 0; i < (params.length - 1); i++) {
+            String param = params[i].trim();
+            if (param.startsWith("[")) {
+                param = param.substring(1);
+            }
+            if (param.endsWith("]")) {
+                param = param.substring(0, param.length() - 1);
+            }
+            acceptedLangs.add(param);
+        }
+
+        String finalLang = acceptedLangs.contains(locale.toString()) ? locale.toString() : defaultLang;
+        value = value.replace(value.substring(uiLangIndex, endLangIndex + 1), finalLang);
         return value;
     }
 }

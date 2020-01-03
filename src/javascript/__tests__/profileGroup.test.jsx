@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {ProfileGroup} from '../Jahia/jahia.routes.jsx';
+import {ProfileGroup} from '../Jahia/Jahia.routes';
 
 describe('profile group', () => {
 

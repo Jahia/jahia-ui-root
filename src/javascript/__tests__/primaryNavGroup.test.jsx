@@ -12,7 +12,7 @@ describe('primary nav group', () => {
 
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
-    })
+    });
 
     test('expanded and empty nav bar', () => {
 
@@ -22,7 +22,7 @@ describe('primary nav group', () => {
 
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
-    })
+    });
 
     test('expanded and not empty nav bar', () => {
 
@@ -32,7 +32,7 @@ describe('primary nav group', () => {
 
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
-    })
+    });
 
     test('collapsed and not empty nav bar', () => {
 
@@ -42,5 +42,5 @@ describe('primary nav group', () => {
 
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
-    })
+    });
 });
