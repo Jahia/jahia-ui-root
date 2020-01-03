@@ -1,6 +1,5 @@
 package org.jahia.modules.jahiaui;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jahia.api.Constants;
 import org.jahia.bin.Jahia;
 import org.jahia.services.content.JCRNodeWrapper;
