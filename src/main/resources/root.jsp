@@ -55,7 +55,8 @@
         },
         links: ${links},
         environment: '${environment}',
-        i18nNamespaces: ${i18nNamespaces}
+        i18nNamespaces: ${i18nNamespaces},
+        namespaceResolvers: {}
     });
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);

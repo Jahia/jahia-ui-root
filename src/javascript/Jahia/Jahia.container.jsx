@@ -24,7 +24,7 @@ const JahiaContainer = ({jahiaCtx}) => {
             contextPath: jahiaCtx.contextPath,
             ns: jahiaCtx.i18nNamespaces,
             defaultNS: DEFAULT_NS,
-            namespaceResolvers: NAMESPACE_RESOLVERS
+            namespaceResolvers: Object.assign(NAMESPACE_RESOLVERS, jahiaCtx.namespaceResolvers)
         })}
         >
             <BrowserRouter basename="/cms/moonstone">
