@@ -38,6 +38,7 @@ public class Main extends HttpServlet {
 
     @Override protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            SettingsBean settingsBean = SettingsBean.getInstance();
             JahiaUser currentUser = JCRSessionFactory.getInstance().getCurrentUser();
             Locale locale;
             if (!JahiaUserManagerService.isGuest(currentUser)) {
@@ -58,13 +59,12 @@ public class Main extends HttpServlet {
             context.setMainResource(resource);
             context.setForceUILocaleForJCRSession(true);
             context.setEditMode(true);
-            request.setAttribute("renderContext", context);
-            request.setAttribute("contextPath", Jahia.getContextPath());
-            request.setAttribute("currentResource", resource);
-            request.setAttribute("currentUser", currentUser);
-            request.setAttribute("userEmail", currentUser.getProperty("j:email"));
+            wrapper.setAttribute("renderContext", context);
+            wrapper.setAttribute("contextPath", Jahia.getContextPath());
+            wrapper.setAttribute("currentResource", resource);
+            wrapper.setAttribute("currentUser", currentUser);
+            wrapper.setAttribute("userEmail", currentUser.getProperty("j:email"));
             JSONObject jsonObject = new JSONObject();
-            SettingsBean settingsBean = SettingsBean.getInstance();
             jsonObject.put("documentation", settingsBean.getString("documentation.link", "https://academy.jahia.com/documentation/"));
             boolean isWhatsNewDisplayable = Boolean.parseBoolean(settingsBean.getString("whatsNew.display", "true"));
             if (isWhatsNewDisplayable) {
@@ -72,9 +72,9 @@ public class Main extends HttpServlet {
             } else {
                 jsonObject.put("whatsNew", "https://academy.jahia.com/whats-new");
             }
-            request.setAttribute("links", jsonObject.toString());
-            request.setAttribute("environment", settingsBean.getString("jahia.environment", "Test environment"));
-            request.getRequestDispatcher("/modules/jahia-ui-root/root.jsp").include(request, response);
+            wrapper.setAttribute("links", jsonObject.toString());
+            wrapper.setAttribute("environment", settingsBean.getString("jahia.environment", "Test environment"));
+            wrapper.getRequestDispatcher("/modules/jahia-ui-root/root.jsp").include(wrapper, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
         }
