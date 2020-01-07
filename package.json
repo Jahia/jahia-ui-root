@@ -25,12 +25,11 @@
   "license": "MIT",
   "dependencies": {
     "@jahia/i18next": "^1.0.0-beta.20191129085418",
-    "@jahia/moonstone": "file:.yalc/@jahia/moonstone",
+    "@jahia/moonstone": "^0.4.1",
     "@jahia/registry": "^1.0.0-beta.20190927123951",
     "@svgr/webpack": "^4.3.3",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
-    "re-resizable": "^6.1.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-i18next": "^11.2.2",

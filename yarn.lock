@@ -1754,12 +1754,15 @@
     i18next-chained-backend "^0.1.2"
     i18next-xhr-backend "^1.5.1"
 
-"@jahia/moonstone@file:.yalc/@jahia/moonstone":
-  version "0.3.0-8c765079"
+"@jahia/moonstone@^0.4.1":
+  version "0.4.1"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.4.1.tgz#5b8ba18fa525d799eebb3005d8cf0cba7a1de05b"
+  integrity sha512-JQL5EcOrTdT/ukY7KmGXMzc0lU0HTJxhDjlN3dTC/WWHlA6jzTOR26GvotEn+ry/g9SBLpz8cuspIjI1R5Rvgw==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
     prop-types "^15.7.2"
+    re-resizable "^6.1.0"
 
 "@jahia/registry@^1.0.0-beta.20190927123951":
   version "1.0.0-beta.20191029133940"
@@ -7702,7 +7705,7 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
-re-resizable@^6.1.1:
+re-resizable@^6.1.0:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.1.1.tgz#7ff7cfe92c0b9d8b0bceaa578aadaeeff8931eaf"
   integrity sha512-ngzX5xbXi9LlIghJUYZaBDkJUIMLYqO3tQ2cJZoNprCRGhfHnbyufKm51MZRIOBlLigLzPPFKBxQE8ZLezKGfA==
