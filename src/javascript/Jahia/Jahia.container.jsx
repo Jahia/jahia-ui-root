@@ -27,7 +27,7 @@ const JahiaContainer = ({jahiaCtx}) => {
             namespaceResolvers: Object.assign(NAMESPACE_RESOLVERS, jahiaCtx.namespaceResolvers)
         })}
         >
-            <BrowserRouter basename="/cms/moonstone">
+            <BrowserRouter basename={jahiaCtx.contextPath + '/modules/moonstone'}>
                 <JahiaContext.Provider value={jahiaCtx}>
                     <Jahia routes={registry.find({type: 'route', target: 'nav-root-top'})}
                            topNavGroups={[
