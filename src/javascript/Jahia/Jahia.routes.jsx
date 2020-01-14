@@ -3,7 +3,6 @@ import {registry} from '@jahia/registry';
 import {Button, PrimaryNavItem} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import Person from '@jahia/moonstone/dist/icons/Person';
-import Settings from '@jahia/moonstone/dist/icons/Setting';
 import Power from '@jahia/moonstone/dist/icons/Power';
 
 // TODO separate into different folders
@@ -44,17 +43,4 @@ registry.add('bottomProfileNavGroup', {
     type: 'bottomProfileGroup',
     target: ['nav-root-bottom:1'],
     render: () => <ProfileGroup/>
-});
-
-export const AdministrationGroup = () => {
-    const {t} = useTranslation();
-    return (
-        <PrimaryNavItem icon={<Settings/>} label={t('primaryNavigation.administration.label')}/>
-    );
-};
-
-registry.add('bottomAdminNavGroup', {
-    type: 'bottomAdminGroup',
-    target: ['nav-root-bottom:1'],
-    render: () => <AdministrationGroup/>
 });
