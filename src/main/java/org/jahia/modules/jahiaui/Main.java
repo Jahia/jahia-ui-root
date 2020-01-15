@@ -74,6 +74,9 @@ import java.util.*;
             } else {
                 // use the default site
                 site = (JCRSiteNode) sitesService.getDefaultSite(currentUserSession);
+                if(site == null) {
+                    site = sitesService.getSiteByKey("systemsite", currentUserSession);
+                }
             }
             String language = resolveLanguage(request, site, userNode, false);
             currentUserSession = JCRSessionFactory.getInstance()
