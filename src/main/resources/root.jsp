@@ -51,7 +51,8 @@
         locale: '${currentResource.locale}',
         user: {
             fullname:'${user:fullName(currentUser)}',
-            email:'${userEmail}'
+            email:'${userEmail}',
+            path:'${currentUser.localPath}'
         },
         links: ${links},
         environment: '${environment}',
