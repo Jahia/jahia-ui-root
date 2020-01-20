@@ -22,7 +22,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return 'Loading screen';
     }
 
-    console.log(routes);
+    console.log('Routes', routes);
     return (
         <>
             <GlobalStyle/>

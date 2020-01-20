@@ -24,7 +24,6 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@jahia/i18next": "^1.0.0-beta.20191129085418",
     "@jahia/moonstone": "^0.4.1",
     "@jahia/registry": "^1.0.0-beta.20190927123951",
     "@svgr/webpack": "^4.3.3",
