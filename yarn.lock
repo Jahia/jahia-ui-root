@@ -903,15 +903,16 @@
     eslint-plugin-react "^7.16.0"
     eslint-plugin-react-hooks "^2.2.0"
 
-"@jahia/moonstone@^0.4.1":
-  version "0.4.1"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.4.1.tgz#5b8ba18fa525d799eebb3005d8cf0cba7a1de05b"
-  integrity sha512-JQL5EcOrTdT/ukY7KmGXMzc0lU0HTJxhDjlN3dTC/WWHlA6jzTOR26GvotEn+ry/g9SBLpz8cuspIjI1R5Rvgw==
+"@jahia/moonstone@^0.5.0":
+  version "0.5.0"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-0.5.0.tgz#313f32b031e9c2a625c29f1c0a9b90189d1aee6c"
+  integrity sha512-2YcU5Hhnd2blLABk1aAqxdL08do6vvNs5i9Y1qO5HAPI2Zbr8o+vuwFCwfydVjG8g4prbHatuoQVJV8iw5HydQ==
   dependencies:
     "@svgr/webpack" "^4.3.3"
     clsx "^1.0.4"
     prop-types "^15.7.2"
     re-resizable "^6.1.0"
+    react-is "^16.12.0"
 
 "@jahia/registry@^1.0.0-beta.20190927123951":
   version "1.0.0-beta.20191108125245"
@@ -6752,7 +6753,7 @@ react-i18next@^11.2.2:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
 
-react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
+react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   version "16.12.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
