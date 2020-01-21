@@ -28,7 +28,7 @@ exports[`profile group profiles 1`] = `
       <span
         className="_2UHrI1QWqxLhuY_tZNdPZo _3Jnldq9UavKB8387Kxg_LU _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
       >
-        primaryNavigation.profile.label
+        jahia-ui-root:primaryNavigation.profile.label
       </span>
       <div
         className="_2UHrI1QWqxLhuY_tZNdPZo _2FviE9uz6qAPg_E5Dqr_5W _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
@@ -58,7 +58,7 @@ exports[`profile group profiles 1`] = `
           />
         </svg>
       </i>
-      primaryNavigation.profile.signOut
+      jahia-ui-root:primaryNavigation.profile.signOut
     </button>
   </div>
 </li>
