@@ -23,7 +23,7 @@ Array [
           <span
             className="_2UHrI1QWqxLhuY_tZNdPZo _1XC6NkjLjDAWYIpUQk5eHx _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
           >
-            primaryNavigation.documentation.newAtJahia
+            jahia-ui-root:primaryNavigation.documentation.newAtJahia
           </span>
         </div>
       </div>
@@ -50,7 +50,7 @@ Array [
           <span
             className="_2UHrI1QWqxLhuY_tZNdPZo _1XC6NkjLjDAWYIpUQk5eHx _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
           >
-            primaryNavigation.documentation.label
+            jahia-ui-root:primaryNavigation.documentation.label
           </span>
         </div>
       </div>
