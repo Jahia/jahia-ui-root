@@ -5,7 +5,6 @@ import {
     GlobalStyle,
     LayoutApp,
     PrimaryNav,
-    SecondaryNav,
     LayoutModule
 } from '@jahia/moonstone';
 import JahiaLogo from './JahiaLogo';
@@ -38,12 +37,6 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                 }
                 content={
                     <LayoutModule
-                        navigation={
-                            <SecondaryNav
-                                header="Secondary Nav"
-                            >Content
-                            </SecondaryNav>
-                        }
                         content={
                             <Switch>
                                 {routes.map(r =>
