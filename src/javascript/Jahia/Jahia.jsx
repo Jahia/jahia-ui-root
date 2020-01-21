@@ -1,12 +1,7 @@
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch} from 'react-router';
-import {
-    GlobalStyle,
-    LayoutApp,
-    PrimaryNav,
-    LayoutModule
-} from '@jahia/moonstone';
+import {GlobalStyle, LayoutApp, PrimaryNav} from '@jahia/moonstone';
 import JahiaLogo from './JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
 import JahiaContext from './Jahia.context';
@@ -36,15 +31,11 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                     />
                 }
                 content={
-                    <LayoutModule
-                        content={
-                            <Switch>
-                                {routes.map(r =>
-                                    <Route key={r.key} path={r.path} render={r.render}/>
-                                )}
-                            </Switch>
-                        }
-                    />
+                    <Switch>
+                        {routes.map(r =>
+                            <Route key={r.key} path={r.path} render={r.render}/>
+                        )}
+                    </Switch>
                 }
             />
         </>
