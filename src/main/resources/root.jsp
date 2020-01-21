@@ -40,6 +40,7 @@
 
 
 <div id="gwt-root"></div>
+${jur:generateActionLists(renderContext)}
 <script type="text/javascript">
     window.contextJsParameters = window.contextJsParameters || {};
     window.contextJsParameters = Object.assign({}, window.contextJsParameters, {
@@ -60,6 +61,7 @@
         namespaceResolvers: {},
         siteKey:'${renderContext.site.siteKey}'
     });
+
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);
 </script>
