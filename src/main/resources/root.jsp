@@ -67,11 +67,7 @@
         displayWorkflowCounter:<%= SettingsBean.getInstance().getString("jahia.ui.displayWorkflowCounter", "true").equals("true") %>,
         urlbase: '/modules/moonstone',
     });
-</script>
 
-${jur:generateActionLists(renderContext)}
-
-<script type="text/javascript">
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);
 </script>

@@ -16,11 +16,5 @@
         <function-class>org.jahia.modules.jahiaui.taglib.TagFunctions</function-class>
         <function-signature>java.lang.String getI18nNameSpaces()</function-signature>
     </function>
-    <function>
-        <description>Generates a list of actions for the application</description>
-        <name>generateActionLists</name>
-        <function-class>org.jahia.modules.jahiaui.taglib.TagFunctions</function-class>
-        <function-signature>java.lang.String generateActionLists(org.jahia.services.render.RenderContext)</function-signature>
-    </function>
 
 </taglib>
