@@ -11,6 +11,13 @@ import './Jahia.routes';
 const JahiaContainer = ({jahiaCtx}) => {
     actions(registry);
 
+    (() => {
+        console.log('%c Register action lists, you should this only once', 'color: #3c8cba');
+        jahiaCtx.config.actions.forEach(function (registrationFcn) {
+            registrationFcn(registry, jahiaCtx);
+        });
+    })();
+
     return (
         <BrowserRouter basename={jahiaCtx.contextPath + '/modules/moonstone'}>
             <JahiaContext.Provider value={jahiaCtx}>
