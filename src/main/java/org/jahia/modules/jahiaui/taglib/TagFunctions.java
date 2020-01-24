@@ -2,11 +2,8 @@ package org.jahia.modules.jahiaui.taglib;
 
 import org.apache.commons.lang.StringUtils;
 import org.jahia.data.templates.JahiaTemplatesPackage;
-import org.jahia.modules.jahiaui.taglib.actionlists.ActionListRenderer;
 import org.jahia.osgi.BundleUtils;
 import org.jahia.osgi.FrameworkService;
-import org.jahia.services.SpringContextSingleton;
-import org.jahia.services.render.RenderContext;
 import org.jahia.services.templates.JahiaTemplateManagerService;
 import org.osgi.framework.Bundle;
 
@@ -37,32 +34,6 @@ public class TagFunctions {
         }
 
         return namespaces.isEmpty() ? "[]" : "['" + StringUtils.join(namespaces, "', '") + "']";
-    }
-
-    /**
-     * Generates the list of actions for the Content and Media Manager.
-     *
-     * @param renderContext current render context
-     * @return a string representation of the JavaScript resources for action lists
-     */
-    public static String generateActionLists(RenderContext renderContext) {
-        StringBuilder result = new StringBuilder();
-        List<ActionListRenderer> actionListRenderers = getActionListRenderers();
-
-        for (ActionListRenderer actionListRenderer : actionListRenderers) {
-            result.append(actionListRenderer.renderActionList(renderContext));
-        }
-
-        return result.toString();
-    }
-
-    @SuppressWarnings("unchecked")
-    private static List<ActionListRenderer> getActionListRenderers() {
-        if (SpringContextSingleton.getInstance().isInitialized()) {
-            return (List<ActionListRenderer>) SpringContextSingleton
-                    .getBeanInModulesContext("org.jahia.modules.jahiauiroot.actionListRenderers");
-        }
-        return Collections.emptyList();
     }
 
     private static boolean dependsOnJahiaUIRoot(JahiaTemplateManagerService jtms, String bundleName) {
