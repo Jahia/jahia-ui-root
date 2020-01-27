@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {BrowserRouter} from 'react-router-dom';
 import actions from './Jahia.actions';
-import {registry} from '@jahia/registry';
+import {registry} from '@jahia/ui-extender';
 import Jahia from './Jahia';
 import PrimaryNavGroup from './PrimaryNavGroup';
 import JahiaContext from './Jahia.context';
