@@ -18,7 +18,7 @@ PrimaryNavGroup.defaultProps = {
 
 PrimaryNavGroup.propTypes = {
     isDisplayedWhenCollapsed: PropTypes.bool,
-    navItems: PropTypes.arrayOf(PropTypes.element)
+    navItems: PropTypes.arrayOf(PropTypes.any)
 };
 
 export default PrimaryNavGroup;

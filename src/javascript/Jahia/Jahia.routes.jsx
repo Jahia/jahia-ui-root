@@ -1,5 +1,5 @@
 import React from 'react';
-import {registry} from '@jahia/registry';
+import {registry} from '@jahia/ui-extender';
 import {Button, PrimaryNavItem} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import Person from '@jahia/moonstone/dist/icons/Person';
@@ -16,10 +16,9 @@ export const DocumentationGroup = () => {
     );
 };
 
-registry.add('bottomDocNavGroup', {
-    type: 'bottomDocumentationGroup',
-    target: ['nav-root-bottom:1'],
-    render: () => <DocumentationGroup/>
+registry.add('bottomDocumentationGroup', 'bottomDocNavGroup', {
+    targets: ['nav-root-bottom:1'],
+    render: () => <DocumentationGroup key="bottomDocumentationGroup"/>
 });
 
 export const ProfileGroup = () => {
@@ -39,8 +38,7 @@ export const ProfileGroup = () => {
     );
 };
 
-registry.add('bottomProfileNavGroup', {
-    type: 'bottomProfileGroup',
-    target: ['nav-root-bottom:1'],
-    render: () => <ProfileGroup/>
+registry.add('bottomProfileGroup', 'bottomProfileNavGroup', {
+    targets: ['nav-root-bottom:1'],
+    render: () => <ProfileGroup key="bottomProfileGroup"/>
 });
