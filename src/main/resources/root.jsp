@@ -1,4 +1,4 @@
-<%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
+<%@ page import="org.jahia.settings.SettingsBean" %><%--@elvariable id="renderContext" type="org.jahia.services.render.RenderContext"--%>
 <%--@elvariable id="url" type="org.jahia.services.render.URLGenerator"--%>
 <%--@elvariable id="script" type="org.jahia.services.render.scripting.Script"--%>
 <%--@elvariable id="contextPath" type="java.lang.String"--%>
@@ -44,12 +44,15 @@
     window.contextJsParameters = window.contextJsParameters || {};
     window.contextJsParameters = Object.assign({}, window.contextJsParameters, {
         config: {
-            actions: []
+            actions: [],
+            sql2CheatSheetUrl: "<%= SettingsBean.getInstance().getString("sql2CheatSheet.link", null) %>",
+            importAcademyLink: 'https://academy.jahia.com/documentation/enduser/dx/7.3/using-jahia/using-content-and-media-manager#exporting_importing_contents'
         },
         targetId: '${targetId}',
         contextPath: '${contextPath}',
         locale: '${currentResource.locale}',
         user: {
+            username:'${user:currentUser.name}',
             fullname:'${user:fullName(currentUser)}',
             email:'${userEmail}',
             path:'${currentUser.localPath}'
@@ -58,7 +61,10 @@
         environment: '${environment}',
         i18nNamespaces: ${i18nNamespaces},
         namespaceResolvers: {},
-        siteKey:'${renderContext.site.siteKey}'
+        siteKey:'${renderContext.site.siteKey}',
+        maxUploadSize: parseInt("<%= SettingsBean.getInstance().getJahiaFileUploadMaxSize() %>") / (1024 * 1024),
+        displayWorkflowCounter:<%= SettingsBean.getInstance().getString("jahia.ui.displayWorkflowCounter", "true").equals("true") %>,
+        urlbase: '/modules/moonstone',
     });
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);
