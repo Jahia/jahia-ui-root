@@ -52,7 +52,7 @@
         contextPath: '${contextPath}',
         locale: '${currentResource.locale}',
         user: {
-            username:'${user:currentUser.name}',
+            username:'${currentUser.name}',
             fullname:'${user:fullName(currentUser)}',
             email:'${userEmail}',
             path:'${currentUser.localPath}'
