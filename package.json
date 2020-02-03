@@ -28,6 +28,8 @@
     "@jahia/ui-extender": "^0.1.1",
     "@svgr/webpack": "^4.3.3",
     "clsx": "^1.0.4",
+    "connected-react-router": "^6.6.1",
+    "history": "^4.10.1",
     "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",

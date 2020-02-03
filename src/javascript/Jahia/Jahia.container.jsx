@@ -1,20 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {BrowserRouter} from 'react-router-dom';
-import actions from './Jahia.actions';
 import {registry} from '@jahia/ui-extender';
 import Jahia from './Jahia';
 import PrimaryNavGroup from './PrimaryNavGroup';
 import JahiaContext from './Jahia.context';
 import './Jahia.routes';
 import {ReduxProvider} from './ReduxProvider';
+import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router';
+import {createBrowserHistory} from 'history';
+import {batchDispatchMiddleware} from 'redux-batched-actions';
+import thunk from 'redux-thunk';
 
 const JahiaContainer = ({jahiaCtx}) => {
-    actions(registry);
+    const history = createBrowserHistory({basename: jahiaCtx.contextPath + jahiaCtx.urlbase});
+    registry.add('redux-middleware', 'batch', {middleware: batchDispatchMiddleware});
+    registry.add('redux-middleware', 'thunk', {middleware: thunk});
+    registry.add('redux-reducer', 'router', {reducer: connectRouter(history)});
+    registry.add('redux-middleware', 'router', {middleware: routerMiddleware(history)});
 
     return (
         <ReduxProvider jahiaCtx={jahiaCtx}>
-            <BrowserRouter basename={jahiaCtx.contextPath + '/modules/moonstone'}>
+            <ConnectedRouter history={history}>
                 <JahiaContext.Provider value={jahiaCtx}>
                     <Jahia routes={registry.find({type: 'route', target: 'nav-root-top'})}
                            topNavGroups={[
@@ -44,7 +50,7 @@ const JahiaContainer = ({jahiaCtx}) => {
                            ]}
                     />
                 </JahiaContext.Provider>
-            </BrowserRouter>
+            </ConnectedRouter>
         </ReduxProvider>
     );
 };
