@@ -7,10 +7,7 @@ import org.jahia.osgi.FrameworkService;
 import org.jahia.services.templates.JahiaTemplateManagerService;
 import org.osgi.framework.Bundle;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**

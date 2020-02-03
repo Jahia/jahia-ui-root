@@ -40,6 +40,7 @@
 
 
 <div id="gwt-root"></div>
+
 <script type="text/javascript">
     window.contextJsParameters = window.contextJsParameters || {};
     window.contextJsParameters = Object.assign({}, window.contextJsParameters, {
@@ -66,6 +67,7 @@
         displayWorkflowCounter:<%= SettingsBean.getInstance().getString("jahia.ui.displayWorkflowCounter", "true").equals("true") %>,
         urlbase: '/modules/moonstone',
     });
+
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
     bootstrap(window['jahia-extends']);
 </script>
