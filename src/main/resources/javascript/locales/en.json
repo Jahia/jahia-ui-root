@@ -10,6 +10,9 @@
     },
     "administration": {
       "label": "Administration"
+    },
+    "workflow": {
+      "label": "Workflow"
     }
   }
 }
