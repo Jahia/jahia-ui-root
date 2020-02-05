@@ -3,8 +3,8 @@ import {registry} from '@jahia/ui-extender';
 import {useHistory} from 'react-router-dom';
 import {PrimaryNavItem} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
-import Workflow from '@jahia/moonstone/dist/icons/Workflow';
-import WorkflowComponent from './Workflow';
+import WorkflowIcon from '@jahia/moonstone/dist/icons/Workflow';
+import Workflow from './Workflow';
 
 const PATH = '/workflow';
 
@@ -15,7 +15,7 @@ export const WorkflowGroup = () => {
     return (
         <PrimaryNavItem
             isSelected={history.location.pathname.startsWith(PATH)}
-            icon={<Workflow/>}
+            icon={<WorkflowIcon/>}
             label={t('jahia-ui-root:primaryNavigation.workflow.label')}
             onClick={() => history.push(PATH)}/>
     );
@@ -31,5 +31,5 @@ registry.add('route', 'workflow', {
     targets: ['nav-root-top'],
     path: PATH,
     defaultPath: PATH,
-    render: () => <WorkflowComponent/>
+    render: () => <Workflow/>
 });
