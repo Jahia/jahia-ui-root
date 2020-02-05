@@ -5,6 +5,7 @@ import Jahia from './Jahia';
 import PrimaryNavGroup from './PrimaryNavGroup';
 import JahiaContext from './Jahia.context';
 import './Jahia.routes';
+import './Workflow/Workflow.routes';
 import {ReduxProvider} from './ReduxProvider';
 import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router';
 import {createBrowserHistory} from 'history';
@@ -42,6 +43,11 @@ const JahiaContainer = ({jahiaCtx}) => {
             <>
                 <Jahia routes={registry.find({type: 'route', target: 'nav-root-top'})}
                        topNavGroups={[
+                           <PrimaryNavGroup key="workflowNavGroup"
+                                            navItems={registry.find({
+                                                type: 'workflowGroup',
+                                                target: 'nav-root-workflow'
+                                            })}/>,
                            <PrimaryNavGroup key="topNavGroup"
                                             navItems={registry.find({
                                                 type: 'topNavGroup',

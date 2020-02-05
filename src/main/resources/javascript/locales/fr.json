@@ -10,6 +10,9 @@
     },
     "administration": {
       "label": "FR Administration"
+    },
+    "workflow": {
+      "label": "Workflow"
     }
   }
 }
