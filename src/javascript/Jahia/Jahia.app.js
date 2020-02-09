@@ -23,7 +23,7 @@ export const jahiaApps = (registry, jahiaCtx) => {
         targets: ['root:2'],
         render: next => <ConnectedRouter history={history}>{next}</ConnectedRouter>
     });
-    registry.add('redux-reducer', 'router', {reducer: connectRouter(history)});
+    registry.add('redux-reducer', 'router', {targets: ['root'], reducer: connectRouter(history)});
     registry.add('redux-middleware', 'router', {middleware: routerMiddleware(history)});
 
     // Jahia Context

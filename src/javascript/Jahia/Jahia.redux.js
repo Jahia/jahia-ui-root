@@ -8,6 +8,7 @@ export const jahiaRedux = (registry, jahiaCtx) => {
     const uiLanguageReducer = handleAction(setUiLanguage, (state, action) => action.payload, jahiaCtx.uilang);
 
     registry.add('redux-reducer', 'site', {
+        targets: ['root'],
         reducer: siteReducer,
         actions: {
             setSite
@@ -15,6 +16,7 @@ export const jahiaRedux = (registry, jahiaCtx) => {
     });
 
     registry.add('redux-reducer', 'language', {
+        targets: ['root'],
         reducer: languageReducer,
         actions: {
             setLanguage
@@ -22,6 +24,7 @@ export const jahiaRedux = (registry, jahiaCtx) => {
     });
 
     registry.add('redux-reducer', 'uilang', {
+        targets: ['root'],
         reducer: uiLanguageReducer,
         actions: {
             setUiLanguage
