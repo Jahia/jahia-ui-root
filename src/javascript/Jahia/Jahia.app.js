@@ -1,13 +1,13 @@
 // Register redux
 import React from 'react';
-import {ReduxProvider} from "./ReduxProvider";
-import {batchDispatchMiddleware} from "redux-batched-actions";
-import thunk from "redux-thunk";
-import {ConnectedRouter, connectRouter, routerMiddleware} from "connected-react-router";
-import JahiaContext from "./Jahia.context";
-import Jahia from "./Jahia";
-import PrimaryNavGroup from "./PrimaryNavGroup";
-import {createBrowserHistory} from "history";
+import {ReduxProvider} from './ReduxProvider';
+import {batchDispatchMiddleware} from 'redux-batched-actions';
+import thunk from 'redux-thunk';
+import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router';
+import JahiaContext from './Jahia.context';
+import Jahia from './Jahia';
+import PrimaryNavGroup from './PrimaryNavGroup';
+import {createBrowserHistory} from 'history';
 
 export const jahiaApps = (registry, jahiaCtx) => {
     registry.add('app', 'redux', {

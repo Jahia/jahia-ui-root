@@ -1,13 +1,11 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import {registry} from '@jahia/ui-extender';
 import './Jahia.routes';
 import './Workflow/Workflow.routes';
-import {jahiaApps} from "./Jahia.app";
-import {jahiaRedux} from "./Jahia.redux";
+import {jahiaApps} from './Jahia.app';
+import {jahiaRedux} from './Jahia.redux';
 
 const JahiaContainer = ({jahiaCtx}) => {
-
     jahiaApps(registry, jahiaCtx);
     jahiaRedux(registry, jahiaCtx);
 
