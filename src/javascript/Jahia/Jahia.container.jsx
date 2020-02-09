@@ -4,12 +4,12 @@ import {registry} from '@jahia/ui-extender';
 import './Jahia.routes';
 import './Workflow/Workflow.routes';
 import {jahiaApps} from "./Jahia.app";
-import {jahiaReduxReducers} from "./Jahia.redux-reducers";
+import {jahiaRedux} from "./Jahia.redux";
 
 const JahiaContainer = ({jahiaCtx}) => {
 
     jahiaApps(registry, jahiaCtx);
-    jahiaReduxReducers(registry, jahiaCtx);
+    jahiaRedux(registry, jahiaCtx);
 
     // App shell
     const apps = registry.find({type: 'app', target: 'root'}).map(m => m.render);
