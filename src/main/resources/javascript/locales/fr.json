@@ -12,7 +12,10 @@
       "label": "FR Administration"
     },
     "workflow": {
-      "label": "Workflow"
+      "label": "FR Workflow"
+    },
+    "pageComposer": {
+      "label": "FR Page Composer"
     }
   }
 }

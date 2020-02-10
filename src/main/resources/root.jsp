@@ -38,7 +38,6 @@
 <c:set var="targetId" value="reactComponent${fn:replace(currentNode.identifier,'-','_')}"/>
 <div id="${targetId}">loading..</div>
 
-
 <div id="gwt-root"></div>
 
 <script type="text/javascript">
