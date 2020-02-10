@@ -14,5 +14,5 @@ export default function () {
         return <h2 style={{color: 'white'}}>You need to create a site to see this page</h2>;
     }
 
-    return <Iframe url={window.contextJsParameters.contextPath + path(jahiaContext.locale, jahiaContext.siteKey)} width="100%" height="100%"/>;
+    return <Iframe url={jahiaContext.contextPath + path(jahiaContext.locale, jahiaContext.siteKey)} width="100%" height="100%"/>;
 }
