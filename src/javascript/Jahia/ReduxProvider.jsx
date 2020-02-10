@@ -5,7 +5,7 @@ import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import PropTypes from 'prop-types';
 
 export const ReduxProvider = ({children}) => {
-    const reducersArray = registry.find({type: 'redux-reducer'});
+    const reducersArray = registry.find({type: 'redux-reducer', target: 'root'});
     const reducerObj = {};
     reducersArray.forEach(r => {
         reducerObj[r.key] = r.reducer;
