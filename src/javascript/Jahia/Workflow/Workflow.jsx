@@ -2,25 +2,28 @@ import React, {useEffect} from 'react';
 
 let renderWorkflow = function () {
     if (window.authoringApi !== undefined && window.authoringApi.openWorkflow !== undefined) {
-        console.log('rendering workflow');
         clearInterval(checkAuthoringApi);
         let elementById = document.getElementById('workflowComponent');
         if (elementById !== null) {
             elementById.lastChild.remove();
             window.authoringApi.openWorkflow('workflowComponent');
         }
-
-        return null;
     }
+
+    return null;
 };
 
-const checkAuthoringApi = setInterval(() => {
-    return renderWorkflow();
-},
-100);
+let checkAuthoringApi;
 
 const Workflow = () => {
     useEffect(() => {
+        if (window.authoringApi === undefined || window.authoringApi.openWorkflow === undefined) {
+            checkAuthoringApi = setInterval(() => {
+                return renderWorkflow();
+            },
+            100);
+        }
+
         return renderWorkflow();
     }, []);
     return (
