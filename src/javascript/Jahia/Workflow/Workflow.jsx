@@ -9,8 +9,6 @@ let renderWorkflow = function () {
             window.authoringApi.openWorkflow('workflowComponent');
         }
     }
-
-    return null;
 };
 
 let checkAuthoringApi;
@@ -19,12 +17,12 @@ const Workflow = () => {
     useEffect(() => {
         if (window.authoringApi === undefined || window.authoringApi.openWorkflow === undefined) {
             checkAuthoringApi = setInterval(() => {
-                return renderWorkflow();
+                renderWorkflow();
             },
             100);
         }
 
-        return renderWorkflow();
+        renderWorkflow();
     }, []);
     return (
         <div style={{
