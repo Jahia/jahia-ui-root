@@ -17,19 +17,32 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     }
 
     console.log('Routes', routes);
+    let primaryNav;
+    if (jahiaContext.environment === '') {
+        primaryNav = (
+            <PrimaryNav
+                headerLogo={<JahiaLogo/>}
+                top={topNavGroups}
+                bottom={bottomNavGroups}
+            />
+        );
+    } else {
+        primaryNav = (
+            <PrimaryNav
+                headerLogo={<JahiaLogo/>}
+                headerCaption={`${jahiaContext.environment}`}
+                modeIcon={<Star/>}
+                top={topNavGroups}
+                bottom={bottomNavGroups}
+            />
+        );
+    }
+
     return (
         <>
             <GlobalStyle/>
             <LayoutApp
-                navigation={
-                    <PrimaryNav
-                        headerLogo={<JahiaLogo/>}
-                        headerCaption={`${jahiaContext.environment} - ${jahiaContext.locale}`}
-                        modeIcon={<Star/>}
-                        top={topNavGroups}
-                        bottom={bottomNavGroups}
-                    />
-                }
+                navigation={primaryNav}
                 content={
                     <Switch>
                         {routes.map(r =>
