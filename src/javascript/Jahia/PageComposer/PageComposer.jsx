@@ -1,20 +1,64 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Iframe from 'react-iframe';
-import {useSelector} from 'react-redux';
 import JahiaContext from '../Jahia.context';
+import {useHistory, useLocation} from 'react-router-dom';
 
-let path = (locale, siteKey) => {
-    return `/cms/edit/default/${locale}/sites/${siteKey}/home.html?redirect=false`;
+let path = (locale, siteKey, mainResourcePath) => {
+    return `/cms/edit/default/${locale}/sites/${siteKey}${mainResourcePath}`;
+};
+
+let initialValue = function (location, siteKey) {
+    let mainResourcePath = '/home.html';
+    if (!location.pathname.endsWith('page-composer') && location.pathname.indexOf(siteKey) >= 0) {
+        if (window.frames['page-composer-frame'] === undefined) {
+            mainResourcePath = location.pathname.split(siteKey)[1];
+        }
+    }
+
+    return mainResourcePath;
 };
 
 export default function () {
     const jahiaContext = useContext(JahiaContext);
-    const current = useSelector(state => ({language: state.language, site: state.site}));
+    const location = useLocation();
+    const history = useHistory();
+    const [mainResourcePath] = useState(initialValue(location, jahiaContext.siteKey));
+
+    let getPathFromChildIFrame = function () {
+        let framepathname = window.frames[1].location.pathname;
+
+        return framepathname.substr(framepathname.lastIndexOf('/sites/'));
+    };
+
+    const iFrameOnHistoryMessage = event => {
+        if (event.origin !== window.location.origin) {
+            return;
+        }
+
+        if (event.data === 'edit frame history updated') {
+            let pathFromChildIFrame = getPathFromChildIFrame();
+            let newPath = history.location.pathname.replace(/page-composer.*/gi, 'page-composer' + pathFromChildIFrame);
+            history.push(newPath);
+        }
+    };
+
+    const iFrameOnLoad = () => {
+        if (window.frames['page-composer-frame'] !== undefined) {
+            window.addEventListener('message', iFrameOnHistoryMessage, false);
+        }
+    };
 
     // Temporary solution
-    if (current.site === 'systemsite') {
+    if (jahiaContext.siteKey === 'systemsite') {
         return <h2 style={{color: 'white'}}>You need to create a site to see this page</h2>;
     }
 
-    return <Iframe url={jahiaContext.contextPath + path(current.language, current.site)} width="100%" height="100%"/>;
+    return (
+        <Iframe url={jahiaContext.contextPath + path(jahiaContext.locale, jahiaContext.siteKey, mainResourcePath)}
+                width="100%"
+                height="100%"
+                id="page-composer-frame"
+                onLoad={iFrameOnLoad}
+        />
+    );
 }
