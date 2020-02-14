@@ -16,7 +16,6 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return 'Loading screen';
     }
 
-    console.log('Routes', routes);
     return (
         <>
             <GlobalStyle/>
@@ -49,4 +48,3 @@ Jahia.propTypes = {
 };
 
 export default Jahia;
-

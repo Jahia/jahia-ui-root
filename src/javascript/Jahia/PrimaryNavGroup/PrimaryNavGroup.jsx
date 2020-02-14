@@ -6,7 +6,13 @@ export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, navItems}) => (
     <Suspense fallback="loading...">
         <PrimaryNavItemsGroup
             isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}
-        >{navItems.map(item => item.render())}
+        >
+            {
+                navItems.map(item => {
+                    const Cmp = item.render;
+                    return <Cmp key={item.key}/>;
+                })
+            }
         </PrimaryNavItemsGroup>
     </Suspense>
 );
