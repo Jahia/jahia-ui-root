@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Iframe from 'react-iframe';
 import JahiaContext from '../Jahia.context';
 import {useHistory, useLocation} from 'react-router-dom';
