@@ -23,19 +23,6 @@ export default function () {
     const composerLocation = useLocation();
     const history = useHistory();
     const [mainResourcePath] = useState(initialValue(composerLocation, jahiaContext.siteKey));
-    useEffect(() => {
-        // Register history listener on mount, use the returned unlisten function to unregister on unmount
-        return history.listen((location, action) => {
-            console.log(history.length, location, action);
-            if (action === 'POP' && window.frames['page-composer-frame'] !== undefined && location.pathname.indexOf(jahiaContext.siteKey) >= 0) {
-                let contentWindow = window.frames['page-composer-frame'].contentWindow;
-                if (contentWindow.goToUrl !== undefined) {
-                    let url = jahiaContext.contextPath + path(jahiaContext.locale, jahiaContext.siteKey, location.pathname.split('/sites/' + jahiaContext.siteKey)[1]).replace('/edit/', '/editframe/');
-                    contentWindow.goToUrl(url, false, false, false);
-                }
-            }
-        });
-    });
 
     let getPathFromChildIFrame = function () {
         let framepathname = window.frames[1].location.pathname;
@@ -51,11 +38,7 @@ export default function () {
         if (event.data === 'edit frame history updated') {
             let pathFromChildIFrame = getPathFromChildIFrame();
             let newPath = history.location.pathname.replace(/page-composer.*/gi, 'page-composer' + pathFromChildIFrame);
-            if (history.location.pathname.endsWith('page-composer')) {
-                history.replace(newPath);
-            } else if (newPath !== history.location.pathname) {
-                history.push(newPath);
-            }
+            history.replace(newPath);
         } else if (event.data.msg === 'setTitle') {
             document.title = event.data.title;
         }
