@@ -24,7 +24,7 @@ registry.add('bottomDocumentationGroup', 'bottomDocNavGroup', {
 export const ProfileGroup = () => {
     const {t} = useTranslation();
     let button = (
-        <Button icon={<Power/>}
+        <Button icon={<Power size="big"/>}
                 variant="ghost"
                 color="reverse"
                 label={t('jahia-ui-root:primaryNavigation.profile.signOut')}
@@ -34,7 +34,7 @@ export const ProfileGroup = () => {
                 }}/>
     );
     return (
-        <PrimaryNavItem icon={<Person/>} subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'} label={t('jahia-ui-root:primaryNavigation.profile.label')} button={button}/>
+        <PrimaryNavItem icon={<Person size="big"/>} subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'} label={t('jahia-ui-root:primaryNavigation.profile.label')} button={button}/>
     );
 };
 

@@ -15,7 +15,7 @@ export const WorkflowGroup = () => {
     return (
         <PrimaryNavItem
             isSelected={history.location.pathname.startsWith(PATH)}
-            icon={<WorkflowIcon/>}
+            icon={<WorkflowIcon size="big"/>}
             label={t('jahia-ui-root:primaryNavigation.workflow.label')}
             onClick={() => history.push(PATH)}/>
     );

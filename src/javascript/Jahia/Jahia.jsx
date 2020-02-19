@@ -31,7 +31,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
             <PrimaryNav
                 headerLogo={<JahiaLogo/>}
                 headerCaption={`${jahiaContext.environment}`}
-                modeIcon={<Star/>}
+                modeIcon={<Star size="big"/>}
                 top={topNavGroups}
                 bottom={bottomNavGroups}
             />

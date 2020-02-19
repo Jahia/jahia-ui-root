@@ -15,7 +15,7 @@ export const PageComposerGroup = () => {
     return (
         <PrimaryNavItem
             isSelected={history.location.pathname.startsWith(PATH)}
-            icon={<Feather/>}
+            icon={<Feather size="big"/>}
             label={t('jahia-ui-root:primaryNavigation.pageComposer.label')}
             onClick={() => history.push(PATH)}/>
     );
