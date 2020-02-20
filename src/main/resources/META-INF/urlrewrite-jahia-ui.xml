@@ -12,6 +12,14 @@
         <to type="redirect">%{context-path}/modules/moonstone/page-composer/$1</to>
     </rule>
 
+    <rule>
+        <name>Jahia to V8</name>
+        <note>Redirects old cms/contribute urls</note>
+        <condition operator="notequal" type="parameter" name="redirect">false</condition>
+        <from>^/cms/contribute/(.*)$</from>
+        <to type="redirect">%{context-path}/modules/moonstone/page-composer/$1</to>
+    </rule>
+
         <!--    Inbound rules   -->
     <rule>
         <name>Jahia AppShell</name>
