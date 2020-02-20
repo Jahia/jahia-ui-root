@@ -3,7 +3,7 @@ import Iframe from 'react-iframe';
 import JahiaContext from '../Jahia.context';
 
 let path = (locale, siteKey) => {
-    return `/cms/edit/default/${locale}/sites/${siteKey}/home.html`;
+    return `/cms/edit/default/${locale}/sites/${siteKey}/home.html?redirect=false`;
 };
 
 export default function () {
