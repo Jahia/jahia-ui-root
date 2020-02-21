@@ -20,12 +20,4 @@
         <to type="redirect">%{context-path}/jahia/page-composer/$1</to>
     </rule>
 
-        <!--    Inbound rules   -->
-    <rule>
-        <name>Jahia AppShell</name>
-        <note>rewrite /jahia to /modules/moonstone</note>
-        <from>^/jahia(.*)$</from>
-        <to>/modules/moonstone/$1</to>
-    </rule>
-
 </urlrewrite>
