@@ -65,7 +65,7 @@
         maxUploadSize: parseInt("<%= SettingsBean.getInstance().getJahiaFileUploadMaxSize() %>") / (1024 * 1024),
         displayWorkflowCounter:<%= SettingsBean.getInstance().getString("jahia.ui.displayWorkflowCounter", "true").equals("true") %>,
         operatingMode:'<%= SettingsBean.getInstance().getOperatingMode() %>',
-        urlbase: '/modules/moonstone',
+        urlbase: '/jahia',
     });
 
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
