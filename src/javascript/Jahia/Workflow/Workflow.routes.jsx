@@ -24,11 +24,9 @@ export const WorkflowGroup = () => {
 
     const badge = data.jcr.activeWorkflowTaskCountForUser > 0 ? (
         <Badge
-        size="small"
         type="round"
         color="danger"
         label={data.jcr.activeWorkflowTaskCountForUser}
-        style={{position: 'absolute', top: '0.1rem', right: '-0.1rem'}}
     />
     ) : null;
 
