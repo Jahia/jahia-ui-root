@@ -1,8 +1,7 @@
 import React from 'react';
 import {registry} from '@jahia/ui-extender';
 import {useHistory} from 'react-router-dom';
-import {PrimaryNavItem} from '@jahia/moonstone/dist/index.js';
-import {Badge} from '@jahia/moonstone/dist/index.js';
+import {PrimaryNavItem, Badge} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import {useQuery} from 'react-apollo';
 import WorkflowIcon from '@jahia/moonstone/dist/icons/Workflow';
