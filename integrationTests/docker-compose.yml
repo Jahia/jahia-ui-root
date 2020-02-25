@@ -1,0 +1,12 @@
+# Default environment variables can be declared in a .env file
+version: "3.6"
+services:
+  jahia:
+    image: jahia/jahia-private:snapshot
+    container_name: jahia
+    environment:
+      - jahia_cfg_karaf_remoteShellHost=0.0.0.0
+    ports:
+      - 8080:8080
+      - 8101:8101
+
