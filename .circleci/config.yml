@@ -160,6 +160,20 @@ jobs:
             audit-ci --<< pipeline.parameters.auditci_level >>
       - *notify_slack_failure_regular
 
+  # Run unit tests
+  # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
+  unit_tests:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/source/
+    steps:
+      - *attach-workspace
+      - run:
+          name: Running unit tests with jest
+          command: |
+            yarn run tests:unit
+      - *notify_slack_failure_regular
+
   # Running the warmup stage
   integration_tests:
     <<: *workdir
@@ -191,7 +205,7 @@ jobs:
           name: Run tests with JUnit as reporter (For now just Search Entry Point)
           command: |
             cd << pipeline.parameters.testframework_directory >>
-            TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TOOLS_USER="jahia" TOOLS_PWD="password" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=$TESTRAIL_USERNAME TESTRAIL_PASSWORD=$TESTRAIL_PASSWORD  TESTRAIL_MILESTONE=<< parameters.testrail_milestone >> TESTRAIL_RUNDESCRIPTION="This test was executed on circleci, $CIRCLE_BUILD_URL" yarn run testcli ./integrationTests/__tests__/ --ci --runInBand
+            TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TOOLS_USER="jahia" TOOLS_PWD="password" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=$TESTRAIL_USERNAME TESTRAIL_PASSWORD=$TESTRAIL_PASSWORD  TESTRAIL_MILESTONE=<< parameters.testrail_milestone >> TESTRAIL_RUNDESCRIPTION="This test was executed on circleci, $CIRCLE_BUILD_URL" yarn run tests:integration
           environment:
             JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
       - store_test_results:
@@ -212,10 +226,13 @@ workflows:
       - security:
           requires:
             - initialize
+      - unit_tests:
+          requires:
+            - initialize            
       - integration_tests:
           name: "Int. Tests - Jahia Latest - Published modules"
           requires:
-            - initialize
+            - unit_tests
           context: QA_ENVIRONMENT
           testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
 
