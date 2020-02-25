@@ -7,16 +7,16 @@ orbs:
 parameters:
   slack_channel_regular:
     type: string
-    default: "#cci-Nav8-Tests"
+    default: "#cci-jahia-ui-root"
   slack_channel_urgent:
     type: string
-    default: "#team-optimistic-outlaws"
+    default: "#cci-jahia-ui-root"
   slack_mention_regular:
     type: string
     default: "parveer,aademi"
   slack_mention_urgent:
     type: string
-    default: "@channel"
+    default: "channel"
   auditci_level:
     type: string
     default: "moderate"
@@ -63,29 +63,17 @@ commands:
   # This involved building containers or fetching previously built containers and starting docker-compose with those
   warmup_on_machine:
     description: "In a machine environment, build and commit docker images"
-    parameters:
-      # Should we be building the container, even though the manifest didn't change?
-      # Note: By default, if the manifest changes, containers are rebuilt
-      force_build:
-        type: boolean
-        default: false
-      # Manifest file to use for the build
-      manifest:
-        type: string
-        default: warmup-manifest-latest.yml
     steps:
       - run:
           name: Printing job parameters and default host values
           command: |
-            echo "build: << parameters.force_build >>"
-            echo "manifest: << parameters.manifest >>"
             node -v
             npm -v
       - run:
           name: Update packages list and install jq, build-essensital, libssl-dev
           command: |
             sudo apt-get update
-            sudo apt-get install jq build-essential libssl-dev
+            sudo apt-get install build-essential libssl-dev
       - run:
           # Instructions found here: https://discuss.circleci.com/t/nvm-does-not-change-node-version-on-machine/28973/14
           name: Prepare NVM
@@ -112,19 +100,12 @@ commands:
           name: Spin-up docker images (docker-compose up)
           command: |
             cd << pipeline.parameters.testframework_directory >>
+            docker-compose pull
             docker-compose up -d
       - run:
           name: Wait for Jahia to be alive
           command: jahia-cli alive
-#      - run:
-#          name: Configure Jahia (Conditional), check index, then wait for 30s before moving to the next step
-#          command: |
-#            cd << pipeline.parameters.testframework_directory >>
-#            if [ "$JAHIA_ACTION" = "build" ]; then
-#              jahia-cli manifest:run --manifest=./<< parameters.manifest >>
-#              jahia-cli search:check
-#              sleep 30
-#            fi
+
 jobs:
   # Checkout and Initializes the testing framework
   initialize:
@@ -179,26 +160,6 @@ jobs:
             audit-ci --<< pipeline.parameters.auditci_level >>
       - *notify_slack_failure_regular
 
-  # The initialize clone and yarn install
-#  build:
-#    <<: *workdir
-#    docker: # run the steps with Docker
-#      - image: circleci/openjdk:8-jdk-stretch
-#    steps:
-#      - *attach-workspace
-#      - restore_cache:
-#          keys:
-#            - v1-dependencies-{{ checksum "pom.xml" }}
-#            # fallback to using the latest cache if no exact match is found
-#            - v1-dependencies-
-#      - run: mvn -s .circleci/.circleci.settings.xml clean install
-#      # Built module is stored in: /home/circleci/source/repo/repo/api/target/augmented-search-1.0.1-SNAPSHOT.jar
-#      - save_cache:
-#          paths:
-#            - ~/.m2
-#          key: v1-dependencies-{{ checksum "pom.xml" }}
-#      - *persist-workspace
-
   # Running the warmup stage
   integration_tests:
     <<: *workdir
@@ -207,24 +168,13 @@ jobs:
     # Available types: medium, large, xlarge, 2xlarge https://circleci.com/docs/2.0/configuration-reference/#machine-executor-linux
     resource_class: xlarge
     parameters:
-      # Should we be building the container, even though the manifest didn't change?
-      # Note: By default, if the manifest changes, containers are rebuilt
-      force_build:
-        type: boolean
-        default: false
-      # Manifest file to use for the build
-      manifest:
-        type: string
-        default: warmup-manifest-latest.yml
       # Milestone used in Testrail
       testrail_milestone:
         type: string
         default: Default
     steps:
       - *attach-workspace
-      - warmup_on_machine:
-          force_build: << parameters.force_build >>
-          manifest: << parameters.manifest >>
+      - warmup_on_machine
       - run:
           name: Yarn
           command: |
@@ -236,7 +186,7 @@ jobs:
             cd << pipeline.parameters.testframework_directory >>
             yarn add --dev jest-junit
       - run:
-          # In the tests below, limiting to only testing basicSearchFields for now
+          # In the tests below, limiting to only testing the integration tests for now
           # https://www.viget.com/articles/using-junit-on-circleci-2-0-with-jest-and-eslint/
           name: Run tests with JUnit as reporter (For now just Search Entry Point)
           command: |
@@ -252,6 +202,7 @@ jobs:
 
 workflows:
   version: 2
+  # This workflow runs on any change to the repository.
   on-code-change:
     jobs:
       - initialize
@@ -266,43 +217,24 @@ workflows:
           requires:
             - initialize
           context: QA_ENVIRONMENT
-          testrail_milestone: Jahia-Latest
+          testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
 
-  # Nightly, we run the full integration tests using "latest",  "snapshot" and selected image version
-  # This is always freshly built, assumption is that integreation tests on nightly MUST pass
-  # force_build, manufest, testrail_milestone are custom parameters passed down the configuration
-  nightly:
+  # This workflow runs at regular interval (i.e. every 4 hours)
+  # Objective is to ensure the integration testing suite still runs even though jahia-snapshot may have been updated
+  # For this workflow we only run the integration tests, no need to do linting or security checks since those are executed on code change
+  crontab:
     triggers:
       - schedule:
-          cron: "0 0 * * *"
+          cron: "0 0,4,8,12,16,20 * * *"
           filters:
             branches:
               only:
                 - integration-tests
     jobs:
       - initialize
-      # Note: Feb 18, 2020: Jahia master is currently not compatible with the released version of augmented-search
       - integration_tests:
-          name: "Nightly Int. Tests - Jahia Snapshot - Published modules"
+          name: "Int. Tests - Jahia Snapshot (7.5.0.0)"
           requires:
             - initialize
           context: QA_ENVIRONMENT
-          force_build: true
-          manifest: warmup-manifest-snapshot.yml
-          testrail_milestone: Jahia-Snapshot
-      - integration_tests:
-          name: "Nightly Int. Tests - Jahia Latest - Published modules"
-          requires:
-            - initialize
-          context: QA_ENVIRONMENT
-          force_build: true
-          manifest: warmup-manifest-latest.yml
-          testrail_milestone: Jahia-Latest
-      - integration_tests:
-          name: "Nightly Int. Tests - Jahia 7.3.4.1 - Published modules"
-          requires:
-            - initialize
-          context: QA_ENVIRONMENT
-          force_build: true
-          manifest: warmup-manifest-7341.yml
-          testrail_milestone: Jahia-7.3.4.1
+          testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
