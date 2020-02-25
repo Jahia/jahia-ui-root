@@ -135,14 +135,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v2-npm-{{ checksum "<< pipeline.parameters.testframework_directory >>yarn.lock" }}
+            - v2-npm-{{ checksum "<< pipeline.parameters.javascript_directory >>yarn.lock" }}
       - run:
           name: Install dependencies
           command: |
             cd << pipeline.parameters.testframework_directory >>
             yarn
       - save_cache:
-          key: v2-npm-{{ checksum "<< pipeline.parameters.testframework_directory >>yarn.lock" }}
+          key: v2-npm-{{ checksum "<< pipeline.parameters.javascript_directory >>yarn.lock" }}
           paths:
             - << pipeline.parameters.testframework_directory >>node_modules
       - *persist-workspace
