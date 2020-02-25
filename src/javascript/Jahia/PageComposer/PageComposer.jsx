@@ -35,12 +35,14 @@ export default function () {
             return;
         }
 
-        if (event.data === 'edit frame history updated') {
-            let pathFromChildIFrame = getPathFromChildIFrame();
-            let newPath = history.location.pathname.replace(/page-composer.*/gi, 'page-composer' + pathFromChildIFrame);
-            history.replace(newPath);
-        } else if (event.data.msg === 'setTitle') {
-            document.title = event.data.title;
+        if (event.data !== null && event.data.msg !== null) {
+            if (event.data.msg === 'edit frame history updated') {
+                let pathFromChildIFrame = getPathFromChildIFrame();
+                let newPath = history.location.pathname.replace(/page-composer.*/gi, 'page-composer' + pathFromChildIFrame);
+                history.replace(newPath);
+            } else if (event.data.msg === 'setTitle') {
+                document.title = event.data.title;
+            }
         }
     };
 
