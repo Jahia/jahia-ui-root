@@ -12,17 +12,17 @@ const timeout = 5000;
 
 describe('admin menu order test', () => {
     let page;
-     beforeAll(async () => {
+    beforeAll(async () => {
         page = await global.__BROWSER__.newPage();
         await page.goto(process.env[constants.TEST_URL], {waitUntil: 'networkidle0'});
         await page.type('input[name=\'username\']', process.env[constants.JAHIA_USERNAME], {delay: 50});
         await page.type('input[name=\'password\']', process.env[constants.JAHIA_PASSWORD], {delay: 50});
-        const [response] = await Promise.all([
+        await Promise.all([
             page.waitForNavigation(),
             page.click('button[type=\'submit\']')
         ]);
 
-        // const currentUrl = await page.url();
+        // Const currentUrl = await page.url();
         // expect(currentUrl).toBe(process.env[constants.TEST_URL] + '/jahia/dashboard/projects');
     });
 

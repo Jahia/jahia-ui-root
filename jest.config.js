@@ -15,7 +15,7 @@ module.exports = {
     globalSetup: './integrationTests/setup.js',
     globalTeardown: './integrationTests/teardown.js',
     reporters: [
-        "default",
-        "./integrationTests/reporter.js"
+        'default',
+        './integrationTests/reporter.js'
     ]
 };
