@@ -4,7 +4,7 @@ import JahiaContext from '../Jahia.context';
 import {useHistory, useLocation} from 'react-router-dom';
 
 let path = (locale, siteKey, mainResourcePath) => {
-    return `/cms/edit/default/${locale}/sites/${siteKey}${mainResourcePath}`;
+    return `/cms/edit/default/${locale}/sites/${siteKey}${mainResourcePath}?redirect=false`;
 };
 
 let initialValue = function (location, siteKey) {
