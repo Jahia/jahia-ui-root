@@ -241,7 +241,7 @@ jobs:
           name: Run tests with JUnit as reporter (For now just Search Entry Point)
           command: |
             cd << pipeline.parameters.testframework_directory >>
-            TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TOOLS_USER="jahia" TOOLS_PWD="password" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=$TESTRAIL_USERNAME TESTRAIL_PASSWORD=$TESTRAIL_PASSWORD  TESTRAIL_MILESTONE=<< parameters.testrail_milestone >> TESTRAIL_RUNDESCRIPTION="This test was executed on circleci, $CIRCLE_BUILD_URL" yarn run testcli --ci --runInBand
+            TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TOOLS_USER="jahia" TOOLS_PWD="password" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=$TESTRAIL_USERNAME TESTRAIL_PASSWORD=$TESTRAIL_PASSWORD  TESTRAIL_MILESTONE=<< parameters.testrail_milestone >> TESTRAIL_RUNDESCRIPTION="This test was executed on circleci, $CIRCLE_BUILD_URL" yarn run testcli ./integrationTests/__tests__/ --ci --runInBand
           environment:
             JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
       - store_test_results:
