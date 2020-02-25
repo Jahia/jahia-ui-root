@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Iframe from 'react-iframe';
 import JahiaContext from '../Jahia.context';
 import {useHistory, useLocation} from 'react-router-dom';
@@ -18,24 +18,22 @@ let initialValue = function (location, siteKey) {
     return mainResourcePath;
 };
 
-export default function () {
-    const jahiaContext = useContext(JahiaContext);
-    const composerLocation = useLocation();
-    const history = useHistory();
-    const [mainResourcePath] = useState(initialValue(composerLocation, jahiaContext.siteKey));
+let history = null;
 
-    let getPathFromChildIFrame = function () {
-        let framepathname = window.frames[1].location.pathname;
+let getPathFromChildIFrame = function () {
+    let framepathname = window.frames[1].location.pathname;
 
-        return framepathname.substr(framepathname.lastIndexOf('/sites/'));
-    };
+    return framepathname.substr(framepathname.lastIndexOf('/sites/'));
+};
 
-    const iFrameOnHistoryMessage = event => {
+const iFrameOnHistoryMessage = event => {
+    if (history !== null) {
         if (event.origin !== window.location.origin) {
             return;
         }
 
         if (event.data !== null && event.data.msg !== null) {
+            console.log('iFrameOnHistoryMessage', event.data);
             if (event.data.msg === 'edit frame history updated') {
                 let pathFromChildIFrame = getPathFromChildIFrame();
                 let newPath = history.location.pathname.replace(/page-composer.*/gi, 'page-composer' + pathFromChildIFrame);
@@ -44,7 +42,23 @@ export default function () {
                 document.title = event.data.title;
             }
         }
-    };
+    }
+};
+
+export default function () {
+    const jahiaContext = useContext(JahiaContext);
+    const composerLocation = useLocation();
+    history = useHistory();
+    const [mainResourcePath] = useState(initialValue(composerLocation, jahiaContext.siteKey));
+    useEffect(() => {
+        if (window.frames['page-composer-frame'] !== undefined) {
+            window.addEventListener('message', iFrameOnHistoryMessage, false);
+        }
+
+        return () => {
+            window.removeEventListener('message', iFrameOnHistoryMessage, false);
+        };
+    });
 
     const iFrameOnLoad = () => {
         if (window.frames['page-composer-frame'] !== undefined) {
