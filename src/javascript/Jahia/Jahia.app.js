@@ -38,10 +38,10 @@ export const jahiaApps = (registry, jahiaCtx) => {
             <>
                 <Jahia routes={registry.find({type: 'route', target: 'nav-root-top'})}
                        topNavGroups={[
-                           <PrimaryNavGroup key="workflowNavGroup"
+                           <PrimaryNavGroup key="tasksNavGroup"
                                             navItems={registry.find({
-                                                type: 'workflowGroup',
-                                                target: 'nav-root-workflow'
+                                                type: 'tasksGroup',
+                                                target: 'nav-root-tasks'
                                             })}/>,
                            <PrimaryNavGroup key="topNavGroup"
                                             navItems={registry.find({
