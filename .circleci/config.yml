@@ -164,7 +164,7 @@ jobs:
   # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
   unit_tests:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:latest-browsers
     working_directory: ~/source/
     steps:
       - *attach-workspace

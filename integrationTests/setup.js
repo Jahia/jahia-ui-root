@@ -13,7 +13,7 @@ module.exports = async function () {
             // SlowMo: 50,
             headless: true,
             devtools: false,
-            args: ['--start-fullscreen']
+            args: ['--start-fullscreen', '–no-sandbox', '–disable-setuid-sandbox']
         }
     );
     // Store the browser instance so we can teardown it later

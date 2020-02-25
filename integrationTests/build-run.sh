@@ -66,7 +66,7 @@ yarn
 
 echo " == Starting the tests"
 
-TEST_URL="http://localhost:8080" JAHIA_USERNAME="root" JAHIA_PASSWORD="root" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME="qatoronto@jahia.com" TESTRAIL_PASSWORD="testrail4ever"  TESTRAIL_MILESTONE="Jahia-7.5.0.0-SNAPSHOT" yarn testcli adminMenuOrder --ci --runInBand --reporters=default --reporters=jest-junit
+TEST_URL="http://localhost:8080" JAHIA_USERNAME="root" JAHIA_PASSWORD="root" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME="qatoronto@jahia.com" TESTRAIL_PASSWORD="testrail4ever"  TESTRAIL_MILESTONE="Jahia-7.5.0.0-SNAPSHOT" yarn tests:integration adminMenuOrder --ci --runInBand --reporters=default --reporters=jest-junit
 
 echo " == Done, don't forget to bring your containers down."
 
