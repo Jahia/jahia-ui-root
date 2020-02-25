@@ -246,7 +246,7 @@ workflows:
           filters:
             branches:
               only:
-                - integration-tests
+                - master
     jobs:
       - initialize
       - integration_tests:
