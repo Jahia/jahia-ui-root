@@ -173,11 +173,6 @@ jobs:
           name: Install dependencies
           command: sudo npm install -g audit-ci
       - run:
-          name: Run Audit-ci testing framework
-          command: |
-            cd << pipeline.parameters.testframework_directory >>
-            audit-ci --<< pipeline.parameters.auditci_level >>
-      - run:
           name: Run Audit-ci javascript app
           command: |
             cd << pipeline.parameters.javascript_directory >>
