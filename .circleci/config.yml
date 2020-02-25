@@ -106,8 +106,8 @@ commands:
       - run:
           name: Docker login
           command: |
-            echo "$DOCKER_REGISTRY_USERNAME"
-            echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin
+            echo "$DOCKERHUB_LOGIN"
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_LOGIN" --password-stdin
       - run:
           name: Spin-up docker images (docker-compose up)
           command: |
