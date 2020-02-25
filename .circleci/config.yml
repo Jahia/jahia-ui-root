@@ -217,6 +217,8 @@ jobs:
 workflows:
   version: 2
   # This workflow runs on any change to the repository.
+  # Note: Since we don't have a build stage yet, we might want to disable the integration_tests on code change, and only have those running through the crontab workflow.
+  # The only reason making it relevant to keep there here for now is to actually be able to trigger CI/CD exeuction when new tests are added (i.e. not have to wait for crontab to know if a test works on circleci).
   on-code-change:
     jobs:
       - initialize
