@@ -24,7 +24,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "@jahia/moonstone": "^0.10.0",
+    "@jahia/moonstone": "^0.11.0",
     "@jahia/ui-extender": "^0.3.2",
     "@svgr/webpack": "^4.3.3",
     "clsx": "^1.0.4",
