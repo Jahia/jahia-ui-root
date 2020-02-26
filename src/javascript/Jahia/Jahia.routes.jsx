@@ -25,6 +25,7 @@ export const ProfileGroup = () => {
     const {t} = useTranslation();
     let button = (
         <Button icon={<Power/>}
+                isReversed="true"
                 variant="ghost"
                 label={t('jahia-ui-root:primaryNavigation.profile.signOut')}
                 onClick={() => {
