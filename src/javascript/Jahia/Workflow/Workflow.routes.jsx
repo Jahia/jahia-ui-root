@@ -14,15 +14,11 @@ const POLL_INTERVAL = 10000; // 10 seconds
 export const WorkflowGroup = () => {
     const {t} = useTranslation();
     const history = useHistory();
-    const {data, loading} = useQuery(NumberOfWorkflowsQuery, {
+    const {data} = useQuery(NumberOfWorkflowsQuery, {
         pollInterval: POLL_INTERVAL
     });
 
-    if (loading) {
-        return null;
-    }
-
-    const badge = data.jcr.activeWorkflowTaskCountForUser > 0 ? (
+    const badge = data && data.jcr.activeWorkflowTaskCountForUser > 0 ? (
         <Badge
         type="round"
         color="danger"
