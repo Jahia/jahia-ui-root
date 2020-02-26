@@ -26,7 +26,6 @@ export const ProfileGroup = () => {
     let button = (
         <Button icon={<Power/>}
                 variant="ghost"
-                color="reverse"
                 label={t('jahia-ui-root:primaryNavigation.profile.signOut')}
                 onClick={() => {
                     console.log('test');
