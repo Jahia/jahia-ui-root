@@ -20,11 +20,11 @@ describe('primary nav bar tests', () => {
     it('expands the nav bar', async () => {
         await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle2'});
 
-        page.click('nav button')
+        page.click('nav button');
 
         const spanLabels = await page.$$('span');
         const jContentLabelHandle = await spanLabels[1].getProperty('innerText');
-        const jContentLabel = await  jContentLabelHandle.jsonValue();
+        const jContentLabel = await jContentLabelHandle.jsonValue();
         expect(jContentLabel).toBe('jContent');
     });
 }, timeout);
