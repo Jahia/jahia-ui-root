@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 START_TIME=$SECONDS
-BUILD=$1
 
-# Begin with verifying that environment variables have been properly set
-# Just to facilitate discovery of the script
-# This only checks for non-default values, such as docker registry
-# This script has only been tested on a MAC with bash.
-# brew, docker, docker-compose are required
-
-echo "Note: the following are required: brew, docker, docker-compose, node 12+ --- "
-
-echo " --- Checking presence of environment variables --- "
+echo "=================================================================="
+echo "This script spins-up Jahia in docker and run the tests"
+echo "It has only been tested on MacOS with bash"
+echo "Required dependencies: brew, docker, docker-compose, node 12+"
+echo "=================================================================="
+echo "Press enter to continue ..."
+read enter
 
 echo " --- Ensuring required applications are installed --- "
-
 if which docker > /dev/null; then
   echo " == APP: docker is currently installed, continuing..."
 else
@@ -49,7 +45,11 @@ else
   exit
 fi
 
-docker login -u "astrita"
+echo "Please enter your docker hub USERNAME:"
+read username
+docker login -u "$username"
+
+docker-compose down
 
 docker-compose pull
 
