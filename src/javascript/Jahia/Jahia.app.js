@@ -38,34 +38,13 @@ export const jahiaApps = (registry, jahiaCtx) => {
             <>
                 <Jahia routes={registry.find({type: 'route', target: 'nav-root-top'})}
                        topNavGroups={[
-                           <PrimaryNavGroup key="workflowNavGroup"
-                                            navItems={registry.find({
-                                                type: 'workflowGroup',
-                                                target: 'nav-root-workflow'
-                                            })}/>,
-                           <PrimaryNavGroup key="topNavGroup"
-                                            navItems={registry.find({
-                                                type: 'topNavGroup',
-                                                target: 'nav-root-top'
-                                            })}/>
+                           <PrimaryNavGroup key="workflowNavGroup" target="nav-root-workflow"/>,
+                           <PrimaryNavGroup key="topNavGroup" target="nav-root-top"/>
                        ]}
                        bottomNavGroups={[
-                           <PrimaryNavGroup key="bottomDocumentationGroup"
-                                            isDisplayedWhenCollapsed={false}
-                                            navItems={registry.find({
-                                                type: 'bottomDocumentationGroup',
-                                                target: 'nav-root-bottom'
-                                            })}/>,
-                           <PrimaryNavGroup key="bottomProfileGroup"
-                                            navItems={registry.find({
-                                                type: 'bottomProfileGroup',
-                                                target: 'nav-root-bottom'
-                                            })}/>,
-                           <PrimaryNavGroup key="bottomAdminGroup"
-                                            navItems={registry.find({
-                                                type: 'bottomAdminGroup',
-                                                target: 'nav-root-bottom'
-                                            })}/>
+                           <PrimaryNavGroup key="bottomDocumentationGroup" isDisplayedWhenCollapsed={false} target="nav-root-documentation"/>,
+                           <PrimaryNavGroup key="bottomProfileGroup" target="nav-root-profile"/>,
+                           <PrimaryNavGroup key="bottomAdminGroup" target="nav-root-admin"/>
                        ]}
                 />
                 {next}

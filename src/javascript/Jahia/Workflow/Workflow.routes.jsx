@@ -21,7 +21,7 @@ export const WorkflowGroup = () => {
     );
 };
 
-registry.add('workflowGroup', 'workflowNavGroup', {
+registry.add('primary-nav-item', 'workflowNavGroup', {
     targets: ['nav-root-workflow:1'],
     render: () => <WorkflowGroup key="workflowGroup"/>
 });

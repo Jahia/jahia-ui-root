@@ -21,9 +21,9 @@ export const PageComposerGroup = () => {
     );
 };
 
-registry.add('topNavGroup', 'pageComposerNavGroup', {
+registry.add('primary-nav-item', 'pageComposerNavGroup', {
     targets: ['nav-root-top:0'],
-    render: () => <PageComposerGroup key="pageComposerGroup"/>
+    render: () => <PageComposerGroup/>
 });
 
 // Register wiokrflow component
