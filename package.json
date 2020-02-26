@@ -9,7 +9,8 @@
   "scripts": {
     "test": "env-cmd --no-override jest ./src/javascript/__tests__/",
     "tests:unit": "jest --env=jsdom ./src/javascript/__tests__/",
-    "tests:integration": "jest ./integrationTests/__tests__/ --ci --runInBand",
+    "tests:integration": "jest ./integrationTests/__tests__/",
+    "tests:integration:ci": "jest ./integrationTests/__tests__/ --ci --runInBand",
     "build": "yarn lint:fix && yarn webpack",
     "build:nolint": "yarn webpack",
     "dev": "yarn webpack --watch",

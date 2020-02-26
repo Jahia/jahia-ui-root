@@ -17,5 +17,6 @@ module.exports = {
     reporters: [
         'default',
         './integrationTests/reporter.js'
-    ]
+    ],
+    testTimeout: 30000
 };
