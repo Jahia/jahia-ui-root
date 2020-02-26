@@ -1,5 +1,11 @@
 const constants = require('../constants');
 const timeout = 10000;
+const { toMatchImageSnapshot } = require('jest-image-snapshot');
+expect.extend({ toMatchImageSnapshot });
+
+// const sleep = (ms) => {
+//     return new Promise(resolve => setTimeout(resolve, ms))
+// }
 
 describe('primary nav bar tests', () => {
     let page;
@@ -12,19 +18,29 @@ describe('primary nav bar tests', () => {
             page.waitForNavigation(),
             page.click('button[type=\'submit\']')
         ]);
-
-        // Const currentUrl = await page.url();
-        // expect(currentUrl).toBe(process.env[constants.TEST_URL] + '/jahia/dashboard/projects');
     });
 
     it('expands the nav bar', async () => {
         await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle2'});
 
-        page.click('nav button');
+        await page.click('nav button');
 
-        const spanLabels = await page.$$('span');
-        const jContentLabelHandle = await spanLabels[1].getProperty('innerText');
-        const jContentLabel = await jContentLabelHandle.jsonValue();
-        expect(jContentLabel).toBe('jContent');
+        //wait until nav bar is fully expanded
+        await page.waitForFunction('document.getElementsByClassName(\'flexCol_nowrap\')[0].offsetWidth > 290');
+
+        //remove all children nodes from nav
+        await page.evaluate(() => {
+            let e = document.querySelector('nav');
+            let child = e.lastElementChild;
+            while (child) {
+                e.removeChild(child);
+                child = e.lastElementChild;
+            }
+        });
+
+        const navEl = await page.$('nav');
+
+        expect(await navEl.screenshot()).toMatchImageSnapshot();
+
     });
 }, timeout);
