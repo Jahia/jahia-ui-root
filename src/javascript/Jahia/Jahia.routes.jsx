@@ -24,8 +24,8 @@ registry.add('bottomDocumentationGroup', 'bottomDocNavGroup', {
 export const ProfileGroup = () => {
     const {t} = useTranslation();
     let button = (
-        <Button icon={<Power/>}
-                isReversed="true"
+        <Button isReversed
+                icon={<Power/>}
                 variant="ghost"
                 label={t('jahia-ui-root:primaryNavigation.profile.signOut')}
                 onClick={() => {
