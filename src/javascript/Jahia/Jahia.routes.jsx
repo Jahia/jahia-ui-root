@@ -16,9 +16,9 @@ export const DocumentationGroup = () => {
     );
 };
 
-registry.add('bottomDocumentationGroup', 'bottomDocNavGroup', {
-    targets: ['nav-root-bottom:1'],
-    render: () => <DocumentationGroup key="bottomDocumentationGroup"/>
+registry.add('primary-nav-item', 'bottomDocNavGroup', {
+    targets: ['nav-root-documentation:1'],
+    render: () => <DocumentationGroup/>
 });
 
 export const ProfileGroup = () => {
@@ -38,7 +38,7 @@ export const ProfileGroup = () => {
     );
 };
 
-registry.add('bottomProfileGroup', 'bottomProfileNavGroup', {
-    targets: ['nav-root-bottom:1'],
-    render: () => <ProfileGroup key="bottomProfileGroup"/>
+registry.add('primary-nav-item', 'bottomProfileNavGroup', {
+    targets: ['nav-root-profile:1'],
+    render: () => <ProfileGroup/>
 });
