@@ -35,7 +35,7 @@ if which jahia-cli > /dev/null; then
   echo " == APP: jahia-cli is currently installed, continuing..."
 else
   echo " == APP: jahia-cli is not installed, installing..."
-  npm install -g jahia-cli@0.0.24
+  npm install -g jahia-cli@0.0.26
 fi
 
 if which yarn > /dev/null; then
