@@ -10,8 +10,10 @@ export const DocumentationGroup = () => {
     const {t} = useTranslation();
     return (
         <>
-            <PrimaryNavItem url={window.contextJsParameters.links.whatsNew} label={t('jahia-ui-root:primaryNavigation.documentation.newAtJahia')}/>
-            <PrimaryNavItem url={window.contextJsParameters.links.documentation} label={t('jahia-ui-root:primaryNavigation.documentation.label')}/>
+            <PrimaryNavItem url={window.contextJsParameters.links.whatsNew}
+                            label={t('jahia-ui-root:primaryNavigation.documentation.newAtJahia')}/>
+            <PrimaryNavItem url={window.contextJsParameters.links.documentation}
+                            label={t('jahia-ui-root:primaryNavigation.documentation.label')}/>
         </>
     );
 };
@@ -29,12 +31,15 @@ export const ProfileGroup = () => {
                 variant="ghost"
                 label={t('jahia-ui-root:primaryNavigation.profile.signOut')}
                 onClick={() => {
-                    console.log('test');
-                    window.location.assign('/cms/logout?redirect=/start');
+                    let url = window.contextJsParameters.contextPath + '/cms/logout?redirect=' + window.contextJsParameters.contextPath + '/start';
+                    window.location.assign(url);
                 }}/>
     );
     return (
-        <PrimaryNavItem icon={<Person/>} subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'} label={t('jahia-ui-root:primaryNavigation.profile.label')} button={button}/>
+        <PrimaryNavItem icon={<Person/>}
+                        subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'}
+                        label={t('jahia-ui-root:primaryNavigation.profile.label')}
+                        button={button}/>
     );
 };
 
