@@ -22,7 +22,7 @@ export const WorkflowGroup = () => {
 };
 
 registry.add('primary-nav-item', 'workflowNavGroup', {
-    targets: ['nav-root-workflow:1'],
+    targets: ['nav-root-tasks:1'],
     render: () => <WorkflowGroup key="workflowGroup"/>
 });
 
