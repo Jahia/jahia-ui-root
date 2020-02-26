@@ -2,7 +2,6 @@ const constants = require('../constants');
 const timeout = 10000;
 
 describe('primary nav bar tests', () => {
-
     let page;
     beforeAll(async () => {
         page = await global.__BROWSER__.newPage();
@@ -14,22 +13,18 @@ describe('primary nav bar tests', () => {
             page.click('button[type=\'submit\']')
         ]);
 
-        // const currentUrl = await page.url();
+        // Const currentUrl = await page.url();
         // expect(currentUrl).toBe(process.env[constants.TEST_URL] + '/jahia/dashboard/projects');
     });
 
     it('expands the nav bar', async () => {
-        await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle0'})
-        await Promise.all([
-            page.waitForNavigation(),
-            page.click('nav button')
-        ]);
+        await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle2'});
 
-        const [elementHandle] = await page.$x('.//nav');
-        const propertyHandle = await elementHandle.getProperty('width');
-        const propertyValue = await propertyHandle.jsonValue();
+        page.click('nav button')
 
-        console.log(propertyValue);
-        return true;
-    })
+        const spanLabels = await page.$$('span');
+        const jContentLabelHandle = await spanLabels[1].getProperty('innerText');
+        const jContentLabel = await  jContentLabelHandle.jsonValue();
+        expect(jContentLabel).toBe('jContent');
+    });
 }, timeout);
