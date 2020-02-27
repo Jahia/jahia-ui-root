@@ -28,6 +28,7 @@ export const WorkflowGroup = () => {
 
     return (
         <PrimaryNavItem
+            role="workflow-menu-item"
             badge={badge}
             isSelected={history.location.pathname.startsWith(PATH)}
             icon={<WorkflowIcon/>}
