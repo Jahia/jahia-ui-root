@@ -36,7 +36,8 @@ export const ProfileGroup = () => {
                 }}/>
     );
     return (
-        <PrimaryNavItem icon={<Person/>}
+        <PrimaryNavItem role="profile-menu-item"
+                        icon={<Person/>}
                         subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'}
                         label={t('jahia-ui-root:primaryNavigation.profile.label')}
                         button={button}/>
