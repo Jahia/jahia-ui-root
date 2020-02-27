@@ -69,7 +69,7 @@
         urlbase: '/jahia',
     });
 
-    window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');
+    window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/bundle.js');
     bootstrap(window['jahia-extends']);
 </script>
 

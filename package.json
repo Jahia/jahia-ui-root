@@ -6,6 +6,7 @@
       "pre-push": "yarn lint:fix"
     }
   },
+
   "scripts": {
     "test": "env-cmd --no-override jest ./src/javascript/__tests__/",
     "tests:unit": "jest --env=jsdom ./src/javascript/__tests__/",
@@ -25,6 +26,11 @@
   },
   "main": "index.js",
   "license": "MIT",
+  "jahia": {
+    "apps": {
+      "jahia": "javascript/apps/jahia.js"
+    }
+  },
   "dependencies": {
     "@jahia/moonstone": "^0.11.0",
     "@jahia/ui-extender": "^0.3.2",
