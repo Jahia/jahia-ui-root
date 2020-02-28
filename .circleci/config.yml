@@ -213,7 +213,7 @@ jobs:
       - store_artifacts:
           path: reports/junit
       - store_artifacts:
-          path: __tests__/__image_snapshots__/__diff_output__
+          path: integrationTests/__tests__/__image_snapshots__/__diff_output__
       - *notify_slack_failure_urgent
 
 workflows:
