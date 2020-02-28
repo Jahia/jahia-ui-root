@@ -3,9 +3,7 @@ import {registry} from '@jahia/ui-extender';
 import {jahiaApps} from './Jahia.app';
 import {jahiaRedux} from './Jahia.redux';
 import './Jahia.routes';
-import './Workflow/Workflow.routes';
 import './PageComposer/PageComposer.routes';
-import './Profile/Profile.routes';
 
 const JahiaContainer = ({jahiaCtx}) => {
     jahiaApps(registry, jahiaCtx);

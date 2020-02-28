@@ -32,6 +32,11 @@ export const jahiaApps = (registry, jahiaCtx) => {
         render: next => <JahiaContext.Provider value={jahiaCtx}>{next}</JahiaContext.Provider>
     });
 
+    registry.add('jahiaContext', 'jahiacontexttype', {
+        targets: ['ctx'],
+        ctx: JahiaContext
+    });
+
     // UI-root
     registry.add('app', 'jahia', {
         targets: ['root:99'], render: next => (
