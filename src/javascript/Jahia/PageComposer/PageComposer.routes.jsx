@@ -23,7 +23,7 @@ export const PageComposerGroup = () => {
 };
 
 registry.add('primary-nav-item', 'pageComposerNavGroup', {
-    targets: ['nav-root-top:0'],
+    targets: ['nav-root-top:1'],
     render: () => <PageComposerGroup/>
 });
 
