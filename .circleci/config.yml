@@ -1,0 +1,261 @@
+version: 2.1
+orbs:
+  docker: circleci/docker@0.5.20
+  slack: circleci/slack@3.4.2
+
+# Parameters are available to all elements of config.yml, those are accessible using `pipeline.parameters.PARAMETER`
+parameters:
+  slack_channel_regular:
+    type: string
+    default: "#cci-jahia-ui-root"
+  slack_channel_urgent:
+    type: string
+    default: "#cci-jahia-ui-root"
+  slack_mention_regular:
+    type: string
+    default: "parveer,aademi"
+  slack_mention_urgent:
+    type: string
+    default: "channel"
+  auditci_level:
+    type: string
+    default: "moderate"
+  testframework_directory:
+    type: string
+    default: "integrationTests/"
+  javascript_directory:
+    type: string
+    default: "./"
+
+aliases:
+  - &notify_slack_failure_regular
+    slack/status:
+      channel: << pipeline.parameters.slack_channel_regular >>
+      fail_only: true
+      include_project_field: true
+      include_visit_job_action: true
+      mentions: << pipeline.parameters.slack_mention_regular >>
+  - &notify_slack_failure_urgent
+    slack/status:
+      channel: << pipeline.parameters.slack_channel_urgent >>
+      fail_only: true
+      include_project_field: true
+      include_visit_job_action: true
+      mentions: << pipeline.parameters.slack_mention_urgent >>
+
+references:
+  workdir: &workdir
+    working_directory: ~/source
+
+  persist-workspace: &persist-workspace
+    persist_to_workspace:
+      root: ~/source
+      paths:
+        - .
+
+  attach-workspace: &attach-workspace
+    attach_workspace:
+      at: .
+
+# Commands contains reusable actions used by jobs
+commands:
+  # This commands prepare the environment to run the integration tests
+  # This involved building containers or fetching previously built containers and starting docker-compose with those
+  warmup_on_machine:
+    description: "In a machine environment, build and commit docker images"
+    steps:
+      - run:
+          name: Printing job parameters and default host values
+          command: |
+            node -v
+            npm -v
+      - run:
+          name: Update packages list and install jq, build-essensital, libssl-dev
+          command: |
+            sudo apt-get update
+            sudo apt-get install build-essential libssl-dev
+      - run:
+          # Instructions found here: https://discuss.circleci.com/t/nvm-does-not-change-node-version-on-machine/28973/14
+          name: Prepare NVM
+          command: |
+            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
+            echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+      - run:
+          name: Install latest NVM
+          command: |
+            nvm install v12
+            nvm alias default v12
+      - run: |
+          node -v
+          npm -v
+      - run:
+          name: Install jahia-cli & yarn
+          command: npm install -g jahia-cli yarn jest
+      - run:
+          name: Docker login
+          command: |
+            echo "$DOCKERHUB_LOGIN"
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_LOGIN" --password-stdin
+      - run:
+          name: Spin-up docker images (docker-compose up)
+          command: |
+            cd << pipeline.parameters.testframework_directory >>
+            docker-compose pull
+            docker-compose up -d
+      - run:
+          name: Wait for Jahia to be alive
+          command: jahia-cli alive
+
+jobs:
+  # Checkout and Initializes the testing framework
+  initialize:
+    <<: *workdir
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-npm-{{ checksum "<< pipeline.parameters.javascript_directory >>yarn.lock" }}
+      - run:
+          name: Install dependencies
+          command: |
+            cd << pipeline.parameters.testframework_directory >>
+            yarn
+      - save_cache:
+          key: v2-npm-{{ checksum "<< pipeline.parameters.javascript_directory >>yarn.lock" }}
+          paths:
+            - << pipeline.parameters.testframework_directory >>node_modules
+      - *persist-workspace
+      - *notify_slack_failure_regular
+
+  # Lint the project
+  # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
+  lint:
+    docker:
+      - image: circleci/node:latest
+    working_directory: ~/source/integrationTests
+    steps:
+      - *attach-workspace
+      - run:
+          name: Yarn lint
+          command: |
+            cd << pipeline.parameters.testframework_directory >>
+            yarn run lint
+      - *notify_slack_failure_regular
+
+  security:
+    <<: *workdir
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - *attach-workspace
+      - run:
+          name: Install dependencies
+          command: sudo npm install -g audit-ci
+      - run:
+          name: Run Audit-ci javascript app
+          command: |
+            cd << pipeline.parameters.javascript_directory >>
+            audit-ci --<< pipeline.parameters.auditci_level >>
+      - *notify_slack_failure_regular
+
+  # Run unit tests
+  # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
+  unit_tests:
+    docker:
+      - image: circleci/node:latest-browsers
+    working_directory: ~/source/
+    steps:
+      - *attach-workspace
+      - run:
+          name: Running unit tests with jest
+          command: |
+            yarn run tests:unit
+      - *notify_slack_failure_regular
+
+  # Running the warmup stage
+  integration_tests:
+    <<: *workdir
+    machine:
+      image: ubuntu-1604:201903-01
+    # Available types: medium, large, xlarge, 2xlarge https://circleci.com/docs/2.0/configuration-reference/#machine-executor-linux
+    resource_class: xlarge
+    parameters:
+      # Milestone used in Testrail
+      testrail_milestone:
+        type: string
+        default: Default
+    steps:
+      - *attach-workspace
+      - warmup_on_machine
+      - run:
+          name: Yarn
+          command: |
+            cd << pipeline.parameters.testframework_directory >>
+            yarn
+      - run:
+          name: Install JUnit coverage reporter
+          command: |
+            cd << pipeline.parameters.testframework_directory >>
+            yarn add --dev jest-junit
+      - run:
+          # In the tests below, limiting to only testing the integration tests for now
+          # https://www.viget.com/articles/using-junit-on-circleci-2-0-with-jest-and-eslint/
+          name: Run tests with JUnit as reporter (For now just Search Entry Point)
+          command: |
+            cd << pipeline.parameters.testframework_directory >>
+            TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TOOLS_USER="jahia" TOOLS_PWD="password" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=$TESTRAIL_USERNAME TESTRAIL_PASSWORD=$TESTRAIL_PASSWORD  TESTRAIL_MILESTONE=<< parameters.testrail_milestone >> TESTRAIL_RUNDESCRIPTION="This test was executed on circleci, $CIRCLE_BUILD_URL" yarn run tests:integration
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
+      - store_test_results:
+          path: reports/junit
+      - store_artifacts:
+          path: reports/junit
+      - store_artifacts:
+          path: integrationTests/__tests__/__image_snapshots__/__diff_output__
+      - *notify_slack_failure_urgent
+
+workflows:
+  version: 2
+  # This workflow runs on any change to the repository.
+  # Note: Since we don't have a build stage yet, we might want to disable the integration_tests on code change, and only have those running through the crontab workflow.
+  # The only reason making it relevant to keep there here for now is to actually be able to trigger CI/CD exeuction when new tests are added (i.e. not have to wait for crontab to know if a test works on circleci).
+  on-code-change:
+    jobs:
+      - initialize
+      - lint:
+          requires:
+            - initialize
+      - security:
+          requires:
+            - initialize
+      - unit_tests:
+          requires:
+            - initialize
+      - integration_tests:
+          name: "Int. Tests - Jahia Latest - Published modules"
+          requires:
+            - unit_tests
+          context: QA_ENVIRONMENT
+          testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
+
+  # This workflow runs at regular interval (i.e. every 4 hours)
+  # Objective is to ensure the integration testing suite still runs even though jahia-snapshot may have been updated
+  # For this workflow we only run the integration tests, no need to do linting or security checks since those are executed on code change
+  crontab:
+    triggers:
+      - schedule:
+          cron: "0 0,4,8,12,16,20 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - initialize
+      - integration_tests:
+          name: "Int. Tests - Jahia Snapshot (7.5.0.0)"
+          requires:
+            - initialize
+          context: QA_ENVIRONMENT
+          testrail_milestone: Jahia-7.5.0.0-SNAPSHOT

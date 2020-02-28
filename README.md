@@ -66,6 +66,12 @@ To build:
 5. Deploy `jahia-ui-root` to Jahia.
 6. Repeat 4-5 for every other module used in navigation (`jahia-dashboard` etc.) 
 
+##Unit testing
+
+You can execute unit test by running:
+
+`yarn tests:unit`
+
 ## Build
 
 <!--
