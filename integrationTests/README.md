@@ -32,11 +32,22 @@ The tests are built using jest and puppeteer, the entire test suite can be execu
 TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root yarn run test:integration:ci --ci --runInBand --reporters=default --reporters=jest-junit
 ```
 
-Simply add more tests to the `integrationTests` folder. You only to run the bash script `build-run.sh` once to spin-up and prepare Jahia, once done, you can simply build and run more tests on the running docker containers.
+Simply add more tests to the `integrationTests` folder. You only need to run the bash script `build-run.sh` once to spin-up and prepare Jahia, once done, you can simply build and run more tests on the running docker containers.
 
 ```bash
 TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=REPLACE TESTRAIL_PASSWORD=REPLACE  TESTRAIL_MILESTONE="Jahia-7.3.4.1" yarn run test:integration:ci --ci --runInBand adminMenuOrder.test.js
 ```
+
+# For Devs
+
+run this command to test integration while coding:
+
+```bash
+TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root yarn run test:integration
+```
+
+find image snapshots in: `/integrationTests/__tests__/__image_snapshots__/`
+
 
 # Environment variables
 
