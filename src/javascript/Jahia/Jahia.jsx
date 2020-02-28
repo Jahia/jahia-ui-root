@@ -16,7 +16,6 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return 'Loading screen';
     }
 
-    console.log('Routes', routes);
     let primaryNav;
     if (jahiaContext.environment === '') {
         primaryNav = (
@@ -62,4 +61,3 @@ Jahia.propTypes = {
 };
 
 export default Jahia;
-
