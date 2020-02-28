@@ -25,7 +25,10 @@
     <script src="${contextPath}/modules/dx-commons-webpack/javascript/js-load.js"></script>
     <js:loader target="jahia-extends"/>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_en.css'/>" />
+    <link rel="stylesheet" type="text/css" media="screen" href="<c:url value='/engines/jahia-anthracite/css/edit_V8_en.css'/>" />
+    <script>
+        var anthraciteV8 = true;
+    </script>
     <script type="text/javascript" src="<c:url value='/engines/jahia-anthracite/js/dist/build/anthracite-min.js'/>"></script>
 </head>
 
@@ -37,7 +40,6 @@
 
 <c:set var="targetId" value="reactComponent${fn:replace(currentNode.identifier,'-','_')}"/>
 <div id="${targetId}">loading..</div>
-
 
 <div id="gwt-root"></div>
 
@@ -65,7 +67,8 @@
         siteKey:'${renderContext.site.siteKey}',
         maxUploadSize: parseInt("<%= SettingsBean.getInstance().getJahiaFileUploadMaxSize() %>") / (1024 * 1024),
         displayWorkflowCounter:<%= SettingsBean.getInstance().getString("jahia.ui.displayWorkflowCounter", "true").equals("true") %>,
-        urlbase: '/modules/moonstone',
+        operatingMode:'<%= SettingsBean.getInstance().getOperatingMode() %>',
+        urlbase: '/jahia',
     });
 
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/jahia.bundle.js');

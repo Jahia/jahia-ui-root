@@ -1,30 +1,23 @@
 import React, {Suspense} from 'react';
 import PropTypes from 'prop-types';
 import {PrimaryNavItemsGroup} from '@jahia/moonstone';
+import {registry} from '@jahia/ui-extender';
 
-export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, navItems}) => (
+export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => (
     <Suspense fallback="loading...">
-        <PrimaryNavItemsGroup
-            isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}
-        >
-            {
-                navItems.map(item => {
-                    const Cmp = item.render;
-                    return <Cmp key={item.key}/>;
-                })
-            }
+        <PrimaryNavItemsGroup isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}>
+            {registry.find({type: 'primary-nav-item', target}).map(item => React.cloneElement(item.render(), {key:  item.key}))}
         </PrimaryNavItemsGroup>
     </Suspense>
 );
 
 PrimaryNavGroup.defaultProps = {
     isDisplayedWhenCollapsed: true,
-    navItems: []
 };
 
 PrimaryNavGroup.propTypes = {
     isDisplayedWhenCollapsed: PropTypes.bool,
-    navItems: PropTypes.arrayOf(PropTypes.any)
+    target: PropTypes.string.isRequired
 };
 
 export default PrimaryNavGroup;

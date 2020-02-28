@@ -101,7 +101,7 @@ import java.util.*;
                 jsonObject.put("whatsNew", "https://academy.jahia.com/whats-new");
             }
             wrapper.setAttribute("links", jsonObject.toString());
-            wrapper.setAttribute("environment", settingsBean.getString("jahia.environment", "Test environment"));
+            wrapper.setAttribute("environment", settingsBean.getString("jahia.environment", ""));
             wrapper.getRequestDispatcher("/modules/jahia-ui-root/root.jsp").include(wrapper, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
