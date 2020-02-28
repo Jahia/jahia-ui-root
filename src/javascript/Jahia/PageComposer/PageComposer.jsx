@@ -1,5 +1,6 @@
 import React, {useContext, useEffect, useState} from 'react';
 import Iframe from 'react-iframe';
+import {useSelector} from 'react-redux';
 import JahiaContext from '../Jahia.context';
 import {useHistory, useLocation} from 'react-router-dom';
 
@@ -49,7 +50,8 @@ export default function () {
     const jahiaContext = useContext(JahiaContext);
     const composerLocation = useLocation();
     history = useHistory();
-    const [mainResourcePath] = useState(initialValue(composerLocation, jahiaContext.siteKey));
+    const current = useSelector(state => ({language: state.language, site: state.site}));
+    const [mainResourcePath] = useState(initialValue(composerLocation, current.site));
     useEffect(() => {
         if (window.frames['page-composer-frame'] !== undefined) {
             window.addEventListener('message', iFrameOnHistoryMessage, false);
@@ -67,12 +69,12 @@ export default function () {
     };
 
     // Temporary solution
-    if (jahiaContext.siteKey === 'systemsite') {
+    if (current.site === 'systemsite') {
         return <h2 style={{color: 'white'}}>You need to create a site to see this page</h2>;
     }
 
     return (
-        <Iframe url={jahiaContext.contextPath + path(jahiaContext.locale, jahiaContext.siteKey, mainResourcePath)}
+        <Iframe url={jahiaContext.contextPath + path(current.language, current.site, mainResourcePath)}
                 width="100%"
                 height="100%"
                 id="page-composer-frame"
