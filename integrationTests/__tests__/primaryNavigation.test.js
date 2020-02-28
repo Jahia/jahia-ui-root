@@ -38,7 +38,7 @@ describe('primary nav bar tests', () => {
         expect(await navEl.screenshot()).toMatchImageSnapshot();
     });
 
-    // it('collapses the nav bar', async () => {
+    // It('collapses the nav bar', async () => {
     //     await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle2'});
     //
     //     await page.click('nav button');
