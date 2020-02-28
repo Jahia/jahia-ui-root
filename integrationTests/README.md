@@ -8,15 +8,11 @@ To run the full suite of tests, you need the following:
 -   docker-compose
 -   access to the Jahia organization on Docker Hub
 
-Docker Hub is used to save the state of a modified Jahia instance and restart from that state, limiting the need of frequently configuring an instance. Docker hub is not an absolute requirement to write or execute tests, it is only there to avoid having to configure Jahia every time.
-
 # Get started (quickly)
 
 You can get started quickly by running the following:
 
 ```bash
-export DOCKERHUB_LOGIN=YOUR_USERNAME
-export DOCKERHUB_PASSWORD=YOUR_PASSWORD
 bash build-run.sh
 ```
 
@@ -29,18 +25,18 @@ _Note: This bash script was built on a Mac, and hasn't been tested on another op
 The tests are built using jest and puppeteer, the entire test suite can be executed towards a running & configured Jahia instance:
 
 ```bash
-TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root yarn run test:integration:ci --ci --runInBand --reporters=default --reporters=jest-junit
+TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root yarn run tests:integration:ci --ci --runInBand --reporters=default --reporters=jest-junit
 ```
 
 Simply add more tests to the `integrationTests` folder. You only need to run the bash script `build-run.sh` once to spin-up and prepare Jahia, once done, you can simply build and run more tests on the running docker containers.
 
 ```bash
-TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=REPLACE TESTRAIL_PASSWORD=REPLACE  TESTRAIL_MILESTONE="Jahia-7.3.4.1" yarn run test:integration:ci --ci --runInBand adminMenuOrder.test.js
+TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=REPLACE TESTRAIL_PASSWORD=REPLACE  TESTRAIL_MILESTONE="Jahia-7.3.4.1" yarn run tests:integration:ci --ci --runInBand
 ```
 
 # For Devs
 
-run this command to test integration while coding:
+You can execute integration tests by running:
 
 ```bash
 TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root yarn run test:integration

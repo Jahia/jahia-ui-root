@@ -10,7 +10,6 @@ module.exports = {
             '<rootDir>/src/javascript/__mocks__/fileMock.js',
         '\\.svg$': '<rootDir>/src/javascript/__mocks__/svgMock.js'
     },
-    testResultsProcessor: 'jest-teamcity-reporter',
     testEnvironment: './integrationTests/customEnv.js',
     globalSetup: './integrationTests/setup.js',
     globalTeardown: './integrationTests/teardown.js',

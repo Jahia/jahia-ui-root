@@ -212,6 +212,8 @@ jobs:
           path: reports/junit
       - store_artifacts:
           path: reports/junit
+      - store_artifacts:
+          path: __tests__/__image_snapshots__/__diff_output__
       - *notify_slack_failure_urgent
 
 workflows:
@@ -230,7 +232,7 @@ workflows:
             - initialize
       - unit_tests:
           requires:
-            - initialize            
+            - initialize
       - integration_tests:
           name: "Int. Tests - Jahia Latest - Published modules"
           requires:

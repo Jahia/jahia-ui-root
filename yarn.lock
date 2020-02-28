@@ -5401,17 +5401,6 @@ jest-runtime@^24.9.0:
     strip-bom "^3.0.0"
     yargs "^13.3.0"
 
-jest-screenshot@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/jest-screenshot/-/jest-screenshot-0.3.0.tgz#4475fff8b66afd3840469d46ae0543f45d92a872"
-  integrity sha512-TibZYFtTnG7Em0OWH0M+uIp1J2GJxJ1QEsZn2YoWlupv8LWFBwW/YWBAgsyWroZbw04aYrIVWusZJa+kfdV7ZA==
-  dependencies:
-    chalk "^3.0.0"
-    lodash.kebabcase "^4.1.1"
-    mkdirp "^1.0.3"
-    native-image-diff "^0.1.9"
-    node-libpng "^0.2.7"
-
 jest-serializer@^24.9.0:
   version "24.9.0"
   resolved "https://registry.yarnpkg.com/jest-serializer/-/jest-serializer-24.9.0.tgz#e6d7d7ef96d31e8b9079a714754c5d5c58288e73"
@@ -5440,10 +5429,6 @@ jest-snapshot@^24.9.0:
     natural-compare "^1.4.0"
     pretty-format "^24.9.0"
     semver "^6.2.0"
-
-"jest-teamcity-reporter@github:mhodgson/jest-teamcity-reporter":
-  version "0.9.0"
-  resolved "https://codeload.github.com/mhodgson/jest-teamcity-reporter/tar.gz/e55df53e6d33545110784c54240447aa35e91628"
 
 jest-util@^24.9.0:
   version "24.9.0"
@@ -5829,11 +5814,6 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
-lodash.kebabcase@^4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/lodash.kebabcase/-/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
-  integrity sha1-hImxyw0p/4gZXM7KRI/21swpXDY=
-
 lodash.sortby@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.sortby/-/lodash.sortby-4.7.0.tgz#edd14c824e2cc9c1e0b0a1b42bb5210516a42438"
@@ -6151,11 +6131,6 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mkdirp@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-1.0.3.tgz#4cf2e30ad45959dddea53ad97d518b6c8205e1ea"
-  integrity sha512-6uCP4Qc0sWsgMLy1EOqqS/3rjDHOEnsStVr/4vtAIK2Y5i2kA7lFFejYrpIyiN9w0pYf4ckeCYT9f1r1P9KX5g==
-
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -6215,13 +6190,6 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-native-image-diff@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/native-image-diff/-/native-image-diff-0.1.9.tgz#bc57abe9a41b692f00db905f6982ab9c8d1c23cf"
-  integrity sha512-Sp/vDGG5faQUyAaTm0qvR0MuwyVBP7gL8Yc1JQqF2ZLk0rVszRWZWrZ/nVqzQwh9YxD1MvcwbIwEzk09gc1YVA==
-  dependencies:
-    request "^2.88.0"
-
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
@@ -6271,13 +6239,6 @@ node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
-
-node-libpng@^0.2.7:
-  version "0.2.13"
-  resolved "https://registry.yarnpkg.com/node-libpng/-/node-libpng-0.2.13.tgz#8a8b94cd3ea99f3db196ad0ae5214df1a645a1da"
-  integrity sha512-SJkfIS0No/S62QBGie+8wAVDnwu6Eqjx/oGxc4OfjxDRQIGO0L29dL7gbu7bSKUh4MtIUVARrqY4Olu9Vn4MBA==
-  dependencies:
-    request "^2.88.0"
 
 node-libs-browser@^2.2.1:
   version "2.2.1"
