@@ -47,7 +47,8 @@
         config: {
             actions: [],
             sql2CheatSheetUrl: "<%= SettingsBean.getInstance().getString("sql2CheatSheet.link", null) %>",
-            importAcademyLink: 'https://academy.jahia.com/documentation/enduser/dx/7.3/using-jahia/using-content-and-media-manager#exporting_importing_contents'
+            importAcademyLink: 'https://academy.jahia.com/documentation/enduser/dx/7.3/using-jahia/using-content-and-media-manager#exporting_importing_contents',
+            links: ${links},
         },
         targetId: '${targetId}',
         contextPath: '${contextPath}',
