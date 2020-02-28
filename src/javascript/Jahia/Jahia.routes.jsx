@@ -7,7 +7,7 @@ import {useTranslation} from 'react-i18next';
 import Person from '@jahia/moonstone/dist/icons/Person';
 import Power from '@jahia/moonstone/dist/icons/Power';
 
-const uiLangRegexp = /\$ui-lang\(\[([-a-zA-Z,]+)\],([-a-zA-Z]+)\)/g
+const uiLangRegexp = /\$ui-lang\(\[([-a-zA-Z,]+)\],([-a-zA-Z]+)\)/g;
 
 const transformLink = (link, siteInfo, displayLanguage) => {
     link = link.replace('$site-servername', siteInfo.serverName);
@@ -23,6 +23,7 @@ const transformLink = (link, siteInfo, displayLanguage) => {
 
         match = uiLangRegexp.exec(link);
     }
+
     return link;
 };
 
