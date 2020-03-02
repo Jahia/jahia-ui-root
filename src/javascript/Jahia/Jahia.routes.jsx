@@ -1,18 +1,26 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
+import {useSiteInfo} from '@jahia/data-helper';
 import {registry} from '@jahia/ui-extender';
 import {Button, PrimaryNavItem} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import Person from '@jahia/moonstone/dist/icons/Person';
 import Power from '@jahia/moonstone/dist/icons/Power';
+import {transformLink} from './links.utils';
 
 // TODO separate into different folders
 export const DocumentationGroup = () => {
     const {t} = useTranslation();
+    const {siteKey, displayLanguage} = useSelector(state => ({displayLanguage: state.uilang, siteKey: state.site}));
+    const {siteInfo} = useSiteInfo({siteKey, displayLanguage});
+
+    let links = window.contextJsParameters.config.links;
+
     return (
         <>
-            <PrimaryNavItem url={window.contextJsParameters.links.whatsNew}
+            <PrimaryNavItem url={transformLink(links.whatsNew, siteInfo, displayLanguage)}
                             label={t('jahia-ui-root:primaryNavigation.documentation.newAtJahia')}/>
-            <PrimaryNavItem url={window.contextJsParameters.links.documentation}
+            <PrimaryNavItem url={transformLink(links.documentation, siteInfo, displayLanguage)}
                             label={t('jahia-ui-root:primaryNavigation.documentation.label')}/>
         </>
     );

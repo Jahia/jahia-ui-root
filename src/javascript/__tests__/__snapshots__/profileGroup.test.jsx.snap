@@ -11,9 +11,9 @@ exports[`profile group profiles 1`] = `
       className="_1Ai3EiPwY-pZNUwN6mrrmu"
     >
       <svg
-        className=" moonstone-icon moonstone-icon_default"
+        className=" moonstone-icon moonstone-icon_big"
         fill="none"
-        size="default"
+        size="big"
         viewBox="0 0 24 24"
       >
         <path
@@ -26,12 +26,12 @@ exports[`profile group profiles 1`] = `
       className="_3ejht2paDjYw7X613AENsu"
     >
       <span
-        className="_2UHrI1QWqxLhuY_tZNdPZo _3Jnldq9UavKB8387Kxg_LU _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
+        className="_2UHrI1QWqxLhuY_tZNdPZo _3Ywjur7x0TjWis06g69HVo _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
       >
         jahia-ui-root:primaryNavigation.profile.label
       </span>
       <div
-        className="_2UHrI1QWqxLhuY_tZNdPZo _2FviE9uz6qAPg_E5Dqr_5W _1Bzmq62UqnegYx7zkkgnjt _3McV6_vYIoTTSdX0ayC7p5"
+        className="_2UHrI1QWqxLhuY_tZNdPZo _2opCufopnd5EvablhQZyqn _1Bzmq62UqnegYx7zkkgnjt _3-oKLpu-6QNsN6e8au5YaP _3McV6_vYIoTTSdX0ayC7p5"
       >
         mock_fullname (mock_email)
       </div>
@@ -41,24 +41,27 @@ exports[`profile group profiles 1`] = `
     className="ZgcqhWSs--AqdmVMuLrBi"
   >
     <button
-      className="_3_Ozh1xIkutWoTIuxPhs4N _3slF4xgjdDtFrP1ZcyBffu _2w6j1jrniCARwwHovk9Ycr _1LQ77fynycbnHQ463dWcSm"
+      className="_3_Ozh1xIkutWoTIuxPhs4N _14jOdJL0WEJyoXAifg4_hD _3aK2Qwc8q_XoRQQWKTdY_c _3WWZMmQF_b6Rp1IO-yNNHv _1LQ77fynycbnHQ463dWcSm _2w6j1jrniCARwwHovk9Ycr"
+      disabled={false}
       onClick={[Function]}
       type="button"
     >
-      <i>
-        <svg
-          className=" moonstone-icon moonstone-icon_default"
-          fill="none"
-          size="default"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42A6.92 6.92 0 0119 12c0 3.87-3.13 7-7 7A6.995 6.995 0 017.58 6.58L6.17 5.17A8.932 8.932 0 003 12a9 9 0 0018 0c0-2.74-1.23-5.18-3.17-6.83z"
-            fill="currentColor"
-          />
-        </svg>
-      </i>
-      jahia-ui-root:primaryNavigation.profile.signOut
+      <svg
+        className=" moonstone-icon moonstone-icon_default"
+        fill="none"
+        size="default"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42A6.92 6.92 0 0119 12c0 3.87-3.13 7-7 7A6.995 6.995 0 017.58 6.58L6.17 5.17A8.932 8.932 0 003 12a9 9 0 0018 0c0-2.74-1.23-5.18-3.17-6.83z"
+          fill="currentColor"
+        />
+      </svg>
+      <span
+        className="_2UHrI1QWqxLhuY_tZNdPZo _3KgbY3KNkL4q4ieIxAbetO _3McV6_vYIoTTSdX0ayC7p5"
+      >
+        jahia-ui-root:primaryNavigation.profile.signOut
+      </span>
     </button>
   </div>
 </li>

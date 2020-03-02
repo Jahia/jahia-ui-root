@@ -3,14 +3,15 @@
   "version": "0.0.1",
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint:fix"
+      "pre-commit": "yarn lint"
     }
   },
   "scripts": {
-    "test": "env-cmd --no-override jest ./src/javascript/__tests__/",
-    "tests:unit": "jest --env=jsdom ./src/javascript/__tests__/",
+    "test": "env-cmd --no-override jest --ci --run-in-band --coverage ./src/",
+    "tests:unit": "jest --env=jsdom --runInBand --ci --coverage ./src/",
     "tests:integration": "jest ./integrationTests/__tests__/",
     "tests:integration:ci": "jest ./integrationTests/__tests__/ --ci --runInBand",
+    "tdd": "jest --watch",
     "build": "yarn lint:fix && yarn webpack",
     "build:nolint": "yarn webpack",
     "dev": "yarn webpack --watch",
@@ -25,7 +26,13 @@
   },
   "main": "index.js",
   "license": "MIT",
+  "jahia": {
+    "apps": {
+      "jahia": "javascript/apps/jahia.js"
+    }
+  },
   "dependencies": {
+    "@jahia/data-helper": "^0.0.7",
     "@jahia/moonstone": "^0.11.0",
     "@jahia/ui-extender": "^0.3.2",
     "@svgr/webpack": "^4.3.3",

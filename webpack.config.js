@@ -16,23 +16,25 @@ require('fs').readdirSync(normalizedPath).forEach(function (file) {
 module.exports = (env, argv) => {
     let config = {
         entry: {
-            main: [path.resolve(__dirname, 'src/javascript/publicPath'), path.resolve(__dirname, 'src/javascript/JahiaApp.loader')]
+            bundle: [path.resolve(__dirname, 'src/javascript/publicPath'), path.resolve(__dirname, 'src/javascript/JahiaApp.loader')],
+            jahia: [path.resolve(__dirname, 'src/javascript/publicPath'), path.resolve(__dirname, 'src/javascript/index')]
         },
         output: {
             jsonpFunction: 'jahiaUIRootJsonp',
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
-            filename: 'jahia.bundle.js',
+            filename: '[name].js',
             chunkFilename: '[name].jahia.[chunkhash:6].js'
         },
         resolve: {
             mainFields: ['module', 'main'],
             extensions: ['.mjs', '.js', '.jsx', 'json']
         },
-        optimization: {
-            splitChunks: {
-                maxSize: 400000
-            }
-        },
+        // Optimization messes up names, clear out until we get one single entry and output.filename is hardcoded
+        // optimization: {
+        //     splitChunks: {
+        //         maxSize: 400000,
+        //     },
+        // },
         module: {
             rules: [
                 {
