@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import {registry} from '@jahia/ui-extender';
+import './Jahia.routes';
 import {jahiaApps} from './Jahia.app';
 import {jahiaRedux} from './Jahia.redux';
-import './Jahia.routes';
-import './PageComposer/PageComposer.routes';
 
 const JahiaContainer = ({jahiaCtx}) => {
     jahiaApps(registry, jahiaCtx);
