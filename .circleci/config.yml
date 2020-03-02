@@ -274,9 +274,13 @@ workflows:
       - unit_tests:
           requires:
             - initialize
+      - build:
+          requires:
+            - initialize
       - integration_tests:
           name: "Int. Tests - Jahia Latest - Published modules"
           requires:
+            - build
             - unit_tests
           context: QA_ENVIRONMENT
           manifest: warmup-manifest-build.yml          
