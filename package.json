@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "env-cmd --no-override jest --ci --run-in-band --coverage ./src/",
-    "tests:unit": "jest --env=jsdom ./src/javascript/__tests__/",
+    "tests:unit": "jest --env=jsdom --runInBand --ci --coverage ./src/",
     "tests:integration": "jest ./integrationTests/__tests__/",
     "tests:integration:ci": "jest ./integrationTests/__tests__/ --ci --runInBand",
     "testcli": "jest",
