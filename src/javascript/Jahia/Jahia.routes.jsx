@@ -6,26 +6,7 @@ import {Button, PrimaryNavItem} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import Person from '@jahia/moonstone/dist/icons/Person';
 import Power from '@jahia/moonstone/dist/icons/Power';
-
-const uiLangRegexp = /\$ui-lang\(\[([-a-zA-Z,]+)\],([-a-zA-Z]+)\)/g;
-
-const transformLink = (link, siteInfo, displayLanguage) => {
-    link = link.replace('$site-servername', siteInfo.serverName);
-    link = link.replace('$dx-version', window.contextJsParameters.version);
-
-    let match = uiLangRegexp.exec(link);
-    while (match !== null) {
-        if (match[1].split(',').includes(displayLanguage)) {
-            link = link.replace(match[0], displayLanguage);
-        } else {
-            link = link.replace(match[0], match[2]);
-        }
-
-        match = uiLangRegexp.exec(link);
-    }
-
-    return link;
-};
+import {transformLink} from './links.utils';
 
 // TODO separate into different folders
 export const DocumentationGroup = () => {
