@@ -11,7 +11,6 @@
     "tests:unit": "jest --env=jsdom --runInBand --ci --coverage ./src/",
     "tests:integration": "jest ./integrationTests/__tests__/",
     "tests:integration:ci": "jest ./integrationTests/__tests__/ --ci --runInBand",
-    "testcli": "jest",
     "tdd": "jest --watch",
     "build": "yarn lint:fix && yarn webpack",
     "build:nolint": "yarn webpack",
