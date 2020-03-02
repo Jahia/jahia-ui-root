@@ -1,6 +1,5 @@
 import {registry} from '@jahia/ui-extender';
 import './Jahia/Jahia.routes';
-import './Jahia/Workflow/Workflow.routes';
 import './Jahia/PageComposer/PageComposer.routes';
 import {jahiaApps} from './Jahia/Jahia.app';
 import {jahiaRedux} from './Jahia/Jahia.redux';

@@ -2,10 +2,8 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {useSiteInfo} from '@jahia/data-helper';
 import {registry} from '@jahia/ui-extender';
-import {Button, PrimaryNavItem} from '@jahia/moonstone';
+import {PrimaryNavItem} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
-import Person from '@jahia/moonstone/dist/icons/Person';
-import Power from '@jahia/moonstone/dist/icons/Power';
 import {transformLink} from './links.utils';
 
 // TODO separate into different folders
@@ -29,30 +27,4 @@ export const DocumentationGroup = () => {
 registry.add('primary-nav-item', 'bottomDocNavGroup', {
     targets: ['nav-root-documentation:1'],
     render: () => <DocumentationGroup/>
-});
-
-export const ProfileGroup = () => {
-    const {t} = useTranslation();
-    let button = (
-        <Button isReversed
-                icon={<Power/>}
-                variant="ghost"
-                label={t('jahia-ui-root:primaryNavigation.profile.signOut')}
-                onClick={() => {
-                    let url = window.contextJsParameters.contextPath + '/cms/logout?redirect=' + window.contextJsParameters.contextPath + '/start';
-                    window.location.assign(url);
-                }}/>
-    );
-    return (
-        <PrimaryNavItem role="profile-menu-item"
-                        icon={<Person/>}
-                        subtitle={window.contextJsParameters.user.fullname + ' (' + window.contextJsParameters.user.email + ')'}
-                        label={t('jahia-ui-root:primaryNavigation.profile.label')}
-                        button={button}/>
-    );
-};
-
-registry.add('primary-nav-item', 'bottomProfileNavGroup', {
-    targets: ['nav-root-profile:1'],
-    render: () => <ProfileGroup/>
 });

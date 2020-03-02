@@ -4,15 +4,8 @@
       "label": "Documentation",
       "newAtJahia": "New at Jahia.com"
     },
-    "profile": {
-      "label": "My Profile",
-      "signOut": "Sign out"
-    },
     "administration": {
       "label": "Administration"
-    },
-    "workflow": {
-      "label": "Workflow"
     },
     "pageComposer": {
       "label": "Page Composer"
