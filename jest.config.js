@@ -15,6 +15,7 @@ module.exports = {
     globalTeardown: './integrationTests/teardown.js',
     reporters: [
         'default',
+        'jest-junit',
         './integrationTests/reporter.js'
     ],
     testTimeout: 30000
