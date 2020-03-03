@@ -3,7 +3,7 @@ import {createActions, handleAction} from 'redux-actions';
 export const jahiaRedux = (registry, jahiaCtx) => {
     const {setSite, setLanguage, setUiLanguage} = createActions('SET_SITE', 'SET_LANGUAGE', 'SET_UI_LANGUAGE');
 
-    const siteReducer = handleAction(setSite, (state, action) => action.payload, 'systemsite');
+    const siteReducer = handleAction(setSite, (state, action) => action.payload, jahiaCtx.siteKey);
     const languageReducer = handleAction(setLanguage, (state, action) => action.payload, jahiaCtx.uilang);
     const uiLanguageReducer = handleAction(setUiLanguage, (state, action) => action.payload, jahiaCtx.uilang);
 
