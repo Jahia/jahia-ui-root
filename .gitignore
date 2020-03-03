@@ -17,3 +17,4 @@ graphql.schema.json
 .env
 yalc.lock
 junit.xml
+coverage
