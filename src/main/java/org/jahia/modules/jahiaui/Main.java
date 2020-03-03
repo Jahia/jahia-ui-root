@@ -45,18 +45,19 @@ import java.util.*;
     @Override protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             SettingsBean settingsBean = SettingsBean.getInstance();
-            JahiaUser currentUser = JCRSessionFactory.getInstance().getCurrentUser();
+            JCRSessionFactory jcrSessionFactory = JCRSessionFactory.getInstance();
+            JahiaUser currentUser = jcrSessionFactory.getCurrentUser();
             Locale uiLocale;
             JCRUserNode userNode;
             if (!JahiaUserManagerService.isGuest(currentUser)) {
                 userNode = JahiaUserManagerService.getInstance().lookupUserByPath(currentUser.getLocalPath());
                 uiLocale = UserPreferencesHelper.getPreferredLocale(userNode, LanguageCodeConverters.resolveLocaleForGuest(request));
             } else {
-                response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                response.sendRedirect(Jahia.getContextPath() + "/cms/login?redirect=" + request.getRequestURI());
                 return;
             }
-            JCRSessionWrapper currentUserSession = JCRSessionFactory.getInstance().getCurrentUserSession(Constants.EDIT_WORKSPACE,
-                    uiLocale, SettingsBean.getInstance().getDefaultLocale());
+            JCRSessionWrapper currentUserSession = jcrSessionFactory
+                    .getCurrentUserSession(Constants.EDIT_WORKSPACE, uiLocale, settingsBean.getDefaultLocale());
             HttpServletRequestWrapper wrapper = new HttpServletRequestWrapper(request) {
                 @Override public String getContextPath() {
                     return Jahia.getContextPath();
@@ -74,12 +75,12 @@ import java.util.*;
             } else {
                 // use the default site
                 site = (JCRSiteNode) sitesService.getDefaultSite(currentUserSession);
-                if(site == null) {
+                if (site == null) {
                     site = sitesService.getSiteByKey("systemsite", currentUserSession);
                 }
             }
             String language = resolveLanguage(request, site, userNode, false);
-            currentUserSession = JCRSessionFactory.getInstance()
+            currentUserSession = jcrSessionFactory
                     .getCurrentUserSession(Constants.EDIT_WORKSPACE, LanguageCodeConverters.languageCodeToLocale(language));
             site = (JCRSiteNode) currentUserSession.getNode(site.getJCRLocalPath());
             Resource resource = new Resource(site, null, null, null);
@@ -102,6 +103,7 @@ import java.util.*;
             }
             wrapper.setAttribute("links", jsonObject.toString());
             wrapper.setAttribute("environment", settingsBean.getString("jahia.environment", ""));
+            response.setHeader("Cache-Control", "no-store");
             wrapper.getRequestDispatcher("/modules/jahia-ui-root/root.jsp").include(wrapper, response);
         } catch (Exception e) {
             logger.error("Error while dispatching: {}", e.getMessage(), e);
