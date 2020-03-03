@@ -63,10 +63,15 @@ commands:
   # This involved building containers or fetching previously built containers and starting docker-compose with those
   warmup_on_machine:
     description: "In a machine environment, build and commit docker images"
+    parameters:
+      manifest:
+        type: string
+        default: warmup-manifest-latest.yml    
     steps:
       - run:
           name: Printing job parameters and default host values
           command: |
+            echo "manifest: << parameters.manifest >>"
             node -v
             npm -v
       - run:
@@ -105,6 +110,11 @@ commands:
       - run:
           name: Wait for Jahia to be alive
           command: jahia-cli alive
+      - run:
+          name: Configure Jahia
+          command: |
+            cd << pipeline.parameters.testframework_directory >>
+            jahia-cli manifest:run --manifest=./<< parameters.manifest >>
 
 jobs:
   # Checkout and Initializes the testing framework
@@ -160,6 +170,33 @@ jobs:
             audit-ci --<< pipeline.parameters.auditci_level >>
       - *notify_slack_failure_regular
 
+  # The initialize clone and yarn install
+  build:
+    <<: *workdir
+    docker: # run the steps with Docker
+      - image: circleci/openjdk:8-jdk-stretch
+    steps:
+      - *attach-workspace
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: mvn -s .circleci/.circleci.settings.xml clean install
+      # Built module is stored in: /home/circleci/source/repo/repo/api/target/augmented-search-1.0.1-SNAPSHOT.jar
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - run:
+          name: Prepare artifacts
+          command: |
+            mkdir /tmp/artifacts/
+            cp /home/circleci/source/target/*.jar /tmp/artifacts/            
+      - store_artifacts:
+          path: /tmp/artifacts/         
+      - *persist-workspace
+
   # Run unit tests
   # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
   unit_tests:
@@ -182,6 +219,10 @@ jobs:
     # Available types: medium, large, xlarge, 2xlarge https://circleci.com/docs/2.0/configuration-reference/#machine-executor-linux
     resource_class: xlarge
     parameters:
+      # Manifest file to use for the build
+      manifest:
+        type: string
+        default: warmup-manifest-latest.yml    
       # Milestone used in Testrail
       testrail_milestone:
         type: string
@@ -233,11 +274,16 @@ workflows:
       - unit_tests:
           requires:
             - initialize
+      - build:
+          requires:
+            - initialize
       - integration_tests:
           name: "Int. Tests - Jahia Latest - Published modules"
           requires:
+            - build
             - unit_tests
           context: QA_ENVIRONMENT
+          manifest: warmup-manifest-build.yml          
           testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
 
   # This workflow runs at regular interval (i.e. every 4 hours)
@@ -258,4 +304,5 @@ workflows:
           requires:
             - initialize
           context: QA_ENVIRONMENT
+          manifest: warmup-manifest-snapshot.yml
           testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
