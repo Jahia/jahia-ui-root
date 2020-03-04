@@ -10,7 +10,7 @@ const DIR = path.join(os.tmpdir(), 'jest_puppeteer_global_setup');
 module.exports = async function () {
     const browser = await puppeteer.launch(
         {
-            SlowMo: 100,
+            // SlowMo: 50,
             headless: true,
             args: ['--start-fullscreen', '-–no-sandbox', '-–disable-setuid-sandbox']
             // Timeout: 100000
