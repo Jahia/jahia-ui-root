@@ -66,7 +66,7 @@ commands:
     parameters:
       manifest:
         type: string
-        default: warmup-manifest-latest.yml    
+        default: warmup-manifest-latest.yml
     steps:
       - run:
           name: Printing job parameters and default host values
@@ -192,9 +192,9 @@ jobs:
           name: Prepare artifacts
           command: |
             mkdir /tmp/artifacts/
-            cp /home/circleci/source/target/*.jar /tmp/artifacts/            
+            cp /home/circleci/source/target/*.jar /tmp/artifacts/
       - store_artifacts:
-          path: /tmp/artifacts/         
+          path: /tmp/artifacts/
       - *persist-workspace
 
   # Run unit tests
@@ -222,7 +222,7 @@ jobs:
       # Manifest file to use for the build
       manifest:
         type: string
-        default: warmup-manifest-latest.yml    
+        default: warmup-manifest-latest.yml
       # Milestone used in Testrail
       testrail_milestone:
         type: string
@@ -246,7 +246,7 @@ jobs:
           name: Run tests with JUnit as reporter (For now just Search Entry Point)
           command: |
             cd << pipeline.parameters.testframework_directory >>
-            TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TOOLS_USER="jahia" TOOLS_PWD="password" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=$TESTRAIL_USERNAME TESTRAIL_PASSWORD=$TESTRAIL_PASSWORD  TESTRAIL_MILESTONE=<< parameters.testrail_milestone >> TESTRAIL_RUNDESCRIPTION="This test was executed on circleci, $CIRCLE_BUILD_URL" yarn run tests:integration
+            TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TOOLS_USER="jahia" TOOLS_PWD="password" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=$TESTRAIL_USERNAME TESTRAIL_PASSWORD=$TESTRAIL_PASSWORD  TESTRAIL_MILESTONE=<< parameters.testrail_milestone >> TESTRAIL_RUNDESCRIPTION="This test was executed on circleci, $CIRCLE_BUILD_URL" yarn run tests:integration --ci
           environment:
             JEST_JUNIT_OUTPUT_DIR: "reports/junit/js-test-results.xml"
       - store_test_results:
@@ -283,7 +283,7 @@ workflows:
             - build
             - unit_tests
           context: QA_ENVIRONMENT
-          manifest: warmup-manifest-build.yml          
+          manifest: warmup-manifest-build.yml
           testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
 
   # This workflow runs at regular interval (i.e. every 4 hours)
