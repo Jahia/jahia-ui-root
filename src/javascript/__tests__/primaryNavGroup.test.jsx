@@ -2,6 +2,13 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import PrimaryNavGroup from '../Jahia/PrimaryNavGroup';
 import {registry} from '@jahia/ui-extender';
+import {useHistory} from 'react-router-dom';
+
+jest.mock('react-router-dom', () => {
+    return {
+        useHistory: jest.fn(() => {})
+    };
+});
 
 describe('primary nav group', () => {
 
