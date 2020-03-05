@@ -4,7 +4,7 @@ import PrimaryNavGroup from '../Jahia/PrimaryNavGroup';
 import {registry} from '@jahia/ui-extender';
 import {useHistory} from 'react-router-dom';
 
-jest.mock('react-router-dom', () => {
+jest.mock('react-router', () => {
     return {
         useHistory: jest.fn(() => {})
     };
