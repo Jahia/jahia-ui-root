@@ -64,69 +64,69 @@ describe('secondary nav bar tests', () => {
         expect(await pageView.screenshot()).toMatchImageSnapshot();
     });
 
-    it('checks that secondary nav expands correctly', async () => {
-        /* Test steps
-        * 1. go to /jahia/administration
-        * 2. click on the collapse/expand button for secondary nav
-        * 3. click on the button again
-        * 4. check that secondary nav expanded
-        * */
-        await page.goto(process.env[constants.TEST_URL] + '/jahia/administration', {waitUntil: 'networkidle2'});
+    // It('checks that secondary nav expands correctly', async () => {
+    //     /* Test steps
+    //     * 1. go to /jahia/administration
+    //     * 2. click on the collapse/expand button for secondary nav
+    //     * 3. click on the button again
+    //     * 4. check that secondary nav expanded
+    //     * */
+    //     await page.goto(process.env[constants.TEST_URL] + '/jahia/administration', {waitUntil: 'networkidle2'});
 
-        await page.click('div[role=resizable-panel] button');
-        await page.waitForFunction('document.querySelector(\'div[role=resizable-panel]\').offsetWidth < 10');
+    //     await page.click('div[role=resizable-panel] button');
+    //     await page.waitForFunction('document.querySelector(\'div[role=resizable-panel]\').offsetWidth < 10');
 
-        await page.click('div[role=resizable-panel] button');
-        await page.waitForFunction('document.querySelector(\'div[role=resizable-panel]\').offsetWidth == 245');
+    //     await page.click('div[role=resizable-panel] button');
+    //     await page.waitForFunction('document.querySelector(\'div[role=resizable-panel]\').offsetWidth == 245');
 
-        await page.evaluate(() => {
-            let e = document.querySelector('main');
-            let child = e.lastElementChild;
-            while (child) {
-                e.removeChild(child);
-                child = e.lastElementChild;
-            }
-        });
+    //     await page.evaluate(() => {
+    //         let e = document.querySelector('main');
+    //         let child = e.lastElementChild;
+    //         while (child) {
+    //             e.removeChild(child);
+    //             child = e.lastElementChild;
+    //         }
+    //     });
 
-        const pageView = await page.$('#reactComponent');
-        expect(await pageView.screenshot()).toMatchImageSnapshot();
-    });
+    //     const pageView = await page.$('#reactComponent');
+    //     expect(await pageView.screenshot()).toMatchImageSnapshot();
+    // });
 
-    it('checks resizability of secondary nav', async () => {
-        /* Test steps
-        * 1. go to /jahia/administration
-        * 2. resize the secondary nav
-        * 3. check that nav was resized
-        * */
-        await page.goto(process.env[constants.TEST_URL] + '/jahia/administration', {waitUntil: 'networkidle2'});
+    // It('checks resizability of secondary nav', async () => {
+    //     /* Test steps
+    //     * 1. go to /jahia/administration
+    //     * 2. resize the secondary nav
+    //     * 3. check that nav was resized
+    //     * */
+    //     await page.goto(process.env[constants.TEST_URL] + '/jahia/administration', {waitUntil: 'networkidle2'});
 
-        await page.waitForFunction('document.querySelector(\'div[role=resizable-panel]\').offsetWidth == 245');
+    //     await page.waitForFunction('document.querySelector(\'div[role=resizable-panel]\').offsetWidth == 245');
 
-        const resizeButton = await page.$('._2GnMptgmO_eikJROaiwGCv');
-        const ob = await resizeButton.boundingBox();
+    //     const resizeButton = await page.$('._2GnMptgmO_eikJROaiwGCv');
+    //     const ob = await resizeButton.boundingBox();
 
-        const obWidthCenter = ob.width / 2;
-        const obHeightCenter = ob.height / 2;
-        await page.mouse.move(ob.x + obWidthCenter, ob.y + obHeightCenter);
-        await page.mouse.down();
+    //     const obWidthCenter = ob.width / 2;
+    //     const obHeightCenter = ob.height / 2;
+    //     await page.mouse.move(ob.x + obWidthCenter, ob.y + obHeightCenter);
+    //     await page.mouse.down();
 
-        const newXPosition = (ob.x + obWidthCenter) + 200;
+    //     const newXPosition = (ob.x + obWidthCenter) + 200;
 
-        await page.mouse.move(newXPosition, ob.y + obHeightCenter);
-        await page.mouse.up();
+    //     await page.mouse.move(newXPosition, ob.y + obHeightCenter);
+    //     await page.mouse.up();
 
-        await page.evaluate(() => {
-            let e = document.querySelector('main');
-            let child = e.lastElementChild;
-            while (child) {
-                e.removeChild(child);
-                child = e.lastElementChild;
-            }
-        });
+    //     await page.evaluate(() => {
+    //         let e = document.querySelector('main');
+    //         let child = e.lastElementChild;
+    //         while (child) {
+    //             e.removeChild(child);
+    //             child = e.lastElementChild;
+    //         }
+    //     });
 
-        const pageView = await page.$('#reactComponent');
-        expect(await pageView.screenshot()).toMatchImageSnapshot();
-    });
+    //     const pageView = await page.$('#reactComponent');
+    //     expect(await pageView.screenshot()).toMatchImageSnapshot();
+    // });
 
     afterAll(async () => {
         // Logout

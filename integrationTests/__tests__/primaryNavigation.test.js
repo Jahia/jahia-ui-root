@@ -77,29 +77,29 @@ describe('primary nav bar tests', () => {
         expect(await navEl.screenshot()).toMatchImageSnapshot();
     });
 
-    it('checks that the top-half renders correctly', async () => {
-        await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle2'});
+    // It('checks that the top-half renders correctly', async () => {
+    //     await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle2'});
 
-        await page.click('nav button');
-        // Wait until nav bar is fully expanded
-        await page.waitForFunction('document.querySelector(\'nav\').offsetWidth == 300');
+    //     await page.click('nav button');
+    //     // Wait until nav bar is fully expanded
+    //     await page.waitForFunction('document.querySelector(\'nav\').offsetWidth == 300');
 
-        const navEl = await page.$$('nav ul');
+    //     const navEl = await page.$$('nav ul');
 
-        expect(await navEl[0].screenshot()).toMatchImageSnapshot();
-    });
+    //     expect(await navEl[0].screenshot()).toMatchImageSnapshot();
+    // });
 
-    it('checks that the bottom-half renders correctly', async () => {
-        await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle2'});
+    // it('checks that the bottom-half renders correctly', async () => {
+    //     await page.goto(process.env[constants.TEST_URL] + '/jahia', {waitUntil: 'networkidle2'});
 
-        await page.click('nav button');
-        // Wait until nav bar is fully expanded
-        await page.waitForFunction('document.querySelector(\'nav\').offsetWidth == 300');
+    //     await page.click('nav button');
+    //     // Wait until nav bar is fully expanded
+    //     await page.waitForFunction('document.querySelector(\'nav\').offsetWidth == 300');
 
-        const navEl = await page.$$('nav ul');
+    //     const navEl = await page.$$('nav ul');
 
-        expect(await navEl[3].screenshot()).toMatchImageSnapshot();
-    });
+    //     expect(await navEl[3].screenshot()).toMatchImageSnapshot();
+    // });
 
     afterAll(async () => {
         // Logout
