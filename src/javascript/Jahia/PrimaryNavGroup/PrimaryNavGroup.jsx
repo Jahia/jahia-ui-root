@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
 import {registry} from '@jahia/ui-extender';
 import {useTranslation} from 'react-i18next';
-import {useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router';
 
 export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
     const {t} = useTranslation();
