@@ -3,7 +3,7 @@ const timeout = 10000;
 const {toMatchImageSnapshot} = require('jest-image-snapshot');
 expect.extend({toMatchImageSnapshot});
 
-describe('primary nav bar tests', () => {
+describe('secondary nav bar tests', () => {
     let page;
     beforeAll(async () => {
         page = await global.__BROWSER__.newPage();
