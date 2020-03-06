@@ -22,7 +22,6 @@
 <head>
     <meta charset="utf-8">
     <title>${fn:escapeXml(renderContext.mainResource.node.displayableName)}</title>
-    <script src="${contextPath}/modules/dx-commons-webpack/javascript/js-load.js"></script>
     <js:loader target="jahia-extends"/>
 
     <internal:gwtGenerateDictionary/>
@@ -41,6 +40,8 @@
 
 <div id="gwt-root"></div>
 
+<script src="${contextPath}/modules/dx-commons-webpack/javascript/commons/jahia-commons.dll.js"></script>
+<script src="${contextPath}/modules/dx-commons-webpack/javascript/apps/appshell.js"></script>
 <script type="text/javascript">
     window.contextJsParameters = window.contextJsParameters || {};
     window.contextJsParameters = Object.assign({}, window.contextJsParameters, {
@@ -71,7 +72,7 @@
     });
 
     window['jahia-extends'].push('/modules/jahia-ui-root/javascript/apps/bundle.js');
-    bootstrap(window['jahia-extends']);
+    jahia.startAppShell(window['jahia-extends']);
 </script>
 
 </body>
