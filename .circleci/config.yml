@@ -19,7 +19,7 @@ parameters:
     default: "channel"
   auditci_level:
     type: string
-    default: "moderate"
+    default: "high"
   testframework_directory:
     type: string
     default: "integrationTests/"
