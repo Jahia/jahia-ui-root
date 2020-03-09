@@ -243,7 +243,7 @@ jobs:
       - run:
           # In the tests below, limiting to only testing the integration tests for now
           # https://www.viget.com/articles/using-junit-on-circleci-2-0-with-jest-and-eslint/
-          name: Run tests with JUnit as reporter (For now just Search Entry Point)
+          name: Run Integration Tests
           command: |
             cd << pipeline.parameters.testframework_directory >>
             TEST_URL="http://localhost:8080" JAHIA_USERNAME=root JAHIA_PASSWORD=root TOOLS_USER="jahia" TOOLS_PWD="password" TESTRAIL_URL=https://jahia.testrail.net TESTRAIL_USERNAME=$TESTRAIL_USERNAME TESTRAIL_PASSWORD=$TESTRAIL_PASSWORD  TESTRAIL_MILESTONE=<< parameters.testrail_milestone >> TESTRAIL_RUNDESCRIPTION="This test was executed on circleci, $CIRCLE_BUILD_URL" yarn run tests:integration --ci
