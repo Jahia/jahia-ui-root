@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch} from 'react-router';
 import {GlobalStyle, LayoutApp, PrimaryNav} from '@jahia/moonstone';
@@ -12,8 +12,17 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const jahiaContext = useContext(JahiaContext);
     const loadingNamespace = loadNamespace('jahia-ui-root');
 
+    useEffect(() => {
+        if (!loadingNamespace) {
+            const loader = document.querySelector('.jahia-loader');
+            if (loader) {
+                loader.remove();
+            }
+        }
+    }, [loadingNamespace]);
+
     if (loadingNamespace) {
-        return 'Loading screen';
+        return '';
     }
 
     let primaryNav;
