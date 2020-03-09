@@ -60,11 +60,11 @@ Note that the jahia-ui-root, moonstone, jahia-dashboard etc. ecosystem will work
 To build:
 
 1. In `@jahia/moonstone` run `yalc publish`.
-2. In `dx-commons-webpack` run `yalc add @jahia/moonstone` and then run `yarn`
-3. Deploy `dx-commons-webpack` to Jahia
+2. In `app-shell` run `yalc add @jahia/moonstone` and then run `yarn`
+3. Deploy `app-shell` to Jahia
 4. In `jahia-ui-root` run `yalc add @jahia/moonstone` and then run `yarn`
 5. Deploy `jahia-ui-root` to Jahia.
-6. Repeat 4-5 for every other module used in navigation (`jahia-dashboard` etc.) 
+6. Repeat 4-5 for every other module used in navigation (`jahia-dashboard` etc.)
 
 ##Unit testing
 
