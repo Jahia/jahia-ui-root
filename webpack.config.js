@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
 // Get manifest
 const normalizedPath = require('path').join(__dirname, './target/dependency');
@@ -16,25 +17,17 @@ require('fs').readdirSync(normalizedPath).forEach(function (file) {
 module.exports = (env, argv) => {
     let config = {
         entry: {
-            bundle: [path.resolve(__dirname, 'src/javascript/publicPath'), path.resolve(__dirname, 'src/javascript/JahiaApp.loader')],
-            jahia: [path.resolve(__dirname, 'src/javascript/publicPath'), path.resolve(__dirname, 'src/javascript/index')]
+            jahiaUiRoot: [path.resolve(__dirname, 'src/javascript/index')]
         },
         output: {
-            jsonpFunction: 'jahiaUIRootJsonp',
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
-            filename: '[name].js',
-            chunkFilename: '[name].jahia.[chunkhash:6].js'
+            filename: 'jahiaUiRoot.bundle.js',
+            jsonpFunction: 'jahiaUiRootJsonp'
         },
         resolve: {
             mainFields: ['module', 'main'],
             extensions: ['.mjs', '.js', '.jsx', 'json']
         },
-        // Optimization messes up names, clear out until we get one single entry and output.filename is hardcoded
-        // optimization: {
-        //     splitChunks: {
-        //         maxSize: 400000,
-        //     },
-        // },
         module: {
             rules: [
                 {
@@ -43,7 +36,7 @@ module.exports = (env, argv) => {
                     loader: 'babel-loader',
                     query: {
                         presets: [
-                            ['@babel/preset-env', {modules: false, targets: {safari: '7', ie: '10'}}],
+                            ['@babel/preset-env', {modules: false, targets: {chrome: '60', edge: '44', firefox: '54', safari: '12'}}],
                             '@babel/preset-react'
                         ],
                         plugins: [
@@ -81,13 +74,12 @@ module.exports = (env, argv) => {
             new webpack.DllReferencePlugin({
                 manifest: require(manifest)
             }),
-            new CleanWebpackPlugin({verbose: false}),
-            new webpack.HashedModuleIdsPlugin({
-                hashFunction: 'sha256',
-                hashDigest: 'hex',
-                hashDigestLength: 20
+            new CleanWebpackPlugin({
+              cleanOnceBeforeBuildPatterns: [`${path.resolve(__dirname, 'src/main/resources/javascript/apps/')}/**/*`],
+              verbose: false
             }),
-            new CopyWebpackPlugin([{from: './package.json', to: ''}])
+            new CopyWebpackPlugin([{from: './package.json', to: ''}]),
+            new CaseSensitivePathsPlugin()
         ],
         mode: 'development'
     };

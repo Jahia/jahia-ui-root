@@ -1,29 +1,13 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch} from 'react-router';
 import {GlobalStyle, LayoutApp, PrimaryNav} from '@jahia/moonstone';
 import JahiaLogo from './JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
 import JahiaContext from './Jahia.context';
-import {loadNamespace} from './Jahia.loadNamespace';
 
-/* Es-lint-ignore: react-hooks/rules-of-hooks */
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const jahiaContext = useContext(JahiaContext);
-    const loadingNamespace = loadNamespace('jahia-ui-root');
-
-    useEffect(() => {
-        if (!loadingNamespace) {
-            const loader = document.querySelector('.jahia-loader');
-            if (loader) {
-                loader.remove();
-            }
-        }
-    }, [loadingNamespace]);
-
-    if (loadingNamespace) {
-        return '';
-    }
 
     let primaryNav;
     if (jahiaContext.environment === '') {

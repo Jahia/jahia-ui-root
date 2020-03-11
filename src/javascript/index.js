@@ -1,7 +1,14 @@
 import {registry} from '@jahia/ui-extender';
 
-// TODO : registration should be done synchronously so that they are called in callback order
+// eslint-disable-next-line no-undef,camelcase
+__webpack_public_path__ = window.contextJsParameters.contextPath + '/modules/jahia-ui-root/javascript/apps/';
+
 registry.add('callback', 'jahiaUiRoot', {
     targets: ['jahiaApp-init:99'],
-    callback: () => import('./JahiaApp.register')
+    callback: () => {
+        return Promise.all([
+            import('./JahiaUiRoot.register'),
+            window.jahia.i18n.loadNamespaces('jahia-ui-root')
+        ]);
+    }
 });

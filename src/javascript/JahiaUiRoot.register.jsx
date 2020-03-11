@@ -1,7 +1,7 @@
 import {registry} from '@jahia/ui-extender';
 import './Jahia/Jahia.routes';
-import {jahiaApps} from './Jahia/Jahia.app';
-import {jahiaRedux} from './Jahia/Jahia.redux';
+import {jahiaApps} from './JahiaUiRoot.app.register';
+import {jahiaRedux} from './JahiaUiRoot.redux.register';
 
 jahiaApps(registry, window.contextJsParameters);
 jahiaRedux(registry, window.contextJsParameters);
