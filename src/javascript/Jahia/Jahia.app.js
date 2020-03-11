@@ -18,7 +18,7 @@ export const jahiaApps = (registry, jahiaCtx) => {
     registry.add('redux-middleware', 'thunk', {middleware: thunk});
 
     // Connected router
-    const history = createBrowserHistory({basename: jahiaCtx.contextPath + jahiaCtx.urlbase});
+    const history = createBrowserHistory({basename: jahiaCtx.urlbase});
     registry.add('app', 'router', {
         targets: ['root:2'],
         render: next => <ConnectedRouter history={history}>{next}</ConnectedRouter>
