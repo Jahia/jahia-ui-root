@@ -27,7 +27,7 @@
   "license": "MIT",
   "jahia": {
     "apps": {
-      "jahia": "javascript/apps/jahia.js"
+      "jahia": "javascript/apps/jahiaUiRoot.bundle.js"
     }
   },
   "dependencies": {
@@ -35,6 +35,7 @@
     "@jahia/moonstone": "^0.11.0",
     "@jahia/ui-extender": "^0.4.0",
     "@svgr/webpack": "^4.3.3",
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
     "clsx": "^1.0.4",
     "connected-react-router": "^6.6.1",
     "history": "^4.10.1",
