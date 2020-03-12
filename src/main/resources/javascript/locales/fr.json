@@ -1,14 +1,8 @@
 {
   "primaryNavigation" : {
     "documentation": {
-      "label": "FR Documentation",
-      "newAtJahia": "FR New at Jahia.com"
-    },
-    "administration": {
-      "label": "FR Administration"
-    },
-    "pageComposer": {
-      "label": "FR Page Composer"
+      "label": "Documentation",
+      "newAtJahia": "Nouveautés sur jahia.com"
     }
   }
 }
