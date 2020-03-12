@@ -277,32 +277,32 @@ workflows:
       - build:
           requires:
             - initialize
-      - integration_tests:
-          name: "Int. Tests - Jahia Latest - Published modules"
-          requires:
-            - build
-            - unit_tests
-          context: QA_ENVIRONMENT
-          manifest: warmup-manifest-build.yml
-          testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
+#       - integration_tests:
+#           name: "Int. Tests - Jahia Latest - Published modules"
+#           requires:
+#             - build
+#             - unit_tests
+#           context: QA_ENVIRONMENT
+#           manifest: warmup-manifest-build.yml
+#           testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
 
   # This workflow runs at regular interval (i.e. every 4 hours)
   # Objective is to ensure the integration testing suite still runs even though jahia-snapshot may have been updated
   # For this workflow we only run the integration tests, no need to do linting or security checks since those are executed on code change
-  crontab:
-    triggers:
-      - schedule:
-          cron: "0 0,4,8,12,16,20 * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - initialize
-      - integration_tests:
-          name: "Int. Tests - Jahia Snapshot (7.5.0.0)"
-          requires:
-            - initialize
-          context: QA_ENVIRONMENT
-          manifest: warmup-manifest-snapshot.yml
-          testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
+#   crontab:
+#     triggers:
+#       - schedule:
+#           cron: "0 0,4,8,12,16,20 * * *"
+#           filters:
+#             branches:
+#               only:
+#                 - master
+#     jobs:
+#       - initialize
+#       - integration_tests:
+#           name: "Int. Tests - Jahia Snapshot (7.5.0.0)"
+#           requires:
+#             - initialize
+#           context: QA_ENVIRONMENT
+#           manifest: warmup-manifest-snapshot.yml
+#           testrail_milestone: Jahia-7.5.0.0-SNAPSHOT
