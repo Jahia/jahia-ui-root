@@ -10,7 +10,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const jahiaContext = useContext(JahiaContext);
 
     let primaryNav;
-    if (jahiaContext.environment === '') {
+    if (jahiaContext.config.environment === '') {
         primaryNav = (
             <PrimaryNav
                 headerLogo={<JahiaLogo/>}
@@ -22,7 +22,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         primaryNav = (
             <PrimaryNav
                 headerLogo={<JahiaLogo/>}
-                headerCaption={`${jahiaContext.environment}`}
+                headerCaption={`${jahiaContext.config.environment}`}
                 modeIcon={<Star/>}
                 top={topNavGroups}
                 bottom={bottomNavGroups}
