@@ -27,7 +27,6 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return null;
     }
 
-    console.log('jahia Permission', permissions);
     let primaryNav;
     if (window.contextJsParameters.config.environment === '') {
         primaryNav = (

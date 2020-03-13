@@ -33,8 +33,6 @@ export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
         return null;
     }
 
-    console.log(permissions);
-
     return (
         <Suspense fallback="loading...">
             <PrimaryNavItemsGroup isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}>
