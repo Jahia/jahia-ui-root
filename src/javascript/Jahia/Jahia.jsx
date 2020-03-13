@@ -1,16 +1,13 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch} from 'react-router';
 import {GlobalStyle, LayoutApp, PrimaryNav} from '@jahia/moonstone';
 import JahiaLogo from './JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
-import JahiaContext from './Jahia.context';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
-    const jahiaContext = useContext(JahiaContext);
-
     let primaryNav;
-    if (jahiaContext.environment === '') {
+    if (window.contextJsParameters.config.environment === '') {
         primaryNav = (
             <PrimaryNav
                 headerLogo={<JahiaLogo/>}
@@ -22,7 +19,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         primaryNav = (
             <PrimaryNav
                 headerLogo={<JahiaLogo/>}
-                headerCaption={`${jahiaContext.environment}`}
+                headerCaption={`${window.contextJsParameters.config.environment}`}
                 modeIcon={<Star/>}
                 top={topNavGroups}
                 bottom={bottomNavGroups}

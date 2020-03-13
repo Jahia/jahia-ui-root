@@ -4,7 +4,6 @@ import {ReduxProvider} from './Jahia/ReduxProvider';
 import {batchDispatchMiddleware} from 'redux-batched-actions';
 import thunk from 'redux-thunk';
 import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router';
-import JahiaContext from './Jahia/Jahia.context';
 import Jahia from './Jahia';
 import PrimaryNavGroup from './Jahia/PrimaryNavGroup';
 import {createBrowserHistory} from 'history';
@@ -25,12 +24,6 @@ export const jahiaApps = (registry, jahiaCtx) => {
     });
     registry.add('redux-reducer', 'router', {targets: ['root'], reducer: connectRouter(history)});
     registry.add('redux-middleware', 'router', {middleware: routerMiddleware(history)});
-
-    // Jahia Context
-    registry.add('app', 'jahiacontext', {
-        targets: ['root:3'],
-        render: next => <JahiaContext.Provider value={jahiaCtx}>{next}</JahiaContext.Provider>
-    });
 
     // UI-root
     registry.add('app', 'jahia', {
