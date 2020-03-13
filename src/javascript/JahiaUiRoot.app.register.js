@@ -1,8 +1,5 @@
 // Register redux
 import React from 'react';
-import {ReduxProvider} from './Jahia/ReduxProvider';
-import {batchDispatchMiddleware} from 'redux-batched-actions';
-import thunk from 'redux-thunk';
 import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router';
 import JahiaContext from './Jahia/Jahia.context';
 import Jahia from './Jahia';
@@ -10,13 +7,6 @@ import PrimaryNavGroup from './Jahia/PrimaryNavGroup';
 import {createBrowserHistory} from 'history';
 
 export const jahiaApps = (registry, jahiaCtx) => {
-    registry.add('app', 'redux', {
-        targets: ['root:1'],
-        render: next => (<ReduxProvider jahiaCtx={jahiaCtx}>{next}</ReduxProvider>)
-    });
-    registry.add('redux-middleware', 'batch', {middleware: batchDispatchMiddleware});
-    registry.add('redux-middleware', 'thunk', {middleware: thunk});
-
     // Connected router
     const history = createBrowserHistory({basename: jahiaCtx.urlbase});
     registry.add('app', 'router', {
@@ -24,7 +14,7 @@ export const jahiaApps = (registry, jahiaCtx) => {
         render: next => <ConnectedRouter history={history}>{next}</ConnectedRouter>
     });
     registry.add('redux-reducer', 'router', {targets: ['root'], reducer: connectRouter(history)});
-    registry.add('redux-middleware', 'router', {middleware: routerMiddleware(history)});
+    registry.add('redux-middleware', 'router', {targets: ['root:3'], middleware: routerMiddleware(history)});
 
     // Jahia Context
     registry.add('app', 'jahiacontext', {
