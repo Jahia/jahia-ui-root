@@ -28,6 +28,7 @@ const usePermissionFilter = (navItems, site, language) => {
                 requiredPaths.push(navItem.requiredPermissionPath);
             }
         });
+
         if (requiredPaths.length === 0) {
             requiredPaths.push('/sites/' + site);
         }
@@ -50,7 +51,7 @@ const usePermissionFilter = (navItems, site, language) => {
             }
 
             return node.path === '/sites/' + site;
-        })[navItem.requiredPermission]);
+        }));
 };
 
 export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
