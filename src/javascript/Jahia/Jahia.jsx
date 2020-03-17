@@ -5,8 +5,10 @@ import {GlobalStyle, LayoutApp, PrimaryNav} from '@jahia/moonstone';
 import JahiaLogo from './JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
 import {useNodeInfo} from '@jahia/data-helper';
+import {useSelector} from 'react-redux';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
+    const current = useSelector(state => ({language: state.language, site: state.site}));
     const requiredPermission = ['jcr:read_default'];
     const requiredPaths = [];
     routes.filter(route => route.requiredPermission !== undefined).forEach(route => {
@@ -19,10 +21,10 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         }
     });
     if (requiredPaths.length === 0) {
-        requiredPaths.push('/sites/' + window.contextJsParameters.siteKey);
+        requiredPaths.push(`/sites/${current.site}`);
     }
 
-    const permissions = useNodeInfo({paths: requiredPaths, language: 'en'}, {getPermissions: requiredPermission});
+    const permissions = useNodeInfo({paths: requiredPaths, language: current.language}, {getPermissions: requiredPermission});
     if (permissions.loading === true || permissions.nodes === null) {
         return null;
     }
@@ -61,7 +63,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                                     return node.path === route.requiredPermissionPath;
                                 }
 
-                                return node.path === '/sites/' + window.contextJsParameters.siteKey;
+                                return node.path === `/sites/${current.site}`;
                             })[route.requiredPermission]).map(r =>
                                 <Route key={r.key} path={r.path} render={r.render}/>
                         )}

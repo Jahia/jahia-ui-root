@@ -1,4 +1,4 @@
-import React, {Suspense, useEffect, useState} from 'react';
+import React, {Suspense, useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
 import {registry} from '@jahia/ui-extender';
@@ -8,37 +8,30 @@ import {useNodeInfo} from '@jahia/data-helper';
 import {useSelector} from 'react-redux';
 
 const usePermissionFilter = (navItems, site, language) => {
-    const [requiredPathsAndPermissions, setRequiredPathsAndPermissions] = useState({
-        requiredPermission: ['jcr:read_default'],
-        requiredPaths: []
-    });
-    const permissions = useNodeInfo({paths: requiredPathsAndPermissions.requiredPaths, language: language},
-        {getPermissions: requiredPathsAndPermissions.requiredPermission});
-
-    useEffect(() => {
-        const requiredPermission = requiredPathsAndPermissions.requiredPermission;
-        const requiredPaths = requiredPathsAndPermissions.requiredPaths;
+    const {requiredPermission, requiredPaths} = useMemo(() => {
+        const reqPermission = ['jcr:read_default'];
+        const reqPaths = [];
 
         navItems.filter(navItem => navItem.requiredPermission !== undefined).forEach(navItem => {
-            if (!requiredPermission.includes(navItem.requiredPermission)) {
-                requiredPermission.push(navItem.requiredPermission);
+            if (!reqPermission.includes(navItem.requiredPermission)) {
+                reqPermission.push(navItem.requiredPermission);
             }
 
-            if (navItem.requiredPermissionPath !== undefined && !requiredPaths.includes(navItem.requiredPermissionPath)) {
-                requiredPaths.push(navItem.requiredPermissionPath);
+            if (navItem.requiredPermissionPath !== undefined && !reqPaths.includes(navItem.requiredPermissionPath)) {
+                reqPaths.push(navItem.requiredPermissionPath);
             }
         });
 
-        if (requiredPaths.length === 0) {
-            requiredPaths.push('/sites/' + site);
+        if (reqPaths.length === 0) {
+            reqPaths.push('/sites/' + site);
         }
 
-        setRequiredPathsAndPermissions({
-            requiredPermission: requiredPermission,
-            requiredPaths: requiredPaths
-        });
+        return {requiredPermission: reqPermission, requiredPaths: reqPaths};
         // eslint-disable-next-line
     }, [navItems.length, site, language]);
+
+    const permissions = useNodeInfo({paths: requiredPaths, language: language},
+        {getPermissions: requiredPermission});
 
     if (permissions.loading === true || permissions.nodes === null) {
         return [];
