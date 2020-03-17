@@ -15,6 +15,9 @@ const usePermissionFilter = (navItems, site, language) => {
         navItems.filter(navItem => navItem.requiredPermission !== undefined).forEach(navItem => {
             if (!reqPermission.includes(navItem.requiredPermission)) {
                 reqPermission.push(navItem.requiredPermission);
+                if (navItem.requiredPermissionPath === undefined) {
+                    reqPaths.push(`/sites/${site}`);
+                }
             }
 
             if (navItem.requiredPermissionPath !== undefined && !reqPaths.includes(navItem.requiredPermissionPath)) {
@@ -44,7 +47,7 @@ const usePermissionFilter = (navItems, site, language) => {
             }
 
             return node.path === '/sites/' + site;
-        }));
+        })[navItem.requiredPermission]);
 };
 
 export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {

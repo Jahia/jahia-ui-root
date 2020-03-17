@@ -14,6 +14,9 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     routes.filter(route => route.requiredPermission !== undefined).forEach(route => {
         if (!requiredPermission.includes(route.requiredPermission)) {
             requiredPermission.push(route.requiredPermission);
+            if (route.requiredPermissionPath === undefined) {
+                requiredPaths.push(`/sites/${current.site}`);
+            }
         }
 
         if (route.requiredPermissionPath !== undefined && !requiredPaths.includes(route.requiredPermissionPath)) {
