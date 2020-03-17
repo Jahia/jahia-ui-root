@@ -30,8 +30,7 @@ const usePermissionFilter = (navItems, site, language) => {
         }
 
         return {requiredPermission: reqPermission, requiredPaths: reqPaths};
-        // eslint-disable-next-line
-    }, [navItems.length, site, language]);
+    }, [navItems, site]);
 
     const permissions = useNodeInfo({paths: requiredPaths, language: language},
         {getPermissions: requiredPermission});
