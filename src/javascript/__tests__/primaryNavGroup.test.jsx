@@ -2,11 +2,25 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import PrimaryNavGroup from '../Jahia/PrimaryNavGroup';
 import {registry} from '@jahia/ui-extender';
-import {useHistory} from 'react-router-dom';
 
 jest.mock('react-router', () => {
     return {
         useHistory: jest.fn(() => {})
+    };
+});
+
+jest.mock('react-redux', () => {
+    return {
+        useSelector: jest.fn(() => ({
+            site: 'systemsite',
+            language: 'en'
+        }))
+    };
+});
+
+jest.mock('@jahia/data-helper', () => {
+    return {
+        useNodeInfo: jest.fn(() => ([{"data":{"jcr":{"nodesByPath":[{"name":"systemsite","uuid":"fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff","workspace":"EDIT","path":"/sites/systemsite","__typename":"JCRSite","permission_encoded_amNyOnJlYWRfZGVmYXVsdA":true}],"__typename":"JCRQuery"}}},{"data":{"jcr":{"nodesByPath":[{"name":"systemsite","uuid":"fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff","workspace":"EDIT","path":"/sites/systemsite","__typename":"JCRSite","permission_encoded_amNyOnJlYWRfZGVmYXVsdA":true},{"name":"","uuid":"cafebabe-cafe-babe-cafe-babecafebabe","workspace":"EDIT","path":"/","__typename":"GenericJCRNode","permission_encoded_amNyOnJlYWRfZGVmYXVsdA":true}],"__typename":"JCRQuery"}}},{"data":{"jcr":{"nodesByPath":[{"name":"systemsite","uuid":"fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff","workspace":"EDIT","path":"/sites/systemsite","__typename":"JCRSite","permission_encoded_amNyOnJlYWRfZGVmYXVsdA":true}],"__typename":"JCRQuery"}}},{"data":{"jcr":{"nodesByPath":[{"name":"systemsite","uuid":"fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff","workspace":"EDIT","path":"/sites/systemsite","__typename":"JCRSite","permission_encoded_amNyOnJlYWRfZGVmYXVsdA":true}],"__typename":"JCRQuery"}}},{"data":{"jcr":{"nodesByPath":[{"name":"systemsite","uuid":"fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff","workspace":"EDIT","path":"/sites/systemsite","__typename":"JCRSite","permission_encoded_amNyOnJlYWRfZGVmYXVsdA":true}],"__typename":"JCRQuery"}}}]))
     };
 });
 
