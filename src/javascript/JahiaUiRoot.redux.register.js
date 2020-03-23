@@ -1,28 +1,5 @@
 import {createActions, handleAction} from 'redux-actions';
 
-let clearUpdateGWTParametersInterval;
-let reduxStoreCurrentValue;
-let updateGWTParameters = function (currentValue) {
-    let authoringApi = window.authoringApi;
-    if (authoringApi && authoringApi.switchSite && authoringApi.switchLanguage) {
-        let previousValue = reduxStoreCurrentValue;
-        reduxStoreCurrentValue = {site: currentValue.site, language: currentValue.language};
-
-        if (clearUpdateGWTParametersInterval) {
-            clearInterval(clearUpdateGWTParametersInterval);
-            clearUpdateGWTParametersInterval = undefined;
-        }
-
-        if (previousValue === undefined || currentValue.site !== previousValue.site) {
-            authoringApi.switchSite(currentValue.site, currentValue.language);
-        }
-
-        if (previousValue === undefined || currentValue.language !== previousValue.language) {
-            authoringApi.switchLanguage(currentValue.language);
-        }
-    }
-};
-
 export const jahiaRedux = (registry, jahiaCtx) => {
     const {setSite, setLanguage, setUiLanguage} = createActions('SET_SITE', 'SET_LANGUAGE', 'SET_UI_LANGUAGE');
 
@@ -55,7 +32,29 @@ export const jahiaRedux = (registry, jahiaCtx) => {
     });
 
     let uiRootReduxStoreListener = store => {
-        clearUpdateGWTParametersInterval = setInterval(() => {
+        let reduxStoreCurrentValue;
+        let updateGWTParameters = currentValue => {
+            let authoringApi = window.authoringApi;
+            if (authoringApi && authoringApi.switchSite && authoringApi.switchLanguage) {
+                let previousValue = reduxStoreCurrentValue;
+                reduxStoreCurrentValue = {site: currentValue.site, language: currentValue.language};
+
+                if (clearUpdateGWTParametersInterval) {
+                    clearInterval(clearUpdateGWTParametersInterval);
+                    clearUpdateGWTParametersInterval = undefined;
+                }
+
+                if (previousValue === undefined || currentValue.site !== previousValue.site) {
+                    authoringApi.switchSite(currentValue.site, currentValue.language);
+                }
+
+                if (previousValue === undefined || currentValue.language !== previousValue.language) {
+                    authoringApi.switchLanguage(currentValue.language);
+                }
+            }
+        };
+
+        let clearUpdateGWTParametersInterval = setInterval(() => {
             updateGWTParameters(store.getState());
         }, 100);
         return () => {
