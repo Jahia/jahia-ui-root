@@ -1,6 +1,5 @@
 import {createActions, handleAction} from 'redux-actions';
 
-let reduxStoreCurrentValue;
 let clearUpdateGWTParametersInterval;
 let updateGWTParameters = function (previousValue, currentValue) {
     let authoringApi = window.authoringApi;
@@ -55,6 +54,7 @@ export const jahiaRedux = (registry, jahiaCtx) => {
         }
     });
 
+    let reduxStoreCurrentValue;
     let uiRootReduxStoreListener = store => () => {
         if (window.authoringApi === undefined) {
             reduxStoreCurrentValue = store.getState();
