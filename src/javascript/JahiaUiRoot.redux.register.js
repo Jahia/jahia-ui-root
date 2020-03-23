@@ -1,5 +1,23 @@
 import {createActions, handleAction} from 'redux-actions';
 
+let reduxStoreCurrentValue;
+let updateGWTParameters = function (previousValue, currentValue) {
+    let authoringApi = window.authoringApi;
+    if (authoringApi !== undefined) {
+        if (previousValue === undefined || currentValue.site !== previousValue.site) {
+            if (authoringApi.switchSite !== undefined) {
+                authoringApi.switchSite(currentValue.site, currentValue.language);
+            }
+        }
+
+        if (previousValue === undefined || currentValue.language !== previousValue.language) {
+            if (authoringApi.switchLanguage !== undefined) {
+                authoringApi.switchLanguage(currentValue.language);
+            }
+        }
+    }
+};
+
 export const jahiaRedux = (registry, jahiaCtx) => {
     const {setSite, setLanguage, setUiLanguage} = createActions('SET_SITE', 'SET_LANGUAGE', 'SET_UI_LANGUAGE');
 
@@ -30,4 +48,19 @@ export const jahiaRedux = (registry, jahiaCtx) => {
             setUiLanguage
         }
     });
+
+    let uiRootReduxStoreListener = store => () => {
+        if (window.authoringApi === undefined) {
+            // Authoring api is not set when loading
+            setTimeout(() => {
+                updateGWTParameters(undefined, store.getState());
+            }, 100);
+        } else {
+            let previousValue = reduxStoreCurrentValue;
+            reduxStoreCurrentValue = store.getState();
+            updateGWTParameters(previousValue, reduxStoreCurrentValue);
+        }
+    };
+
+    registry.add('redux-listener', 'site', {createListener: uiRootReduxStoreListener});
 };
