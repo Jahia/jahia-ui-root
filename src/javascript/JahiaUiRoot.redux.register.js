@@ -1,24 +1,24 @@
 import {createActions, handleAction} from 'redux-actions';
 
 let clearUpdateGWTParametersInterval;
-let updateGWTParameters = function (previousValue, currentValue) {
+let reduxStoreCurrentValue;
+let updateGWTParameters = function (currentValue) {
     let authoringApi = window.authoringApi;
-    if (authoringApi !== undefined) {
-        if (clearUpdateGWTParametersInterval !== undefined) {
+    if (authoringApi && authoringApi.switchSite && authoringApi.switchLanguage) {
+        let previousValue = reduxStoreCurrentValue;
+        reduxStoreCurrentValue = {site: currentValue.site, language: currentValue.language};
+
+        if (clearUpdateGWTParametersInterval) {
             clearInterval(clearUpdateGWTParametersInterval);
             clearUpdateGWTParametersInterval = undefined;
         }
 
         if (previousValue === undefined || currentValue.site !== previousValue.site) {
-            if (authoringApi.switchSite !== undefined) {
-                authoringApi.switchSite(currentValue.site, currentValue.language);
-            }
+            authoringApi.switchSite(currentValue.site, currentValue.language);
         }
 
         if (previousValue === undefined || currentValue.language !== previousValue.language) {
-            if (authoringApi.switchLanguage !== undefined) {
-                authoringApi.switchLanguage(currentValue.language);
-            }
+            authoringApi.switchLanguage(currentValue.language);
         }
     }
 };
@@ -54,19 +54,13 @@ export const jahiaRedux = (registry, jahiaCtx) => {
         }
     });
 
-    let reduxStoreCurrentValue;
-    let uiRootReduxStoreListener = store => () => {
-        if (window.authoringApi === undefined) {
-            reduxStoreCurrentValue = store.getState();
-            // Authoring api is not set when loading
-            clearUpdateGWTParametersInterval = setInterval(() => {
-                updateGWTParameters(undefined, store.getState());
-            }, 100);
-        } else {
-            let previousValue = reduxStoreCurrentValue;
-            reduxStoreCurrentValue = store.getState();
-            updateGWTParameters(previousValue, reduxStoreCurrentValue);
-        }
+    let uiRootReduxStoreListener = store => {
+        clearUpdateGWTParametersInterval = setInterval(() => {
+            updateGWTParameters(store.getState());
+        }, 100);
+        return () => {
+            updateGWTParameters(store.getState());
+        };
     };
 
     registry.add('redux-listener', 'site', {createListener: uiRootReduxStoreListener});
