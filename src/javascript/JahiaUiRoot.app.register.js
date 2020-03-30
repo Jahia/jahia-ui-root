@@ -1,6 +1,8 @@
 // Register redux
 import React from 'react';
 import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router';
+import {ComponentRendererProvider} from '@jahia/ui-extender';
+
 import Jahia from './Jahia';
 import PrimaryNavGroup from './Jahia/PrimaryNavGroup';
 import {createBrowserHistory} from 'history';
@@ -12,6 +14,11 @@ export const jahiaApps = (registry, jahiaCtx) => {
         targets: ['root:2'],
         render: next => <ConnectedRouter history={history}>{next}</ConnectedRouter>
     });
+    registry.add('app', 'jcontent-renderer', {
+        targets: ['root:16'],
+        render: next => (<ComponentRendererProvider>{next}</ComponentRendererProvider>)
+    });
+
     registry.add('redux-reducer', 'router', {targets: ['root'], reducer: connectRouter(history)});
     registry.add('redux-middleware', 'router', {targets: ['root:3'], middleware: routerMiddleware(history)});
 
