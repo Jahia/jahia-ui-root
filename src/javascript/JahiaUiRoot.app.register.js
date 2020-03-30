@@ -14,7 +14,7 @@ export const jahiaApps = (registry, jahiaCtx) => {
         targets: ['root:2'],
         render: next => <ConnectedRouter history={history}>{next}</ConnectedRouter>
     });
-    registry.add('app', 'jcontent-renderer', {
+    registry.add('app', 'component-renderer', {
         targets: ['root:16'],
         render: next => (<ComponentRendererProvider>{next}</ComponentRendererProvider>)
     });
