@@ -4,7 +4,7 @@ import {registry} from '@jahia/ui-extender';
 __webpack_public_path__ = window.contextJsParameters.contextPath + '/modules/jahia-ui-root/javascript/apps/';
 
 registry.add('callback', 'jahiaUiRoot', {
-    targets: ['jahiaApp-init:50'],
+    targets: ['jahiaApp-init:80'],
     callback: () => {
         return Promise.all([
             import('./JahiaUiRoot.register'),
