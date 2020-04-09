@@ -26,7 +26,7 @@ export const jahiaApps = (registry, jahiaCtx) => {
     registry.add('app', 'jahia', {
         targets: ['root:99'], render: next => (
             <>
-                <Jahia routes={registry.find({type: 'route', target: 'nav-root-top'})}
+                <Jahia routes={registry.find({type: 'route', target: 'main'})}
                        topNavGroups={[
                            <PrimaryNavGroup key="workflowNavGroup" target="nav-root-tasks"/>,
                            <PrimaryNavGroup key="topNavGroup" target="nav-root-top"/>
