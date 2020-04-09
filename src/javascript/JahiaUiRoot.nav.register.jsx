@@ -1,7 +1,6 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {useSiteInfo} from '@jahia/data-helper';
-import {registry} from '@jahia/ui-extender';
 import {PrimaryNavItem} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 import {transformLink} from './links.utils';
@@ -24,7 +23,9 @@ export const DocumentationGroup = () => {
     );
 };
 
-registry.add('primary-nav-item', 'bottomDocNavGroup', {
-    targets: ['nav-root-documentation:1'],
-    render: () => <DocumentationGroup/>
-});
+export const jahiaNav = registry => {
+    registry.add('primary-nav-item', 'bottomDocNavGroup', {
+        targets: ['nav-root-documentation:1'],
+        render: () => <DocumentationGroup/>
+    });
+};
