@@ -208,7 +208,7 @@ jobs:
       - run:
           name: Running unit tests with jest
           command: |
-            yarn run tests:unit
+            yarn run tests:unit --ci
       - *notify_slack_failure_regular
 
   # Running the warmup stage

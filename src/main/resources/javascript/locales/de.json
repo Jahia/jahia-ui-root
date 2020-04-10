@@ -4,5 +4,9 @@
       "label": "Dokumentation",
       "newAtJahia": "Neuigkeiten auf Jahia.com"
     }
+  },
+  "licenceTermsViolation": {
+    "title": "Lizenzbedingungen verletzt",
+    "text": "Kontaktieren Sie bitte Ihren Systemadministrator"
   }
 }

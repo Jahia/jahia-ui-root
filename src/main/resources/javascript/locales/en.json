@@ -4,5 +4,9 @@
       "label": "Documentation",
       "newAtJahia": "New at Jahia.com"
     }
+  },
+  "licenceTermsViolation": {
+    "title": "License terms violation",
+    "text": "Please contact your system administrator"
   }
 }

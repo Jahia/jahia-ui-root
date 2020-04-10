@@ -4,5 +4,9 @@
       "label": "Documentation",
       "newAtJahia": "Nouveautés sur jahia.com"
     }
+  },
+  "licenceTermsViolation": {
+    "title": "Violation des termes de la licence",
+    "text": "Merci de contacter votre administrateur système"
   }
 }

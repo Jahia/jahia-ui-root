@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch} from 'react-router';
 import {GlobalStyle, LayoutApp, PrimaryNav} from '@jahia/moonstone';
-import JahiaLogo from './JahiaLogo';
+import JahiaLogo from '../JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
 import {useNodeInfo} from '@jahia/data-helper';
 import {useSelector} from 'react-redux';
