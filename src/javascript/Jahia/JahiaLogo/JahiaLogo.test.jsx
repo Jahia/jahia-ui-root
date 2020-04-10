@@ -1,15 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import JahiaLogo from '../JahiaLogo';
+import JahiaLogo from './JahiaLogo';
 
 describe('Jahia Logo', () => {
-
     test('logo', () => {
         const component = renderer.create(
-            <JahiaLogo />,
+            <JahiaLogo/>
         );
 
         let tree = component.toJSON();
         expect(tree).toMatchSnapshot();
-    })
+    });
 });
