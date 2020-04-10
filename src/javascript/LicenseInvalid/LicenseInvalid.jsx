@@ -8,7 +8,7 @@ export const LicenseInvalid = () => {
     const {t} = useTranslation();
     return (
         <div className={styles.root}>
-            <JahiaLogo height='6rem' width='24rem'/>
+            <JahiaLogo height="6rem" width="24rem"/>
             <Typography variant="title">{t('jahia-ui-root:licenceTermsViolation.title')}</Typography>
             <Typography variant="subheading">{t('jahia-ui-root:licenceTermsViolation.text')}</Typography>
         </div>

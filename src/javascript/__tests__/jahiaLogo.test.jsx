@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import JahiaLogo from '../Jahia/JahiaLogo';
+import JahiaLogo from '../JahiaLogo';
 
 describe('Jahia Logo', () => {
 
