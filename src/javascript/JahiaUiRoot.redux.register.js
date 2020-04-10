@@ -51,9 +51,7 @@ export const jahiaRedux = (registry, jahiaCtx) => {
 
                 if (previousValue === undefined || currentValue.site !== previousValue.site) {
                     authoringApi.switchSite(currentValue.site, currentValue.language);
-                }
-
-                if (previousValue === undefined || currentValue.language !== previousValue.language) {
+                } else if (currentValue.language !== previousValue.language) {
                     authoringApi.switchLanguage(currentValue.language);
                 }
             }
