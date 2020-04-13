@@ -9,7 +9,6 @@
   "scripts": {
     "test": "jest --run-in-band --coverage  ./src/javascript",
     "tests:unit": "jest --env=jsdom --runInBand --coverage  ./src/javascript",
-    "tests:integration": "jest ./integrationTests/__tests__/ --runInBand",
     "tdd": "jest --watch",
     "build": "yarn lint:fix && yarn webpack",
     "build:nolint": "yarn webpack",
