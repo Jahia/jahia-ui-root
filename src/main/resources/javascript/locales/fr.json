@@ -8,5 +8,12 @@
   "licenceTermsViolation": {
     "title": "Violation des termes de la licence",
     "text": "Merci de contacter votre administrateur système"
+  },
+  "sessionExpiration": {
+    "title": "Session expirée",
+    "text": "Vous avez été deconnecté.",
+    "text2": "Reconnectez vous en cliquant sur \"Rafraichir\".",
+    "button": "Rafraichir"
+  }
   }
 }

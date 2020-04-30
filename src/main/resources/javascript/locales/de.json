@@ -8,5 +8,11 @@
   "licenceTermsViolation": {
     "title": "Lizenzbedingungen verletzt",
     "text": "Kontaktieren Sie bitte Ihren Systemadministrator"
+  },
+  "sessionExpiration": {
+    "title": "Session abgelaufen",
+    "text": "Sie sind abgemeldet",
+    "text2": "Klicken Sie auf \"Aktualisieren\", um sich wieder im Benutzerkonto anzumelden",
+    "button": "Aktualisieren"
   }
 }
