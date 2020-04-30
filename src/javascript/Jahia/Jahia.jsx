@@ -6,6 +6,7 @@ import JahiaLogo from '../JahiaLogo';
 import Star from '@jahia/moonstone/dist/icons/Star';
 import {useNodeInfo} from '@jahia/data-helper';
 import {useSelector} from 'react-redux';
+import {LoginCheck} from './LoginCheck';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}));
@@ -56,6 +57,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     return (
         <>
             <GlobalStyle/>
+            <LoginCheck/>
             <LayoutApp
                 navigation={primaryNav}
                 content={
