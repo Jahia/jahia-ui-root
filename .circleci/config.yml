@@ -59,7 +59,7 @@ jobs:
   initialize:
     <<: *workdir
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:12
     steps:
       - checkout
       - restore_cache:
@@ -80,7 +80,7 @@ jobs:
   # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
   lint:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:12
     working_directory: ~/source/
     steps:
       - *attach-workspace
@@ -93,7 +93,7 @@ jobs:
   security:
     <<: *workdir
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:12
     steps:
       - *attach-workspace
       - run:
@@ -138,7 +138,7 @@ jobs:
   unit_tests:
     <<: *workdir
     docker:
-      - image: circleci/node:latest-browsers
+      - image: circleci/node:12-browsers
     steps:
       - *attach-workspace
       - run:
