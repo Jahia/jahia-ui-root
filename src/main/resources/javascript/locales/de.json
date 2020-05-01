@@ -12,6 +12,6 @@
   "sessionExpiration": {
     "title": "Session abgelaufen",
     "text": "Sie sind abgemeldet.",
-    "text2": "Klicken Sie auf \"Aktualisieren\", um sich wieder im Benutzerkonto anzumelden",
+    "text2": "Melden Sie sich wie gewöhnlich erneut auf einer anderen Seite an, um die ungespeicherte Änderungen nicht zu verlieren. Kommen Sie dann wieder auf diese Seite zurück, und setzten Sie Ihre Arbeit fort. Diese Meldung verschwindet dann automatisch. Wenn Sie nichts zu verlieren haben, aktualisieren Sie einfach diese Seite."
   }
 }
