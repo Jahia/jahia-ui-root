@@ -11,8 +11,7 @@
   },
   "sessionExpiration": {
     "title": "Session expired",
-    "text": "You are logged out.",
-    "text2": "Log back into your account by clicking on \"Refresh\".",
-    "button": "Refresh"
+    "text": "You have been disconnected.",
+    "text2": "Log in again in a different tab like you usually do, to avoid losing unsaved changes, and come back here to resume your work. This message will then automatically disappear. If you have nothing to lose, simply refresh this page."
   }
 }

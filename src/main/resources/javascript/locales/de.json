@@ -11,8 +11,7 @@
   },
   "sessionExpiration": {
     "title": "Session abgelaufen",
-    "text": "Sie sind abgemeldet",
+    "text": "Sie sind abgemeldet.",
     "text2": "Klicken Sie auf \"Aktualisieren\", um sich wieder im Benutzerkonto anzumelden",
-    "button": "Aktualisieren"
   }
 }

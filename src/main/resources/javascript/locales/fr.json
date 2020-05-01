@@ -1,5 +1,5 @@
 {
-  "primaryNavigation" : {
+  "primaryNavigation": {
     "documentation": {
       "label": "Documentation",
       "newAtJahia": "Nouveautés sur jahia.com"
@@ -12,8 +12,6 @@
   "sessionExpiration": {
     "title": "Session expirée",
     "text": "Vous avez été deconnecté.",
-    "text2": "Reconnectez vous en cliquant sur \"Rafraichir\".",
-    "button": "Rafraichir"
-  }
+    "text2": "Connectez vous dans un nouvel onglet comme vous le faites habituellement, et ce afin d'éviter de perdre des changements non sauvegardés. Revenez ici pour reprendre votre travail. Ce message disparaitra alors automatiquement. Si vous n'avez rien à perdre, rafraichissez simplement cette page."
   }
 }
