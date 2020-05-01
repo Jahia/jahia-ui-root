@@ -2,7 +2,7 @@ import React from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {GetUserQuery} from './LoginCheck.gql';
 import styles from './LoginCheck.scss';
-import {Typography, Button} from '@jahia/moonstone';
+import {Typography} from '@jahia/moonstone';
 import {useTranslation} from 'react-i18next';
 
 export const LoginCheck = () => {
@@ -23,14 +23,6 @@ export const LoginCheck = () => {
                     <br/>
                     {t('sessionExpiration.text2')}
                 </Typography>
-                <Button className={styles.button}
-                        color="accent"
-                        size="big"
-                        label={t('sessionExpiration.button')}
-                        onClick={() => {
-                            location.reload();
-                        }}
-                />
             </div>
         </div>
     );
