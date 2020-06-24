@@ -1,11 +1,11 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
+import {render} from '@testing-library/react';
 import PrimaryNavGroup from './PrimaryNavGroup';
-import {registry} from '@jahia/ui-extender';
 
 jest.mock('react-router', () => {
     return {
-        useHistory: jest.fn(() => {})
+        useHistory: jest.fn(() => {
+        })
     };
 });
 
@@ -20,55 +20,94 @@ jest.mock('react-redux', () => {
 
 jest.mock('@jahia/data-helper', () => {
     return {
-        // eslint-disable-next-line camelcase
-        useNodeInfo: jest.fn(() => ([{data: {jcr: {nodesByPath: [{name: 'systemsite', uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff', workspace: 'EDIT', path: '/sites/systemsite', __typename: 'JCRSite', permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true}], __typename: 'JCRQuery'}}}, {data: {jcr: {nodesByPath: [{name: 'systemsite', uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff', workspace: 'EDIT', path: '/sites/systemsite', __typename: 'JCRSite', permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true}, {name: '', uuid: 'cafebabe-cafe-babe-cafe-babecafebabe', workspace: 'EDIT', path: '/', __typename: 'GenericJCRNode', permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true}], __typename: 'JCRQuery'}}}, {data: {jcr: {nodesByPath: [{name: 'systemsite', uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff', workspace: 'EDIT', path: '/sites/systemsite', __typename: 'JCRSite', permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true}], __typename: 'JCRQuery'}}}, {data: {jcr: {nodesByPath: [{name: 'systemsite', uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff', workspace: 'EDIT', path: '/sites/systemsite', __typename: 'JCRSite', permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true}], __typename: 'JCRQuery'}}}, {data: {jcr: {nodesByPath: [{name: 'systemsite', uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff', workspace: 'EDIT', path: '/sites/systemsite', __typename: 'JCRSite', permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true}], __typename: 'JCRQuery'}}}]))
+        useNodeInfo: jest.fn(() => ([{
+            data: {
+                jcr: {
+                    nodesByPath: [{
+                        name: 'systemsite',
+                        uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff',
+                        workspace: 'EDIT',
+                        path: '/sites/systemsite',
+                        __typename: 'JCRSite',
+                        // eslint-disable-next-line camelcase
+                        permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true
+                    }], __typename: 'JCRQuery'
+                }
+            }
+        }, {
+            data: {
+                jcr: {
+                    nodesByPath: [{
+                        name: 'systemsite',
+                        uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff',
+                        workspace: 'EDIT',
+                        path: '/sites/systemsite',
+                        __typename: 'JCRSite',
+                        // eslint-disable-next-line camelcase
+                        permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true
+                    }, {
+                        name: '',
+                        uuid: 'cafebabe-cafe-babe-cafe-babecafebabe',
+                        workspace: 'EDIT',
+                        path: '/',
+                        __typename: 'GenericJCRNode',
+                        // eslint-disable-next-line camelcase
+                        permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true
+                    }], __typename: 'JCRQuery'
+                }
+            }
+        }, {
+            data: {
+                jcr: {
+                    nodesByPath: [{
+                        name: 'systemsite',
+                        uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff',
+                        workspace: 'EDIT',
+                        path: '/sites/systemsite',
+                        __typename: 'JCRSite',
+                        // eslint-disable-next-line camelcase
+                        permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true
+                    }], __typename: 'JCRQuery'
+                }
+            }
+        }, {
+            data: {
+                jcr: {
+                    nodesByPath: [{
+                        name: 'systemsite',
+                        uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff',
+                        workspace: 'EDIT',
+                        path: '/sites/systemsite',
+                        __typename: 'JCRSite',
+                        // eslint-disable-next-line camelcase
+                        permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true
+                    }], __typename: 'JCRQuery'
+                }
+            }
+        }, {
+            data: {
+                jcr: {
+                    nodesByPath: [{
+                        name: 'systemsite',
+                        uuid: 'fd148dc0-1a97-4eb0-8ec6-fbeee9ddbdff',
+                        workspace: 'EDIT',
+                        path: '/sites/systemsite',
+                        __typename: 'JCRSite',
+                        // eslint-disable-next-line camelcase
+                        permission_encoded_amNyOnJlYWRfZGVmYXVsdA: true
+                    }], __typename: 'JCRQuery'
+                }
+            }
+        }]))
     };
 });
 
 describe('primary nav group', () => {
     test('collapsed and empty nav bar', () => {
-        const component = renderer.create(
+        const {asFragment} = render(
             <PrimaryNavGroup isDisplayedWhenCollapsed target="none"/>
         );
 
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    test('expanded and empty nav bar', () => {
-        const component = renderer.create(
-            <PrimaryNavGroup target="none" isDisplayedWhenCollapsed={false}/>
-        );
-
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    test('expanded and not empty nav bar', () => {
-        registry.add('primary-nav-item', 'test1', {
-            targets: ['target1'],
-            render: () => <span>mock_content</span>
-        });
-
-        const component = renderer.create(
-            <PrimaryNavGroup target="target1" isDisplayedWhenCollapsed={false}/>
-        );
-
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    test('collapsed and not empty nav bar', () => {
-        registry.add('primary-nav-item', 'test2', {
-            targets: ['target2'],
-            render: () => <span>mock_content</span>
-        });
-
-        const component = renderer.create(
-            <PrimaryNavGroup isDisplayedWhenCollapsed target="target2"/>
-        );
-
-        let tree = component.toJSON();
-        expect(tree).toMatchSnapshot();
+        expect(asFragment()).toMatchSnapshot();
     });
 });
