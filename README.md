@@ -19,11 +19,15 @@
 <!--
     A short technical description (not more than one paragraph) about the project, eventually with tech/tools/framework used.
 -->
-<p align="center">This new navigation was designed to rethink the way our users navigate within Jahia. Two levels of navigation are available: Level 1 to navigate at a platform level, between apps and platform features, Level 2 to navigate within one of the app (jContent, jExperience). The navigation has been built to be extensible, adding elements to it by deploying modules. </p>
+This new navigation was designed to rethink the way our users navigate within Jahia. Two levels of navigation are available: Level 1 to navigate at a platform level, between apps and platform features, Level 2 to navigate within one of the app (jContent, jExperience). The navigation has been built to be extensible, adding elements to it by deploying modules.
 
 <p align="center">
   <a href="https://www.jahia.com" target="_blank"><img alt="Navigation" title="Jahia Navigation menu" src="./img/jahia-navigation.png" height="640" /></a>
 </p>
+
+## Open-Source
+
+This is an Open-Source module, you can find more details about Open-Source @ Jahia [in this repository](https://github.com/Jahia/open-source).
 
 <!--
     Open Source badges, see https://shields.io/
