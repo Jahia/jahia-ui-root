@@ -22,6 +22,7 @@ module.exports = (env, argv) => {
         output: {
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
             filename: 'jahiaUiRoot.bundle.js',
+            chunkFilename: '[name].jahiaUiRoot.[chunkhash:6].js',
             jsonpFunction: 'jahiaUiRootJsonp'
         },
         resolve: {
