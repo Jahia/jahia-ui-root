@@ -32,15 +32,22 @@ const usePermissionFilter = (navItems, site, language) => {
         return {requiredPermission: reqPermission, requiredPaths: reqPaths};
     }, [navItems, site]);
 
-    const permissions = useNodeInfo({paths: requiredPaths, language: language},
+    const {loading, nodes, error} = useNodeInfo(
+        {paths: requiredPaths, language: language},
         {getPermissions: requiredPermission});
 
-    if (permissions.loading === true || permissions.nodes === null) {
+    if (error) {
+        console.error('An error occur while getting permissions', error);
+        return null;
+    }
+
+    if (loading || !nodes) {
+        // Wait for the query to be done.
         return [];
     }
 
     return navItems.filter(navItem => navItem.requiredPermission === undefined ||
-        permissions.nodes.find(node => {
+        nodes.find(node => {
             if (navItem.requiredPermissionPath !== undefined) {
                 return node.path === navItem.requiredPermissionPath;
             }

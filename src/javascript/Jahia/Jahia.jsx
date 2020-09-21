@@ -28,8 +28,18 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         requiredPaths.push(`/sites/${current.site}`);
     }
 
-    const permissions = useNodeInfo({paths: requiredPaths, language: current.language}, {getPermissions: requiredPermission});
-    if (permissions.loading === true || permissions.nodes === null) {
+    const {loading, nodes, error} = useNodeInfo({
+        paths: requiredPaths,
+        language: current.language
+    }, {getPermissions: requiredPermission});
+
+    if (error) {
+        console.error('Jahia - An error occur while getting permissions', error);
+        return null;
+    }
+
+    if (loading || !nodes) {
+        // Wait for the query to be done.
         return null;
     }
 
@@ -63,7 +73,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                 content={
                     <Switch>
                         {routes.filter(route => route.requiredPermission === undefined ||
-                            permissions.nodes.find(node => {
+                            nodes.find(node => {
                                 if (route.requiredPermissionPath !== undefined) {
                                     return node.path === route.requiredPermissionPath;
                                 }
