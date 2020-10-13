@@ -37,8 +37,8 @@ const usePermissionFilter = (navItems, site, language) => {
         {getPermissions: requiredPermission});
 
     if (error) {
-        console.error('An error occur while getting permissions', error);
-        return null;
+        console.error('An error occur while getting permissions ' + requiredPermission + ' for nodes ' + requiredPaths, error);
+        return [];
     }
 
     if (loading || !nodes) {
