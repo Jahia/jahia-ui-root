@@ -10,6 +10,11 @@ import {createBrowserHistory} from 'history';
 export const jahiaApps = (registry, jahiaCtx) => {
     // Connected router
     const history = createBrowserHistory({basename: jahiaCtx.urlbase});
+
+    if (window.jahia) {
+        window.jahia.routerHistory = history;
+    }
+
     registry.add('app', 'router', {
         targets: ['root:2'],
         render: next => <ConnectedRouter history={history}>{next}</ConnectedRouter>
