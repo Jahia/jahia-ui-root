@@ -85,31 +85,7 @@ module.exports = (env, argv) => {
                     '@jahia/app-shell': 'appShellRemote'
                 },
                 shared: [
-                    'react',
-                    'react-dom',
-                    'react-router',
-                    'react-router-dom',
-                    'react-i18next',
-                    'i18next',
-                    'i18next-xhr-backend',
-                    'graphql-tag',
-                    'react-apollo',
-                    'react-redux',
-                    'redux',
-                    'rxjs',
-                    'whatwg-fetch',
-                    'dayjs',
-
-                    // JAHIA PACKAGES
-                    '@jahia/ui-extender',
-                    '@jahia/moonstone',
-                    '@jahia/moonstone-alpha',
-                    '@jahia/data-helper',
-
-                    // DEPRECATED JAHIA PACKAGES
-                    '@jahia/design-system-kit',
-                    '@jahia/react-material',
-                    '@jahia/icons'
+                    ...Object.keys(deps)
                 ]
             }),
             new CleanWebpackPlugin({
