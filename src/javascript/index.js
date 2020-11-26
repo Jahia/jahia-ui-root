@@ -1,14 +1,7 @@
-import {registry} from '@jahia/ui-extender';
+// Used only if jahia-ui-root is the host, experimental
+import("@jahia/app-shell/bootstrap").then(res => {
+    console.log(res);
+    window.jahia = res;
+    res.startAppShell(window.appShell.remotes, window.appShell.targetId);
+})
 
-// eslint-disable-next-line no-undef,camelcase
-__webpack_public_path__ = window.contextJsParameters.contextPath + '/modules/jahia-ui-root/javascript/apps/';
-
-registry.add('callback', 'jahiaUiRoot', {
-    targets: ['jahiaApp-init:80'],
-    callback: () => {
-        return Promise.all([
-            import('./JahiaUiRoot.register'),
-            window.jahia.i18n.loadNamespaces('jahia-ui-root')
-        ]);
-    }
-});
