@@ -79,7 +79,7 @@ module.exports = (env, argv) => {
                 library: { type: "assign", name: "appShell.remotes.jahiaUi" },
                 filename: "remoteEntry.js",
                 exposes: {
-                    './init': './src/javascript/JahiaUiRoot.register'
+                    './init': './src/javascript/init'
                 },
                 remotes: {
                     '@jahia/app-shell': 'appShellRemote'

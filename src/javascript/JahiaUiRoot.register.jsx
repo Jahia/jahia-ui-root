@@ -4,13 +4,8 @@ import {jahiaRedux} from './JahiaUiRoot.redux.register';
 import {jahiaNav} from './JahiaUiRoot.nav.register';
 import {jahiaRoutes} from './JahiaUiRoot.routes.register';
 
-export default {
-    priority: 80,
-    callback: () => {
-        jahiaApps(registry, window.contextJsParameters);
-        jahiaRedux(registry, window.contextJsParameters);
-        jahiaNav(registry);
-        jahiaRoutes(registry);
-        console.info('%c jahiaUiRoot is activated', 'color: #3c8cba');
-    }
-}
+jahiaApps(registry, window.contextJsParameters);
+jahiaRedux(registry, window.contextJsParameters);
+jahiaNav(registry);
+jahiaRoutes(registry);
+console.info('%c jahiaUiRoot is activated', 'color: #3c8cba');
