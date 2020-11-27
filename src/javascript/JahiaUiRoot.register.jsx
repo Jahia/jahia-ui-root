@@ -4,7 +4,7 @@ import {jahiaRedux} from './JahiaUiRoot.redux.register';
 import {jahiaNav} from './JahiaUiRoot.nav.register';
 import {jahiaRoutes} from './JahiaUiRoot.routes.register';
 
-export default function() {
+export default function () {
     jahiaApps(registry, window.contextJsParameters);
     jahiaRedux(registry, window.contextJsParameters);
     jahiaNav(registry);
