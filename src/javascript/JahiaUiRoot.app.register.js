@@ -6,6 +6,7 @@ import {ComponentRendererProvider} from '@jahia/ui-extender';
 import Jahia from './Jahia';
 import PrimaryNavGroup from './Jahia/PrimaryNavGroup';
 import {createBrowserHistory} from 'history';
+import {useTranslation} from "react-i18next";
 
 export const jahiaApps = (registry, jahiaCtx) => {
     // Connected router

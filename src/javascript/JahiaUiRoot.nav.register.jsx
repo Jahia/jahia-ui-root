@@ -7,7 +7,7 @@ import {transformLink} from './links.utils';
 
 // TODO separate into different folders
 export const DocumentationGroup = () => {
-    const {t} = useTranslation();
+    const {t} = useTranslation('jahia-ui-root');
     const {siteKey, displayLanguage} = useSelector(state => ({displayLanguage: state.uilang, siteKey: state.site}));
     const {siteInfo} = useSiteInfo({siteKey, displayLanguage});
 

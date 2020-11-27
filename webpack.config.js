@@ -84,9 +84,9 @@ module.exports = (env, argv) => {
                 remotes: {
                     '@jahia/app-shell': 'appShellRemote'
                 },
-                shared: [
-                    ...Object.keys(deps)
-                ]
+                shared: {
+                    ...deps
+                }
             }),
             new CleanWebpackPlugin({
               cleanOnceBeforeBuildPatterns: [`${path.resolve(__dirname, 'src/main/resources/javascript/apps/')}/**/*`],
