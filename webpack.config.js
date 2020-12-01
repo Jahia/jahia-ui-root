@@ -7,6 +7,7 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
 const deps = require("./package.json").dependencies;
+const notImported = ['@jahia/moonstone'];
 
 module.exports = (env, argv) => {
     let config = {
@@ -85,7 +86,14 @@ module.exports = (env, argv) => {
                     '@jahia/app-shell': 'appShellRemote'
                 },
                 shared: {
-                    ...deps
+                    ...deps,
+                    ...notImported.reduce((acc, item) => ({
+                        ...acc,
+                        [item]: {
+                            import: false,
+                            requiredVersion: deps[item]
+                        }
+                    }), {})
                 }
             }),
             new CleanWebpackPlugin({
