@@ -3,14 +3,14 @@
 exports[`primary nav group collapsed and empty nav bar 1`] = `
 Array [
   <li
-    className="Zbf5IjDJoFOYgLMhuYJX3"
+    className="moonstone-primaryNavItemsGroup"
   >
     <hr
-      className="AzU6OD_KpO59W4OjMaKrt _1nz23RxJRG8lzjw4UEkam1 _3ehD-Vp1xzL3c4pv4NXQRU _1c9yGr-7IZ-IwQq0y_q_IK"
+      className="moonstone-separator moonstone-separator_horizontal moonstone-size_large moonstone-spacing_small"
     />
   </li>,
   <li
-    className="Zbf5IjDJoFOYgLMhuYJX3"
+    className="moonstone-primaryNavItemsGroup"
   >
     <ul />
   </li>,
@@ -20,20 +20,16 @@ Array [
 exports[`primary nav group collapsed and not empty nav bar 1`] = `
 Array [
   <li
-    className="Zbf5IjDJoFOYgLMhuYJX3"
+    className="moonstone-primaryNavItemsGroup"
   >
     <hr
-      className="AzU6OD_KpO59W4OjMaKrt _1nz23RxJRG8lzjw4UEkam1 _3ehD-Vp1xzL3c4pv4NXQRU _1c9yGr-7IZ-IwQq0y_q_IK"
+      className="moonstone-separator moonstone-separator_horizontal moonstone-size_large moonstone-spacing_small"
     />
   </li>,
   <li
-    className="Zbf5IjDJoFOYgLMhuYJX3"
+    className="moonstone-primaryNavItemsGroup"
   >
-    <ul>
-      <span>
-        mock_content
-      </span>
-    </ul>
+    <ul />
   </li>,
 ]
 `;
