@@ -5,7 +5,7 @@ import styles from './LicenseInvalid.scss';
 import JahiaLogo from '../JahiaLogo';
 
 export const LicenseInvalid = () => {
-    const {t} = useTranslation();
+    const {t} = useTranslation('jahia-ui-root');
     return (
         <div className={styles.root}>
             <JahiaLogo height="6rem" width="24rem"/>

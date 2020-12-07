@@ -4,15 +4,10 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
-// Get manifest
-const normalizedPath = require('path').join(__dirname, './target/dependency');
-let manifest = '';
-
-require('fs').readdirSync(normalizedPath).forEach(function (file) {
-    manifest = './target/dependency/' + file;
-    console.log('Jahia UI Root uses manifest: ' + manifest);
-});
+const deps = require("./package.json").dependencies;
+const notImported = ['@jahia/moonstone'];
 
 module.exports = (env, argv) => {
     let config = {
@@ -22,8 +17,7 @@ module.exports = (env, argv) => {
         output: {
             path: path.resolve(__dirname, 'src/main/resources/javascript/apps/'),
             filename: 'jahiaUiRoot.bundle.js',
-            chunkFilename: '[name].jahiaUiRoot.[chunkhash:6].js',
-            jsonpFunction: 'jahiaUiRootJsonp'
+            chunkFilename: '[name].jahiaUiRoot.[chunkhash:6].js'
         },
         resolve: {
             mainFields: ['module', 'main'],
@@ -32,17 +26,26 @@ module.exports = (env, argv) => {
         module: {
             rules: [
                 {
+                    test: /\.m?js$/,
+                    type: 'javascript/auto'
+                },
+                {
                     test: /\.jsx?$/,
                     include: [path.join(__dirname, 'src')],
-                    loader: 'babel-loader',
-                    query: {
-                        presets: [
-                            ['@babel/preset-env', {modules: false, targets: {chrome: '60', edge: '44', firefox: '54', safari: '12'}}],
-                            '@babel/preset-react'
-                        ],
-                        plugins: [
-                            '@babel/plugin-syntax-dynamic-import'
-                        ]
+                    use: {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                ['@babel/preset-env', {
+                                    modules: false,
+                                    targets: {chrome: '60', edge: '44', firefox: '54', safari: '12'}
+                                }],
+                                '@babel/preset-react'
+                            ],
+                            plugins: [
+                                '@babel/plugin-syntax-dynamic-import'
+                            ]
+                        }
                     }
                 },
                 {
@@ -72,8 +75,26 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new webpack.DllReferencePlugin({
-                manifest: require(manifest)
+            new ModuleFederationPlugin({
+                name: "jahiaUi",
+                library: { type: "assign", name: "appShell.remotes.jahiaUi" },
+                filename: "remoteEntry.js",
+                exposes: {
+                    './init': './src/javascript/init'
+                },
+                remotes: {
+                    '@jahia/app-shell': 'appShellRemote'
+                },
+                shared: {
+                    ...deps,
+                    ...notImported.reduce((acc, item) => ({
+                        ...acc,
+                        [item]: {
+                            import: false,
+                            requiredVersion: deps[item]
+                        }
+                    }), {})
+                }
             }),
             new CleanWebpackPlugin({
               cleanOnceBeforeBuildPatterns: [`${path.resolve(__dirname, 'src/main/resources/javascript/apps/')}/**/*`],

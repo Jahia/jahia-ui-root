@@ -57,7 +57,7 @@ const usePermissionFilter = (navItems, site, language) => {
 };
 
 export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
-    const {t} = useTranslation();
+    const {t} = useTranslation('jahia-ui-root');
     const history = useHistory();
     const current = useSelector(state => ({language: state.language, site: state.site}));
     const navItems = registry.find({type: 'primary-nav-item', target});
