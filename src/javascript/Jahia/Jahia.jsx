@@ -64,6 +64,22 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         );
     }
 
+    const filteredRoutes = routes.filter(route => {
+        if (!route.requiredPermission) {
+            return true;
+        }
+
+        const permissionNode = nodes.find(node => {
+            if (route.requiredPermissionPath !== undefined) {
+                return node.path === route.requiredPermissionPath;
+            }
+
+            return node.path === `/sites/${current.site}`;
+        });
+
+        return permissionNode && permissionNode[route.requiredPermission];
+    });
+
     return (
         <>
             <GlobalStyle/>
@@ -72,16 +88,8 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                 navigation={primaryNav}
                 content={
                     <Switch>
-                        {routes.filter(route => route.requiredPermission === undefined ||
-                            nodes.find(node => {
-                                if (route.requiredPermissionPath !== undefined) {
-                                    return node.path === route.requiredPermissionPath;
-                                }
-
-                                return node.path === `/sites/${current.site}`;
-                            })[route.requiredPermission]).map(r =>
-                                <Route key={r.key} path={r.path} render={r.render}/>
-                        )}
+                        {filteredRoutes
+                            .map(r => <Route key={r.key} path={r.path} render={r.render}/>)}
                     </Switch>
                 }
             />

@@ -46,14 +46,21 @@ const usePermissionFilter = (navItems, site, language) => {
         return [];
     }
 
-    return navItems.filter(navItem => navItem.requiredPermission === undefined ||
-        nodes.find(node => {
+    return navItems.filter(navItem => {
+        if (!navItem.requiredPermission) {
+            return true;
+        }
+
+        const permissionNode = nodes.find(node => {
             if (navItem.requiredPermissionPath !== undefined) {
                 return node.path === navItem.requiredPermissionPath;
             }
 
             return node.path === '/sites/' + site;
-        })[navItem.requiredPermission]);
+        });
+
+        return permissionNode && permissionNode[navItem.requiredPermission];
+    });
 };
 
 export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
