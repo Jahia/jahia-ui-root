@@ -1,13 +1,10 @@
 const path = require('path');
-const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-
-const deps = require("./package.json").dependencies;
-const notImported = ['@jahia/moonstone'];
+const shared = require("./webpack.shared")
 
 module.exports = (env, argv) => {
     let config = {
@@ -85,16 +82,7 @@ module.exports = (env, argv) => {
                 remotes: {
                     '@jahia/app-shell': 'appShellRemote'
                 },
-                shared: {
-                    ...deps,
-                    ...notImported.reduce((acc, item) => ({
-                        ...acc,
-                        [item]: {
-                            import: false,
-                            requiredVersion: deps[item]
-                        }
-                    }), {})
-                }
+                shared
             }),
             new CleanWebpackPlugin({
               cleanOnceBeforeBuildPatterns: [`${path.resolve(__dirname, 'src/main/resources/javascript/apps/')}/**/*`],
