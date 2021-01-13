@@ -180,6 +180,10 @@ workflows:
           requires:
             - initialize
       - publish:
-          unless: <<parameters.is_pull_request>>
+          context: QA_ENVIRONMENT
           requires:
             - build
+          filters:
+            branches:
+              only:
+                - master
