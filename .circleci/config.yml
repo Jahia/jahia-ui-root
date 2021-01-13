@@ -118,7 +118,18 @@ jobs:
             - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: mvn -s .circleci/.circleci.settings.xml clean install
+      - when:
+          condition: <<parameters.is_pull_request>>
+          steps:
+            - run:
+                name: mvn clean install
+                command: mvn -s .circleci/.circleci.settings.xml clean install
+      - unless:
+          condition: <<parameters.is_pull_request>>
+          steps:
+            - run:
+                name: mvn clean deploy
+                command: mvn -s .circleci/.circleci.settings.xml clean deploy
       # Built module is stored in: /home/circleci/source/repo/repo/api/target/augmented-search-1.0.1-SNAPSHOT.jar
       - save_cache:
           paths:
