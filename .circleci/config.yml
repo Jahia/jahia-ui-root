@@ -133,6 +133,21 @@ jobs:
           path: /tmp/artifacts/
       - *persist-workspace
 
+  # This job publish the artifact to nexus by calling the deploy command
+  # It is only executed when merging into master (after successful PR execution)
+  publish:
+    <<: *workdir
+    docker:
+      - image: cimg/openjdk:8.0.275
+    steps:
+      - *attach-workspace
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: mvn -s .circleci/.circleci.settings.xml clean install deploy
+
   # Run unit tests
   # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
   unit_tests:
@@ -164,3 +179,13 @@ workflows:
       - build:
           requires:
             - initialize
+      - publish:
+          context: QA_ENVIRONMENT
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - /[0-9]_x/
+                - /[0-9]_[0-9]_x/
