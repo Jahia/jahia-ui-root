@@ -187,3 +187,5 @@ workflows:
             branches:
               only:
                 - master
+                - /[0-9]_x/
+                - /[0-9]_[0-9]_x/
