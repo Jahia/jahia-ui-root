@@ -118,18 +118,7 @@ jobs:
             - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - when:
-          condition: <<parameters.is_pull_request>>
-          steps:
-            - run:
-                name: mvn clean install
-                command: mvn -s .circleci/.circleci.settings.xml clean install
-      - unless:
-          condition: <<parameters.is_pull_request>>
-          steps:
-            - run:
-                name: mvn clean deploy
-                command: mvn -s .circleci/.circleci.settings.xml clean deploy
+      - run: mvn -s .circleci/.circleci.settings.xml clean install
       # Built module is stored in: /home/circleci/source/repo/repo/api/target/augmented-search-1.0.1-SNAPSHOT.jar
       - save_cache:
           paths:
@@ -143,6 +132,21 @@ jobs:
       - store_artifacts:
           path: /tmp/artifacts/
       - *persist-workspace
+
+  # This job publish the artifact to nexus by calling the deploy command
+  # It is only executed when merging into master (after successful PR execution)
+  publish:
+    <<: *workdir
+    docker:
+      - image: cimg/openjdk:8.0.275
+    steps:
+      - *attach-workspace
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "pom.xml" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: mvn -s .circleci/.circleci.settings.xml clean install deploy
 
   # Run unit tests
   # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
@@ -175,3 +179,7 @@ workflows:
       - build:
           requires:
             - initialize
+      - publish:
+          unless: <<parameters.is_pull_request>>
+          requires:
+            - build
