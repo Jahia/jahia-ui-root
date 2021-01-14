@@ -7,7 +7,7 @@ jest.mock('react', () => {
     });
 });
 
-jest.mock('../IframeRenderer', () => {});
+jest.mock('../components/IframeRenderer', () => {});
 
 describe('useAdminRouteTreeStructure', () => {
     beforeEach(() => {
