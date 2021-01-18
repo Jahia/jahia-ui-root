@@ -146,7 +146,11 @@ jobs:
             - v1-dependencies-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-      - run: mvn -s .circleci/.circleci.settings.xml clean install deploy
+      - run: 
+          name: Deploy the artifact to Nexus
+          command: |
+            mvn -s .circleci/.circleci.settings.xml clean install deploy
+          no_output_timeout: 30m
 
   # Run unit tests
   # This action should run in parrallel, failed linting should trigger an error but should not stop execution of the tests
