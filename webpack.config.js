@@ -46,10 +46,6 @@ module.exports = (env, argv) => {
                     }
                 },
                 {
-                    test: /\.css$/,
-                    use: ['style-loader', 'css-loader']
-                },
-                {
                     test: /\.s[ac]ss$/i,
                     use: [
                         'style-loader',
@@ -72,6 +68,24 @@ module.exports = (env, argv) => {
                             }
                         }
                     ]
+                },
+                {
+                    test: /\.css$/i,
+                    sideEffects: true,
+                    use: [
+                        'style-loader',
+                        'css-loader'
+                    ]
+                },
+                {
+                    test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+                    use: [{
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
+                        }
+                    }]
                 }
             ]
         },

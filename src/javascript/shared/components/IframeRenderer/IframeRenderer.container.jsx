@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {parseUrl} from './IframeRenderer.utils';
 import {IframeRenderer} from './IframeRenderer';
-import {Progress} from '@jahia/moonstone-alpha';
+import {Loader} from '@jahia/moonstone';
 
 export const IframeRendererContainer = props => {
     const {siteKey, uiLang, language} = useSelector(state => ({
@@ -25,9 +25,11 @@ export const IframeRendererContainer = props => {
 
     return (
         <>
-            <div style={{flex: 1, display: 'flex', position: 'relative', width: '100%', height: '100%'}}>
-                {loading && <Progress/>}
-            </div>
+            {loading && (
+                <div className="flexCol_center alignCenter" style={{width: '100%', height: '100%'}}>
+                    <Loader size="big"/>
+                </div>
+            )}
             <IframeRenderer width="100%"
                             height="100%"
                             onLoad={() => {

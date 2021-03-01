@@ -52,7 +52,6 @@ const singletonDeps = [
 ];
 
 const notImported = [
-    '@jahia/moonstone'
 ];
 
 module.exports = {
