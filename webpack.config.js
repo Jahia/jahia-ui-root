@@ -68,6 +68,24 @@ module.exports = (env, argv) => {
                             }
                         }
                     ]
+                },
+                {
+                    test: /\.css$/i,
+                    sideEffects: true,
+                    use: [
+                        'style-loader',
+                        'css-loader'
+                    ]
+                },
+                {
+                    test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+                    use: [{
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            outputPath: 'fonts/'
+                        }
+                    }]
                 }
             ]
         },
@@ -77,7 +95,8 @@ module.exports = (env, argv) => {
                 library: { type: "assign", name: "appShell.remotes.jahiaUi" },
                 filename: "remoteEntry.js",
                 exposes: {
-                    './init': './src/javascript/init'
+                    '.': './src/javascript/shared',
+                    './init': './src/javascript/init',
                 },
                 remotes: {
                     '@jahia/app-shell': 'appShellRemote'
