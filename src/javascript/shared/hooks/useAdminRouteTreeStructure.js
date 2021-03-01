@@ -1,6 +1,6 @@
 import {useMemo} from 'react';
 import {registry} from '@jahia/ui-extender';
-import {getIframeRenderer} from '../components';
+import {getIframeRenderer} from '../components/IframeRenderer';
 import {Tree} from './Tree';
 
 export const useAdminRouteTreeStructure = function (target, selected) {
