@@ -10,4 +10,8 @@ export default function () {
     jahiaNav(registry);
     jahiaRoutes(registry);
     console.info('%c jahiaUiRoot is activated', 'color: #3c8cba');
+
+    return import('./shared').then(m => {
+        window.jahia.ui = m;
+    });
 }

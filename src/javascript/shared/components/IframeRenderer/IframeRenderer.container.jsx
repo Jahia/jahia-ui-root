@@ -5,7 +5,7 @@ import {parseUrl} from './IframeRenderer.utils';
 import {IframeRenderer} from './IframeRenderer';
 import {Loader} from '@jahia/moonstone';
 
-export const IframeRendererContainer = props => {
+export const IframeRendererContainer = ({url, onLoad, ...props}) => {
     const {siteKey, uiLang, language} = useSelector(state => ({
         siteKey: state.site,
         uiLang: state.uilang,
@@ -24,22 +24,27 @@ export const IframeRendererContainer = props => {
     });
 
     return (
-        <>
+        <div className="flexCol_center alignCenter flexFluid" style={{position: 'relative'}}>
             {loading && (
-                <div className="flexCol_center alignCenter" style={{width: '100%', height: '100%'}}>
+                <div className="flexCol_center alignCenter" style={{width: '100%', height: '100%', position: 'absolute'}}>
+                    <div style={{width: '100%', height: '100%', position: 'absolute', backgroundColor: 'white', opacity: 0.8}}/>
                     <Loader size="big"/>
                 </div>
             )}
             <IframeRenderer width="100%"
                             height="100%"
-                            onLoad={() => {
+                            {...props}
+                            url={parseUrl(url, siteKey, language, uiLang)}
+                            onLoad={e => {
                                 if (loading) {
                                     setLoading(false);
                                 }
-                            }}
-                            {...props}
-                            url={parseUrl(props.url, siteKey, language, uiLang)}/>
-        </>
+
+                                if (onLoad) {
+                                    onLoad(e);
+                                }
+                            }}/>
+        </div>
     );
 };
 
@@ -48,5 +53,6 @@ export const getIframeRendererContainer = url => {
 };
 
 IframeRendererContainer.propTypes = {
-    url: PropTypes.string.isRequired
+    url: PropTypes.string.isRequired,
+    onLoad: PropTypes.func
 };
