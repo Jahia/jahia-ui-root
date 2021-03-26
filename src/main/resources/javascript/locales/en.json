@@ -13,5 +13,9 @@
     "title": "Session expired",
     "text": "You have been disconnected.",
     "text2": "Log in again in a different tab like you usually do, to avoid losing unsaved changes, and come back here to resume your work. This message will then automatically disappear. If you have nothing to lose, simply refresh this page."
+  },
+  "error": {
+    "label": "Something wrong happened",
+    "retry": "Retry"
   }
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Route, Switch} from 'react-router';
-import {GlobalStyle, LayoutApp, PrimaryNav} from '@jahia/moonstone';
+import {GlobalStyle, LayoutApp, PrimaryNav, Star} from '@jahia/moonstone';
 import JahiaLogo from '../JahiaLogo';
-import {Star} from '@jahia/moonstone';
 import {useNodeInfo} from '@jahia/data-helper';
 import {useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
+import {ErrorBoundary, LoaderSuspense} from '../shared';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}));
@@ -87,10 +87,18 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
             <LayoutApp
                 navigation={primaryNav}
                 content={
-                    <Switch>
-                        {filteredRoutes
-                            .map(r => <Route key={r.key} path={r.path} render={r.render}/>)}
-                    </Switch>
+                    <LoaderSuspense>
+                        <Switch>
+                            {filteredRoutes.map(r => (
+                                <Route key={r.key}
+                                       path={r.path}
+                                       render={p => (
+                                           <ErrorBoundary>{r.render(p)}</ErrorBoundary>
+                                       )}
+                                />
+                            ))}
+                        </Switch>
+                    </LoaderSuspense>
                 }
             />
         </>

@@ -1,4 +1,4 @@
-import React, {Suspense, useMemo} from 'react';
+import React, {useMemo} from 'react';
 import PropTypes from 'prop-types';
 import {PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
 import {registry} from '@jahia/ui-extender';
@@ -71,24 +71,22 @@ export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
     const filteredNavItems = usePermissionFilter(navItems, current.site, current.language);
 
     return (
-        <Suspense fallback="loading...">
-            <PrimaryNavItemsGroup isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}>
-                {filteredNavItems.map(item => {
-                    if (item.render) {
-                        return React.cloneElement(item.render(), {key: item.key});
-                    }
+        <PrimaryNavItemsGroup isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}>
+            {filteredNavItems.map(item => {
+                if (item.render) {
+                    return React.cloneElement(item.render(), {key: item.key});
+                }
 
-                    return (
-                        <PrimaryNavItem key={item.key}
-                                        role={`${item.key}-menu-item`}
-                                        isSelected={history.location.pathname.startsWith(item.path)}
-                                        icon={item.icon}
-                                        label={t(item.label)}
-                                        onClick={() => history.push(item.path)}/>
-                    );
-                })}
-            </PrimaryNavItemsGroup>
-        </Suspense>
+                return (
+                    <PrimaryNavItem key={item.key}
+                                    role={`${item.key}-menu-item`}
+                                    isSelected={history.location.pathname.startsWith(item.path)}
+                                    icon={item.icon}
+                                    label={t(item.label)}
+                                    onClick={() => history.push(item.path)}/>
+                );
+            })}
+        </PrimaryNavItemsGroup>
     );
 };
 
