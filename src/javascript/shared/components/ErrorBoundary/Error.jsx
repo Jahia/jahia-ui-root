@@ -11,7 +11,7 @@ export const Error = ({error, reset}) => {
         <div className={styles.pageError}>
             <div className={clsx(styles['pageError-wrapper'], 'flexCol', 'alignCenter')}>
                 <Typography component="h1" variant="title" weight="bold" className={styles['pageError-title']}>{t('error.label')}</Typography>
-                <Typography variant="subtitle" className={styles['pageError-description']}>An error occured, please report this issue to your administrator.</Typography>
+                <Typography variant="subtitle" className={styles['pageError-description']}>{t('error.subtitle')}</Typography>
                 <Button icon={<Reload/>} size="big" label={t('error.retry')} color="accent" className={styles['pageError-button']} onClick={reset}/>
                 <pre className={styles['pageError-log']}>
                     {error.stack}

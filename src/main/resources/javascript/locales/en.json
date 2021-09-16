@@ -16,6 +16,7 @@
   },
   "error": {
     "label": "Something wrong happened",
+    "subtitle": "An error occured, please report this issue to your administrator.",
     "retry": "Retry"
   }
 }
