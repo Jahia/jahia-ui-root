@@ -13,5 +13,10 @@
     "title": "Session abgelaufen",
     "text": "Sie sind abgemeldet.",
     "text2": "Melden Sie sich wie gewöhnlich erneut auf einer anderen Seite an, um die ungespeicherte Änderungen nicht zu verlieren. Kommen Sie dann wieder auf diese Seite zurück, und setzten Sie Ihre Arbeit fort. Diese Meldung verschwindet dann automatisch. Wenn Sie nichts zu verlieren haben, aktualisieren Sie einfach diese Seite."
+  },
+  "error": {
+    "label": "Hier ist etwas schief gegangen",
+    "subtitle": "Es ist ein Fehler aufgetreten, bitte melden Sie das Problem Ihrem Administrator.\n",
+    "retry": "Wiederholen"
   }
 }
