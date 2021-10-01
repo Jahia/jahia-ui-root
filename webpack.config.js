@@ -1,6 +1,6 @@
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
@@ -107,7 +107,7 @@ module.exports = (env, argv) => {
               cleanOnceBeforeBuildPatterns: [`${path.resolve(__dirname, 'src/main/resources/javascript/apps/')}/**/*`],
               verbose: false
             }),
-            new CopyWebpackPlugin([{from: './package.json', to: ''}]),
+            new CopyWebpackPlugin({patterns: [{from: './package.json', to: ''}]}),
             new CaseSensitivePathsPlugin()
         ],
         mode: 'development'
