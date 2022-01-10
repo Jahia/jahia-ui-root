@@ -37,23 +37,16 @@ export const jahiaRedux = (registry, jahiaCtx) => {
     registry.add('redux-action', 'setUiLanguage', {action: setUiLanguage});
 
     let uiRootReduxStoreListener = store => {
-        let reduxStoreCurrentValue;
         let updateGWTParameters = currentValue => {
             let authoringApi = window.authoringApi;
             if (authoringApi && authoringApi.switchSite && authoringApi.switchLanguage) {
-                let previousValue = reduxStoreCurrentValue;
-                reduxStoreCurrentValue = {site: currentValue.site, language: currentValue.language};
-
                 if (clearUpdateGWTParametersInterval) {
                     clearInterval(clearUpdateGWTParametersInterval);
                     clearUpdateGWTParametersInterval = undefined;
                 }
 
-                if (previousValue === undefined || currentValue.site !== previousValue.site) {
-                    authoringApi.switchSite(currentValue.site, currentValue.language);
-                } else if (currentValue.language !== previousValue.language) {
-                    authoringApi.switchLanguage(currentValue.language);
-                }
+                authoringApi.switchLanguage(currentValue.language);
+                authoringApi.switchSite(currentValue.site, currentValue.language);
             }
         };
 
