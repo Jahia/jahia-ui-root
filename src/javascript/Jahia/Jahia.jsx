@@ -6,7 +6,7 @@ import JahiaLogo from '../JahiaLogo';
 import {useNodeInfo} from '@jahia/data-helper';
 import {useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
-import {ErrorBoundary, LoaderSuspense} from '../shared';
+import {Error404, ErrorBoundary, LoaderSuspense} from '../shared';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}));
@@ -97,6 +97,8 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                                        )}
                                 />
                             ))}
+
+                            <Route path="*" component={Error404}/>
                         </Switch>
                     </LoaderSuspense>
                 }

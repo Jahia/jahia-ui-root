@@ -15,8 +15,15 @@
     "text2": "Log in again in a different tab like you usually do, to avoid losing unsaved changes, and come back here to resume your work. This message will then automatically disappear. If you have nothing to lose, simply refresh this page."
   },
   "error": {
-    "label": "Something wrong happened",
-    "subtitle": "An error occured, please report this issue to your administrator.",
-    "retry": "Retry"
+    "error500": {
+      "label": "Something wrong happened",
+      "subtitle": "An error occured, please report this issue to your administrator.",
+      "retry": "Retry"
+    },
+    "error404": {
+      "label": "Page not found",
+      "subtitle1": "Oops, we can't find what you're looking for.",
+      "subtitle2": "This may be because it doesn't exist or it has recently been deleted, moved or modified."
+    }
   }
 }

@@ -15,8 +15,15 @@
     "text2": "Connectez vous dans un nouvel onglet comme vous le faites habituellement, et ce afin d'éviter de perdre des changements non sauvegardés. Revenez ici pour reprendre votre travail. Ce message disparaitra alors automatiquement. Si vous n'avez rien à perdre, rafraichissez simplement cette page."
   },
   "error": {
-    "label": "Quelque chose s'est mal passé",
-    "subtitle": "Une erreur est survenue, veuillez reporter ce problème à votre administrateur.",
-    "retry": "Réessayer"
+    "error500": {
+      "label": "Quelque chose s'est mal passé",
+      "subtitle": "Une erreur est survenue, veuillez reporter ce problème à votre administrateur.",
+      "retry": "Réessayer"
+    },
+    "error404": {
+      "label": "Page non trouvée",
+      "subtitle1": "Oups, nous ne trouvons pas ce que vous cherchez. ",
+      "subtitle2": "La ressource n'existe pas, ou elle a récemment été supprimée, déplacée ou modifiée."
+    }
   }
 }
