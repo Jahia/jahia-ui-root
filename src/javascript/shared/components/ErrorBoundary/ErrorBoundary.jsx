@@ -33,5 +33,5 @@ ErrorBoundary.defaultProps = {
 
 ErrorBoundary.propTypes = {
     fallback: PropTypes.element,
-    children: PropTypes.element
+    children: PropTypes.node
 };
