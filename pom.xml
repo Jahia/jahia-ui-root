@@ -45,7 +45,7 @@
     </scm>
 
     <properties>
-        <jahia-module-signature>MC0CFQCRd2gbVk+7cOgYCGpXhY1f74Eh3wIUeRadslgBtWQOe/0D4FVW1vfl7uA=</jahia-module-signature>
+        <jahia-module-signature>MC0CFDAD42oBRzQtM14GTxPPRH+aedOnAhUAkw9CPlCoHrvp7suPLAgdmLRfb2Y=</jahia-module-signature>
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
     </properties>
