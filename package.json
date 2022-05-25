@@ -1,5 +1,5 @@
 {
-  "name": "@jahia/zahia-ui-root",
+  "name": "@jahia/jahia-ui-root",
   "version": "0.0.1",
   "husky": {
     "hooks": {
@@ -60,7 +60,8 @@
   },
   "resolutions": {
     "graphql": "15.4.0",
-    "@jahia/data-helper/graphql": "^15.4.0"
+    "@jahia/data-helper/graphql": "^15.4.0",
+    "cheerio": "1.0.0-rc.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.8",
