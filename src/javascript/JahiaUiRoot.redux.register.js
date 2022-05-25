@@ -45,8 +45,10 @@ export const jahiaRedux = (registry, jahiaCtx) => {
                     clearUpdateGWTParametersInterval = undefined;
                 }
 
-                authoringApi.switchLanguage(currentValue.language);
-                authoringApi.switchSite(currentValue.site, currentValue.language);
+                let language = window.overrideLang || currentValue.language;
+
+                authoringApi.switchLanguage(language);
+                authoringApi.switchSite(currentValue.site, language);
             }
         };
 
