@@ -42,8 +42,17 @@
     max-width: 75%;
 }
 
+.pageError-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .pageError-button {
     margin-top: var(--spacing-large);
+    margin-left: var(--spacing-small);
+    margin-right: var(--spacing-small);
 }
 
 .pageError-log {

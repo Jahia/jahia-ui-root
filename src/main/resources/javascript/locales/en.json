@@ -1,5 +1,5 @@
 {
-  "primaryNavigation" : {
+  "primaryNavigation": {
     "documentation": {
       "label": "Documentation",
       "newAtJahia": "New at Jahia.com"
@@ -15,6 +15,7 @@
     "text2": "Log in again in a different tab like you usually do, to avoid losing unsaved changes, and come back here to resume your work. This message will then automatically disappear. If you have nothing to lose, simply refresh this page."
   },
   "error": {
+    "back": "Go back",
     "error500": {
       "label": "Something wrong happened",
       "subtitle": "An error occured, please report this issue to your administrator.",
