@@ -15,6 +15,7 @@
     "text2": "Connectez vous dans un nouvel onglet comme vous le faites habituellement, et ce afin d'éviter de perdre des changements non sauvegardés. Revenez ici pour reprendre votre travail. Ce message disparaitra alors automatiquement. Si vous n'avez rien à perdre, rafraichissez simplement cette page."
   },
   "error": {
+    "back": "Retour",
     "error500": {
       "label": "Quelque chose s'est mal passé",
       "subtitle": "Une erreur est survenue, veuillez reporter ce problème à votre administrateur.",

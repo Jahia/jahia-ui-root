@@ -20,7 +20,11 @@ export class ErrorBoundary extends React.Component {
 
     render() {
         if (this.state.error) {
-            return React.cloneElement(this.props.fallback, {error: this.state.error, reset: () => this.setState({error: null})});
+            return React.cloneElement(this.props.fallback, {
+                error: this.state.error,
+                reset: () => this.setState({error: null}),
+                goBack: this.props.goBack
+            });
         }
 
         return this.props.children;
@@ -28,10 +32,12 @@ export class ErrorBoundary extends React.Component {
 }
 
 ErrorBoundary.defaultProps = {
-    fallback: <Error/>
+    fallback: <Error/>,
+    goBack: () => window.history.back()
 };
 
 ErrorBoundary.propTypes = {
     fallback: PropTypes.element,
-    children: PropTypes.node
+    children: PropTypes.node,
+    goBack: PropTypes.func
 };
