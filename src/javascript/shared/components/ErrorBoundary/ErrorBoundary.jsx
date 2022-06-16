@@ -23,7 +23,10 @@ export class ErrorBoundary extends React.Component {
             return React.cloneElement(this.props.fallback, {
                 error: this.state.error,
                 reset: () => this.setState({error: null}),
-                goBack: this.props.goBack
+                goBack: () => {
+                    this.setState({error: null});
+                    this.props.goBack();
+                }
             });
         }
 
