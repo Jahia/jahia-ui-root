@@ -1,5 +1,5 @@
 import React from 'react';
-import {ArrowLeft, Button, Reload} from '@jahia/moonstone';
+import {Button} from '@jahia/moonstone';
 import PropTypes from 'prop-types';
 import {useTranslation} from 'react-i18next';
 import styles from './Error.scss';
@@ -14,18 +14,16 @@ export const Error = ({error, reset, goBack, ...props}) => {
                      footer={(
                          <>
                              <div className={styles['pageError-buttons']}>
-                                 <Button icon={<Reload/>}
-                                         size="big"
-                                         label={t('error.error500.retry')}
+                                 <Button size="big"
+                                         label={t('error.back')}
                                          color="accent"
                                          className={styles['pageError-button']}
-                                         onClick={reset}/>
-                                 <Button icon={<ArrowLeft/>}
-                                         size="big"
-                                         label={t('error.back')}
+                                         onClick={goBack}/>
+                                 <Button size="big"
+                                         label={t('error.error500.retry')}
                                          color="default"
                                          className={styles['pageError-button']}
-                                         onClick={goBack}/>
+                                         onClick={reset}/>
                              </div>
                              <pre className={styles['pageError-log']}>
                                  {error.stack}
