@@ -68,15 +68,15 @@ jobs:
         with:
           name: jahia-ui-root-artifacts-${{ github.run_number }}
           path: /tmp/artifacts/
-  publish:
-    runs-on: ubuntu-latest
-    needs: build
-    if: ${{ ${{ env.BRANCH_NAME }} == "master" || ${{ env.BRANCH_NAME }} == "/[0-9]_x/" || ${{ env.BRANCH_NAME }} == "/[0-9]_[0-9]_x/" }}
-    steps:
-      - uses: actions/cache@v2
-        with:
-          path: ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-      - name: Deploy the artifact to Nexus
-        shell: bash
-        run: mvn -s .circleci/.circleci.settings.xml clean install deploy
+  # publish:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   if: ${{ ${{ env.BRANCH_NAME }} == "master" || ${{ env.BRANCH_NAME }} == "/[0-9]_x/" || ${{ env.BRANCH_NAME }} == "/[0-9]_[0-9]_x/" }}
+  #   steps:
+  #     - uses: actions/cache@v2
+  #       with:
+  #         path: ~/.m2
+  #         key: v1-dependencies-{{ checksum "pom.xml" }}
+  #     - name: Deploy the artifact to Nexus
+  #       shell: bash
+  #       run: mvn -s .circleci/.circleci.settings.xml clean install deploy
