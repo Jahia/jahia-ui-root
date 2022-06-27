@@ -1,0 +1,82 @@
+name: On Code Change
+
+on: [push]
+
+env:
+  audit_level: "high"
+  javascript_directory: "./"
+
+jobs:
+  initialize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Install dependencies
+        shell: bash
+        run: yarn
+      - uses: actions/cache@v2
+        with:
+          path: ~/.m2/
+          key: v2-npm-{{ checksum "yarn.lock" }}
+      - uses: tj-actions/branch-name@v5.2
+        id: branch-name
+      - name: set branch nale as environment variable
+        shell: bash
+        run: echo "BRANCH_NAME=${{ steps.branch-name.outputs.current_branch }}" >> $GITHUB_ENV
+  lint:
+    runs-on: ubuntu-latest
+    needs: initialize
+    steps:
+      - name: Yarn lint
+        shell: bash
+        run: yarn run lint
+  security:
+    runs-on: ubuntu-latest
+    needs: initialize
+    steps:
+      - name: Install Dependencies
+        shell: bash
+        run: sudo npm install -g audit-ci
+      - name: Run Audit-ci javascript app
+        shell: bash
+        run: |
+          cd ${{ env.javascript_directory }}
+          audit-ci --${{ env.auditci_level }}
+  unit_tests:
+    runs-on: ubuntu-latest
+    needs: initialize
+    steps:
+      - name: Running unit tests with jest
+        shell: bash
+        run: yarn run tests:unit --ci
+  build:
+    runs-on: ubuntu-latest
+    needs: initialize
+    steps:
+      - shell: bash
+        run: mvn -s .circleci/.circleci.settings.xml clean install
+      - uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - name: Prepare artifacts
+        shell: bash
+        run: |
+          mkdir /tmp/artifacts/
+          cp /home/circleci/source/target/*.jar /tmp/artifacts/
+      - uses: actions/upload-artifact@v3
+        with:
+          name: jahia-ui-root-artifacts-${{ github.run_number }}
+          path: /tmp/artifacts/
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    if: "${{ env.BRANCH_NAME }}" == "master" || "${{ env.BRANCH_NAME }}" == "/[0-9]_x/" || "${{ env.BRANCH_NAME }}" == "/[0-9]_[0-9]_x/"
+    steps:
+      - uses: actions/cache@v2
+        with:
+          path: ~/.m2
+          key: v1-dependencies-{{ checksum "pom.xml" }}
+      - name: Deploy the artifact to Nexus
+        shell: bash
+        run: mvn -s .circleci/.circleci.settings.xml clean install deploy
