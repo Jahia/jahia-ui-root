@@ -54,7 +54,7 @@ jobs:
     needs: initialize
     steps:
       - shell: bash
-        run: mvn -s .circleci/.circleci.settings.xml clean install
+        run: mvn -s ../.circleci/.circleci.settings.xml clean install
       - uses: actions/cache@v2
         with:
           path: ~/.m2
