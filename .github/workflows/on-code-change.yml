@@ -49,6 +49,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: download dependencies
+        shell: bash
+        run: yarn install
       - name: Running unit tests with jest
         shell: bash
         run: yarn run tests:unit --ci
