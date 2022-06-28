@@ -6,10 +6,9 @@ name: On merge to master
 on:
   push:
     branches:
-      - TECH-812
-      # - master
-      # - /[0-9]_x/
-      # - /[0-9]_[0-9]_x/
+      - master
+      - /[0-9]_x/
+      - /[0-9]_[0-9]_x/
     tags-ignore:
       - '**'
 
