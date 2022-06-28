@@ -2,10 +2,6 @@ name: On Code Change
 
 on: [push]
 
-env:
-  audit_level: "high"
-  javascript_directory: "./"
-
 jobs:
   update-signature:
     name: Update module signature
