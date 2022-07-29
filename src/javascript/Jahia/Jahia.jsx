@@ -4,12 +4,12 @@ import {Route, Switch} from 'react-router';
 import {GlobalStyle, LayoutApp, PrimaryNav, Star} from '@jahia/moonstone';
 import JahiaLogo from '../JahiaLogo';
 import {useNodeInfo} from '@jahia/data-helper';
-import {useSelector} from 'react-redux';
+import {shallowEqual, useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
 import {Error404, ErrorBoundary, LoaderSuspense} from '../shared';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
-    const current = useSelector(state => ({language: state.language, site: state.site}));
+    const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
     const requiredPermission = ['jcr:read_default'];
     const requiredPaths = [];
     routes.filter(route => route.requiredPermission !== undefined).forEach(route => {

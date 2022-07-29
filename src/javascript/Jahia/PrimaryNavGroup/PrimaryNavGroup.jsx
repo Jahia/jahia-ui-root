@@ -5,7 +5,7 @@ import {registry} from '@jahia/ui-extender';
 import {useTranslation} from 'react-i18next';
 import {useHistory} from 'react-router';
 import {useNodeInfo} from '@jahia/data-helper';
-import {useSelector} from 'react-redux';
+import {shallowEqual, useSelector} from 'react-redux';
 
 const usePermissionFilter = (navItems, site, language) => {
     const {requiredPermission, requiredPaths} = useMemo(() => {
@@ -66,7 +66,7 @@ const usePermissionFilter = (navItems, site, language) => {
 export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
     const {t} = useTranslation('jahia-ui-root');
     const history = useHistory();
-    const current = useSelector(state => ({language: state.language, site: state.site}));
+    const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
     const navItems = registry.find({type: 'primary-nav-item', target});
     const filteredNavItems = usePermissionFilter(navItems, current.site, current.language);
 
