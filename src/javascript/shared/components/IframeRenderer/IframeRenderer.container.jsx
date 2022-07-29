@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useSelector} from 'react-redux';
+import {shallowEqual, useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {parseUrl} from './IframeRenderer.utils';
 import {IframeRenderer} from './IframeRenderer';
@@ -10,7 +10,7 @@ export const IframeRendererContainer = ({url, onLoad, ...props}) => {
         siteKey: state.site,
         uiLang: state.uilang,
         language: state.language
-    }));
+    }), shallowEqual);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
