@@ -1079,6 +1079,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.21.0":
+  version "7.21.0"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.21.0.tgz#5b55c9d394e5fcf304909a8b00c07dc217b56673"
+  integrity sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw==
+  dependencies:
+    regenerator-runtime "^0.13.11"
+
 "@babel/template@^7.16.7", "@babel/template@^7.3.3":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.16.7.tgz#8d126c8701fde4d66b264b3eba3d96f07666d155"
@@ -1182,7 +1189,7 @@
     react-day-picker "^7.4.8"
     webpack-node-externals "^2.5.2"
 
-"@jahia/moonstone@^1.0.0", "@jahia/moonstone@^1.1.0":
+"@jahia/moonstone@^1.0.0":
   version "1.6.2"
   resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-1.6.2.tgz#601029ffd1ef4fbea9edc28227e7a6f7b477cd44"
   integrity sha512-6JVC13z5lxjvW3cJNWsON2GlOc3LPbichrJvFMomjXpxkElXus4+EQm9Lm129LceMIAI94Torz/kdowRh1qSuw==
@@ -1194,6 +1201,17 @@
     prop-types "^15.7.2"
     re-resizable "^6.9.0"
     react-is "^17.0.1"
+    to-px "^1.1.0"
+
+"@jahia/moonstone@^2.5.5":
+  version "2.5.5"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-2.5.5.tgz#46b75a78235835fb5cf0d4a627796d25dbcbab3f"
+  integrity sha512-gXZE8dXStPWXpdOhUFZaCqx0sqhFEvVFfAdLrHp4xVArRP8ZqIshiRiFNqyY8iR3yh5+o7ykETGDPDm6eR89Jw==
+  dependencies:
+    "@babel/runtime" "^7.21.0"
+    clsx "^1.2.1"
+    prop-types "^15.8.1"
+    re-resizable "^6.9.9"
     to-px "^1.1.0"
 
 "@jahia/test-framework@^1.2.1":
@@ -2979,6 +2997,11 @@ clsx@^1.0.4, clsx@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha512-6/bPho624p3S2pMyvP5kKBPXnI3ufHLObBFCfgx+LkeR5lg2XYy2hqZqUf45ypD8COn2bhgGJSUE+l5dhNBieA==
+
+clsx@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-1.2.1.tgz#0ddc4a20a549b59c93a4116bb26f5294ca17dc12"
+  integrity sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==
 
 co@^4.6.0:
   version "4.6.0"
@@ -6347,7 +6370,7 @@ randombytes@^2.1.0:
   dependencies:
     safe-buffer "^5.1.0"
 
-re-resizable@^6.9.0:
+re-resizable@^6.9.0, re-resizable@^6.9.9:
   version "6.9.9"
   resolved "https://registry.yarnpkg.com/re-resizable/-/re-resizable-6.9.9.tgz#99e8b31c67a62115dc9c5394b7e55892265be216"
   integrity sha512-l+MBlKZffv/SicxDySKEEh42hR6m5bAHfNu3Tvxks2c4Ah+ldnWjfnVRwxo/nxF27SsUsxDS0raAzFuJNKABXA==
@@ -6554,6 +6577,11 @@ regenerator-runtime@^0.11.0:
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
   integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
+
+regenerator-runtime@^0.13.11:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz#f6dca3e7ceec20590d07ada785636a90cdca17f9"
+  integrity sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==
 
 regenerator-runtime@^0.13.4:
   version "0.13.9"
