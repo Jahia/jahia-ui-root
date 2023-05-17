@@ -73,13 +73,21 @@ export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
     return (
         <PrimaryNavItemsGroup isDisplayedWhenCollapsed={isDisplayedWhenCollapsed}>
             {filteredNavItems.map(item => {
+                const foundTarget = item.targets.find(t => t.id === target);
+                const props = {
+                    key: item.key,
+                    role: item.key + '-menu-item',
+                    'data-registry-key': item.type + ':' + item.key,
+                    'data-registry-target': foundTarget.id + ':' + foundTarget.priority
+                };
+
                 if (item.render) {
-                    return React.cloneElement(item.render(), {key: item.key});
+                    return React.cloneElement(item.render(), props);
                 }
 
                 return (
                     <PrimaryNavItem key={item.key}
-                                    role={`${item.key}-menu-item`}
+                                    {...props}
                                     isSelected={history.location.pathname.startsWith(item.path)}
                                     icon={item.icon}
                                     label={t(item.label)}
