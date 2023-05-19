@@ -6,7 +6,7 @@ import JahiaLogo from '../JahiaLogo';
 import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
-import {Error404, ErrorBoundary, LoaderSuspense} from '../shared';
+import {Error404, ErrorBoundary, LoaderSuspense, SiteSwitching} from '../shared';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
@@ -29,9 +29,8 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     }
 
     const {loading, nodes, error} = useNodeInfo({
-        paths: requiredPaths,
-        language: current.language
-    }, {getPermissions: requiredPermission});
+        paths: requiredPaths, language: current.language
+    }, {getPermissions: requiredPermission}, {fetchPolicy: 'no-cache', nextFetchPolicy: 'no-cache'});
 
     if (error) {
         console.error('Jahia - An error occur while getting permissions', error);
@@ -80,6 +79,29 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return permissionNode && permissionNode[route.requiredPermission];
     });
 
+    if (!nodes.every(node => {
+        return requiredPaths.find(path => path === node.path) !== undefined;
+    })) {
+        console.error('Jahia - An error occur while getting permissions, GraphQL nodes do not match required paths', nodes, requiredPaths);
+        return (
+            <>
+                <GlobalStyle/>
+                <LoginCheck/>
+                <LayoutApp
+                    navigation={primaryNav}
+                    content={
+                        <LoaderSuspense>
+                            <Switch>
+                                <Route path="*"
+                                       component={SiteSwitching}/>
+                            </Switch>
+                        </LoaderSuspense>
+                    }
+                />
+            </>
+        );
+    }
+
     return (
         <>
             <GlobalStyle/>
@@ -92,25 +114,20 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                             {filteredRoutes.map(r => (
                                 <Route key={r.key}
                                        path={r.path}
-                                       render={p => (
-                                           <ErrorBoundary>{r.render(p)}</ErrorBoundary>
-                                       )}
-                                />
-                            ))}
-
+                                       render={p => (<ErrorBoundary>{r.render(p)}</ErrorBoundary>)}
+                            />
+))}
                             <Route path="*" component={Error404}/>
                         </Switch>
                     </LoaderSuspense>
-                }
+}
             />
         </>
     );
 };
 
 Jahia.propTypes = {
-    routes: PropTypes.array,
-    topNavGroups: PropTypes.array,
-    bottomNavGroups: PropTypes.array
+    routes: PropTypes.array, topNavGroups: PropTypes.array, bottomNavGroups: PropTypes.array
 };
 
 export default Jahia;
