@@ -6,7 +6,7 @@ import JahiaLogo from '../JahiaLogo';
 import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
-import {Error404, ErrorBoundary, LoaderSuspense, SiteSwitching} from '../shared';
+import {Error404, ErrorBoundary, LoaderOverlay, LoaderSuspense} from '../shared';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
@@ -30,15 +30,15 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
 
     const {loading, nodes, error} = useNodeInfo({
         paths: requiredPaths, language: current.language
-    }, {getPermissions: requiredPermission}, {fetchPolicy: 'no-cache', nextFetchPolicy: 'no-cache'});
+    }, {getPermissions: requiredPermission});
 
     if (error) {
         console.error('Jahia - An error occur while getting permissions', error);
         return null;
     }
 
-    if (loading || !nodes) {
-        // Wait for the query to be done.
+    if (!loading && !nodes) {
+        console.error('Jahia - could not load nodes for the required paths', requiredPaths);
         return null;
     }
 
@@ -63,6 +63,19 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         );
     }
 
+    if (loading) {
+        return (
+            <>
+                <GlobalStyle/>
+                <LoginCheck/>
+                <LayoutApp
+                    navigation={primaryNav}
+                    content={<LoaderOverlay/>}
+                />
+            </>
+        );
+    }
+
     const filteredRoutes = routes.filter(route => {
         if (!route.requiredPermission) {
             return true;
@@ -79,29 +92,6 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return permissionNode && permissionNode[route.requiredPermission];
     });
 
-    if (!nodes.every(node => {
-        return requiredPaths.find(path => path === node.path) !== undefined;
-    })) {
-        console.error('Jahia - An error occur while getting permissions, GraphQL nodes do not match required paths', nodes, requiredPaths);
-        return (
-            <>
-                <GlobalStyle/>
-                <LoginCheck/>
-                <LayoutApp
-                    navigation={primaryNav}
-                    content={
-                        <LoaderSuspense>
-                            <Switch>
-                                <Route path="*"
-                                       component={SiteSwitching}/>
-                            </Switch>
-                        </LoaderSuspense>
-                    }
-                />
-            </>
-        );
-    }
-
     return (
         <>
             <GlobalStyle/>
@@ -115,12 +105,12 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                                 <Route key={r.key}
                                        path={r.path}
                                        render={p => (<ErrorBoundary>{r.render(p)}</ErrorBoundary>)}
-                            />
-))}
+                                />
+                            ))}
                             <Route path="*" component={Error404}/>
                         </Switch>
                     </LoaderSuspense>
-}
+                }
             />
         </>
     );
