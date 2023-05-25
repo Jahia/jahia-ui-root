@@ -25,6 +25,11 @@
       "label": "Page non trouvée",
       "subtitle1": "Oups, nous ne trouvons pas ce que vous cherchez. ",
       "subtitle2": "La ressource n'existe pas, ou elle a récemment été supprimée, déplacée ou modifiée."
+    },
+    "error503": {
+      "label": "Service temporairement indisponible",
+      "subtitle1": "En raison de travaux de maintenance ou de problèmes de capacité le serveur n'est pas en mesure de répondre à votre requête pour l'instant.",
+      "subtitle2": "Veuillez nous excuser pour le dérangement et réessayez ultérieurement."
     }
   }
 }
