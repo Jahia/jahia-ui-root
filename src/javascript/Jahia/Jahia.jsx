@@ -6,8 +6,7 @@ import JahiaLogo from '../JahiaLogo';
 import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
-import {Error404, ErrorBoundary, LoaderSuspense} from '../shared';
-import {Error503} from '../shared/components/ErrorBoundary/Error503';
+import {Error404, Error503, ErrorBoundary, LoaderSuspense} from '../shared';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
