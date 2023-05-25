@@ -25,6 +25,11 @@
       "label": "Seite nicht gefunden",
       "subtitle1": "Hoppla, wir können nicht finden, wonach Sie gesucht haben.",
       "subtitle2": "Der gesuchte Inhalt existiert möglicherweise nicht, oder wurde gelöscht, verschoben oder verändert."
+    },
+    "error503": {
+      "label": "Service vorübergehend nicht verfügbar",
+      "subtitle1": "Der Server ist derzeit nicht in der Lage die Anfrage zu bearbeiten. Entweder ist der Server derzeit überlastet oder wegen Wartungsarbeiten nicht verfügbar.",
+      "subtitle2": "Wir bitten um Entschuldigung für die Unannehmlichkeiten. Bitte versuchen Sie es später noch einmal!"
     }
   }
 }
