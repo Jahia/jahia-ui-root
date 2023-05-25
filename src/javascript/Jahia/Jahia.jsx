@@ -6,7 +6,7 @@ import JahiaLogo from '../JahiaLogo';
 import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
-import {Error404, Error503, ErrorBoundary, LoaderSuspense} from '../shared';
+import {Error404, Error503, ErrorBoundary, LoaderOverlay, LoaderSuspense} from '../shared';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
@@ -29,8 +29,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     }
 
     const {loading, nodes, error} = useNodeInfo({
-        paths: requiredPaths,
-        language: current.language
+        paths: requiredPaths, language: current.language
     }, {getPermissions: requiredPermission});
 
     if (error) {
@@ -38,8 +37,8 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return null;
     }
 
-    if (loading || !nodes) {
-        // Wait for the query to be done.
+    if (!loading && !nodes) {
+        console.error('Jahia - could not load nodes for the required paths', requiredPaths);
         return null;
     }
 
@@ -61,6 +60,19 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                 top={topNavGroups}
                 bottom={bottomNavGroups}
             />
+        );
+    }
+
+    if (loading) {
+        return (
+            <>
+                <GlobalStyle/>
+                <LoginCheck/>
+                <LayoutApp
+                    navigation={primaryNav}
+                    content={<LoaderOverlay/>}
+                />
+            </>
         );
     }
 
@@ -103,7 +115,6 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                                        }}
                                 />
                             ))}
-
                             <Route path="*" component={Error404}/>
                         </Switch>
                     </LoaderSuspense>
@@ -114,9 +125,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
 };
 
 Jahia.propTypes = {
-    routes: PropTypes.array,
-    topNavGroups: PropTypes.array,
-    bottomNavGroups: PropTypes.array
+    routes: PropTypes.array, topNavGroups: PropTypes.array, bottomNavGroups: PropTypes.array
 };
 
 export default Jahia;
