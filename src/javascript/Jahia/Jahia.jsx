@@ -7,6 +7,7 @@ import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
 import {Error404, ErrorBoundary, LoaderSuspense} from '../shared';
+import {Error503} from '../shared/components/ErrorBoundary/Error503';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
@@ -80,6 +81,8 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return permissionNode && permissionNode[route.requiredPermission];
     });
 
+    const readonly = contextJsParameters.readOnly !== 'OFF';
+
     return (
         <>
             <GlobalStyle/>
@@ -92,9 +95,13 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                             {filteredRoutes.map(r => (
                                 <Route key={r.key}
                                        path={r.path}
-                                       render={p => (
-                                           <ErrorBoundary>{r.render(p)}</ErrorBoundary>
-                                       )}
+                                       render={p => {
+                                           if (readonly && !r.supportsReadOnly) {
+                                               return <Error503/>;
+                                           }
+
+                                           return <ErrorBoundary>{r.render(p)}</ErrorBoundary>;
+                                       }}
                                 />
                             ))}
 

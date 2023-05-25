@@ -25,6 +25,11 @@
       "label": "Page not found",
       "subtitle1": "Oops, we can't find what you're looking for.",
       "subtitle2": "This may be because it doesn't exist or it has recently been deleted, moved or modified."
+    },
+    "error503": {
+      "label": "Service temporary unavailable",
+      "subtitle1": "The server is temporarily unable to service your request due to maintenance downtime or capacity problems.",
+      "subtitle2": "We are sorry for the inconvenience. Please check back later."
     }
   }
 }
