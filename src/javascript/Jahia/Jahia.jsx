@@ -92,7 +92,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
         return permissionNode && permissionNode[route.requiredPermission];
     });
 
-    const readonly = contextJsParameters.readOnly !== 'OFF';
+    const readonly = contextJsParameters.readOnly !== 'OFF' || contextJsParameters.fullReadOnly !== 'OFF';
 
     return (
         <>
