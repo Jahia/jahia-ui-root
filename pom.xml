@@ -48,6 +48,7 @@
         <jahia-module-signature>MC0CFQCUJTaUPra7kQgPiS0XmTPHCNmvlQIUD9xAbvnsWCqXi62Ng2IPX4g9w8w=</jahia-module-signature>
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
+        <sonar.sources>src/javascript</sonar.sources>
     </properties>
 
     <repositories>
@@ -124,7 +125,7 @@
                             <goal>install-node-and-yarn</goal>
                         </goals>
                         <configuration>
-                            <nodeVersion>v14.16.0</nodeVersion>
+                            <nodeVersion>v14.21.3</nodeVersion>
                             <yarnVersion>v1.22.11</yarnVersion>
                         </configuration>
                     </execution>
@@ -192,7 +193,33 @@
                     </instructions>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.cyclonedx</groupId>
+                <artifactId>cyclonedx-maven-plugin</artifactId>
+                <version>2.7.9</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>makeAggregateBom</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <projectType>library</projectType>
+                    <schemaVersion>1.4</schemaVersion>
+                    <includeBomSerialNumber>true</includeBomSerialNumber>
+                    <includeCompileScope>true</includeCompileScope>
+                    <includeProvidedScope>false</includeProvidedScope>
+                    <includeRuntimeScope>true</includeRuntimeScope>
+                    <includeSystemScope>false</includeSystemScope>
+                    <includeTestScope>false</includeTestScope>
+                    <includeLicenseText>false</includeLicenseText>
+                    <outputReactorProjects>true</outputReactorProjects>
+                    <outputFormat>json</outputFormat>
+                    <outputName>java-bom.cdx</outputName>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -200,6 +227,7 @@
             <id>dev</id>
             <properties>
                 <yarn.arguments>build</yarn.arguments>
+                <cyclonedx.skip>true</cyclonedx.skip>
             </properties>
         </profile>
     </profiles>
