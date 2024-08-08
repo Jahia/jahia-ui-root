@@ -6,7 +6,7 @@ import JahiaLogo from '../JahiaLogo';
 import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
-import {Error404, Error503, ErrorBoundary, LoaderOverlay, LoaderSuspense} from '../shared';
+import {Error404, Error503, ErrorBoundary, LoaderOverlay, LoaderSuspense, RouteWithTitle} from '../shared';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
@@ -103,14 +103,17 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                 content={
                     <LoaderSuspense>
                         <Switch>
-                            {filteredRoutes.map(r => (
-                                <Route key={r.key}
-                                       path={r.path}
-                                       render={p => {
-                                           // Strip leading route for camel or route- kebab casing depending on how key is written
-                                           const key = r.key.match(/^route-.+|^route[A-Z]+/) ? r.key.replace(/route-|route/, '') : r.key;
-                                           window.top.document.title = `Jahia - ${key}`;
+                            {filteredRoutes.map(r => {
+                                // Strip leading route for camel or route- kebab casing depending on how key is written
+                                const key = r.key.match(/^route-.+|^route[A-Z]+/) ? r.key.replace(/route-|route/, '') : r.key;
+                                const title = `Jahia - ${key}`;
 
+                                return (
+                                    <RouteWithTitle
+                                        key={r.key}
+                                        routeTitle={title}
+                                        path={r.path}
+                                        render={p => {
                                            if (readonly && !r.supportsReadOnly) {
                                                return <Error503/>;
                                            }
@@ -118,7 +121,8 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                                            return <ErrorBoundary>{r.render(p)}</ErrorBoundary>;
                                        }}
                                 />
-                            ))}
+);
+                            })}
                             <Route path="*" component={Error404}/>
                         </Switch>
                     </LoaderSuspense>
