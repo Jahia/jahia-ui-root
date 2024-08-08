@@ -45,7 +45,7 @@
     </scm>
 
     <properties>
-        <jahia-module-signature>MC0CFQCUJTaUPra7kQgPiS0XmTPHCNmvlQIUD9xAbvnsWCqXi62Ng2IPX4g9w8w=</jahia-module-signature>
+        <jahia-module-signature>MC0CFHNyEnUMkLc29Sqehh5628CxgJ33AhUAlY6cFGiyYi+AvGyjJ3I10e853H8=</jahia-module-signature>
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
         <sonar.sources>src/javascript</sonar.sources>

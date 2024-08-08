@@ -107,6 +107,10 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                                 <Route key={r.key}
                                        path={r.path}
                                        render={p => {
+                                           // Strip leading route for camel or route- kebab casing depending on how key is written
+                                           const key = r.key.match(/^route-.+|^route[A-Z]+/) ? r.key.replace(/route-|route/, '') : r.key;
+                                           window.top.document.title = `Jahia - ${key}`;
+
                                            if (readonly && !r.supportsReadOnly) {
                                                return <Error503/>;
                                            }
