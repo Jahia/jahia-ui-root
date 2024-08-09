@@ -104,7 +104,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                     <LoaderSuspense>
                         <Switch>
                             {filteredRoutes.map(r => {
-                                // Strip leading route for camel or route- kebab casing depending on how key is written
+                                // Strip 'route' prefix for camel or kebab cased routes, depending on how the key is written: routeDashboard or route-dashboard
                                 const key = r.key.match(/^route-.+|^route[A-Z]+/) ? r.key.replace(/route-|route/, '') : r.key;
                                 const title = `Jahia - ${key}`;
 
