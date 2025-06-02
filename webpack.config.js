@@ -4,8 +4,9 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const shared = require("./webpack.shared")
 const {CycloneDxWebpackPlugin} = require('@cyclonedx/webpack-plugin');
+const getModuleFederationConfig = require('@jahia/webpack-config/getModuleFederationConfig');
+const packageJson = require('./package.json');
 
 /** @type {import('@cyclonedx/webpack-plugin').CycloneDxWebpackPluginOptions} */
 const cycloneDxWebpackPluginOptions = {
@@ -26,7 +27,14 @@ module.exports = (env, argv) => {
         },
         resolve: {
             mainFields: ['module', 'main'],
-            extensions: ['.mjs', '.js', '.jsx', 'json']
+            extensions: ['.mjs', '.js', '.jsx', '.json'],
+            fallback: {
+                "url": false,
+                // Issue with upgrading to @jahia/moonstone 2.12.0, @floating-ui/react dependency
+                // https://github.com/carbon-design-system/carbon/issues/18714#issuecomment-2691357012
+                // Resolving with fallback but proper fix would be to update dependency to React 18
+                "react/jsx-runtime": "react/jsx-runtime.js"
+            }
         },
         module: {
             rules: [
@@ -98,7 +106,7 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new ModuleFederationPlugin({
+            new ModuleFederationPlugin(getModuleFederationConfig(packageJson, {
                 name: "jahiaUi",
                 library: { type: "assign", name: "appShell.remotes.jahiaUi" },
                 filename: "remoteEntry.js",
@@ -108,9 +116,8 @@ module.exports = (env, argv) => {
                 },
                 remotes: {
                     '@jahia/app-shell': 'appShellRemote'
-                },
-                shared
-            }),
+                }
+            }, Object.keys(packageJson.dependencies))),
             new CleanWebpackPlugin({
               cleanOnceBeforeBuildPatterns: [`${path.resolve(__dirname, 'src/main/resources/javascript/apps/')}/**/*`],
               verbose: false
