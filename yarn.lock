@@ -1163,12 +1163,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@cyclonedx/cyclonedx-library@^6.11.0":
-  version "6.13.1"
-  resolved "https://registry.yarnpkg.com/@cyclonedx/cyclonedx-library/-/cyclonedx-library-6.13.1.tgz#53308e5f9889a39d3d4c8e00875528186e613044"
-  integrity sha512-u7Q01G2PAci3Qh+cY/7ReA8g2qJLQOncLQdzzdvpII84h6UICqZZZ1N0y9PLTVhS2Ra4x3kl4xY5bnP+lmrw2Q==
+"@cyclonedx/cyclonedx-library@^7.0.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@cyclonedx/cyclonedx-library/-/cyclonedx-library-7.1.0.tgz#a875c4c49d9b843b5d29e59e0917f900bde8ccec"
+  integrity sha512-42Y5AzI6qlRT8Tk0lacLA2676BUQvhJJ6iC8u9SuzHqd8oi+9l4+7uiewZDsiMlVwi48P78EzTrSOEu/783CsQ==
   dependencies:
-    packageurl-js ">=0.0.6 <0.0.8 || ^1"
+    packageurl-js "^2.0.1"
     spdx-expression-parse "^3.0.1 || ^4"
   optionalDependencies:
     ajv "^8.12.0"
@@ -1177,12 +1177,12 @@
     libxmljs2 "^0.31 || ^0.32 || ^0.33 || ^0.35"
     xmlbuilder2 "^3.0.2"
 
-"@cyclonedx/webpack-plugin@^3.6.1":
-  version "3.17.0"
-  resolved "https://registry.yarnpkg.com/@cyclonedx/webpack-plugin/-/webpack-plugin-3.17.0.tgz#fdcf89d534cb80af386024285de095e37c7963d4"
-  integrity sha512-Frex9TQ4nCZEVwMsMZCaibCHUrIp8MqWJFVprAqv8RtFQ2ygAFFW8yqAsdU15e/G2VjmLb6R+9hl0R3OZvVnPg==
+"@cyclonedx/webpack-plugin@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@cyclonedx/webpack-plugin/-/webpack-plugin-4.0.1.tgz#326585046511b46bbec89270306999485ee73dc6"
+  integrity sha512-i4CkQsjkwjPT1wNwVC5v4o3QlbIRgKVIs0E1+tLJnH7B7IAM3Dsh5+4eY50Ka5/YDZ8lS5H9zxcqwt5lYXwAJA==
   dependencies:
-    "@cyclonedx/cyclonedx-library" "^6.11.0"
+    "@cyclonedx/cyclonedx-library" "^7.0.0"
     normalize-package-data "^3||^4||^5||^6"
     xmlbuilder2 "^3.0.2"
 
@@ -1303,17 +1303,6 @@
     react-day-picker "^7.4.8"
     webpack-node-externals "^2.5.2"
 
-"@jahia/moonstone@2.14.2":
-  version "2.14.2"
-  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-2.14.2.tgz#c7b3dfcc47424cf95e291ac1c0216b84311b6cf4"
-  integrity sha512-DcG2KhZ9g675xgQIk9EczBTByWICcrKQoyoeVjcE3xbQHnVi8kvjYWpOjUDdhG52ZZ0peSmQVRm9R+MLUQhBLQ==
-  dependencies:
-    "@floating-ui/react" "^0.27.7"
-    clsx "^2.1.1"
-    prop-types "^15.8.1"
-    re-resizable "^6.11.2"
-    to-px "^1.1.0"
-
 "@jahia/moonstone@^1.0.0":
   version "1.6.2"
   resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-1.6.2.tgz#601029ffd1ef4fbea9edc28227e7a6f7b477cd44"
@@ -1326,6 +1315,17 @@
     prop-types "^15.7.2"
     re-resizable "^6.9.0"
     react-is "^17.0.1"
+    to-px "^1.1.0"
+
+"@jahia/moonstone@^2.5.5":
+  version "2.15.0"
+  resolved "https://npm.jahia.com/@jahia%2fmoonstone/-/moonstone-2.15.0.tgz#d917bc567968663c8e6c73a699cfc3a5c57322dd"
+  integrity sha512-mc5rKyNkymnTCfq7SGMa7LxjARPt/B4dq9LCv68rssUma80VP8vVBvc5hunQGnLhl20YgTreiD/I1wmErbkQsA==
+  dependencies:
+    "@floating-ui/react" "^0.27.7"
+    clsx "^2.1.1"
+    prop-types "^15.8.1"
+    re-resizable "^6.11.2"
     to-px "^1.1.0"
 
 "@jahia/test-framework@^1.2.1":
@@ -6671,10 +6671,10 @@ package-json-from-dist@^1.0.0:
   resolved "https://registry.yarnpkg.com/package-json-from-dist/-/package-json-from-dist-1.0.1.tgz#4f1471a010827a86f94cfd9b0727e36d267de505"
   integrity sha512-UEZIS3/by4OC8vL3P2dTXRETpebLI2NiI5vIrjaD/5UtrkFX/tNbwjTSRAGC/+7CAo2pIcBaRgWmcBBHcsaCIw==
 
-"packageurl-js@>=0.0.6 <0.0.8 || ^1":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/packageurl-js/-/packageurl-js-1.0.2.tgz#c568a569848c66be8f2b467ac41b0f1427672b00"
-  integrity sha512-fWC4ZPxo80qlh3xN5FxfIoQD3phVY4+EyzTIqyksjhKNDmaicdpxSvkWwIrYTtv9C1/RcUN6pxaTwGmj2NzS6A==
+packageurl-js@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/packageurl-js/-/packageurl-js-2.0.1.tgz#a8fa43a64971b5dd0dca5fb904b950a6cc317a6f"
+  integrity sha512-N5ixXjzTy4QDQH0Q9YFjqIWd6zH6936Djpl2m9QNFmDv5Fum8q8BjkpAcHNMzOFE0IwQrFhJWex3AN6kS0OSwg==
 
 parent-module@^1.0.0:
   version "1.0.1"
