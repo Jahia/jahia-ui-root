@@ -9,7 +9,7 @@ jest.mock('react', () => {
 
 jest.mock('@jahia/ui-extender', () => {
     return ({
-        registry: require('@jahia/ui-extender/js/registry').registry
+        registry: require('@jahia/ui-extender/dist/js/registry').registry
     });
 });
 
