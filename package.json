@@ -61,7 +61,8 @@
     "graphql": "15.4.0",
     "@jahia/data-helper/graphql": "^15.4.0",
     "cheerio": "1.0.0-rc.12",
-    "terser": "^5.14.2"
+    "terser": "^5.14.2",
+    "path-to-regexp": "1.9.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.8",
