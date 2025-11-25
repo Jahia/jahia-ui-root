@@ -1,5 +1,5 @@
 import React from 'react';
-import {useQuery} from '@apollo/react-hooks';
+import {useQuery} from '@apollo/client';
 import {GetUserQuery} from './LoginCheck.gql';
 import styles from './LoginCheck.scss';
 import {Typography} from '@jahia/moonstone';
