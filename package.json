@@ -7,8 +7,7 @@
     }
   },
   "scripts": {
-    "test": "jest --env=jsdom --run-in-band --coverage  ./src/javascript",
-    "tests:unit": "jest --env=jsdom --runInBand --coverage  ./src/javascript",
+    "test": "jest --env=jsdom --runInBand --coverage  ./src/javascript",
     "tdd": "jest --watch",
     "build": "yarn lint:fix && yarn webpack",
     "build:nolint": "yarn webpack",
@@ -101,7 +100,7 @@
     "jest-image-snapshot": "^2.12.0",
     "jest-junit": "^10.0.0",
     "path": "^0.12.7",
-    "react-test-renderer": "^16.12.0",
+    "react-test-renderer": "^18.3.1",
     "rimraf": "^3.0.0",
     "sass": "^1.52.1",
     "sass-loader": "^12.1.0",
