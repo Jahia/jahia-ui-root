@@ -34,7 +34,7 @@
     }
   },
   "dependencies": {
-    "@apollo/client": "^3.7.17",
+    "@apollo/client": "^3.14.0",
     "@jahia/data-helper": "^1.1.16",
     "@jahia/moonstone": "^2.14.2",
     "@jahia/ui-extender": "^1.0.0",
@@ -46,8 +46,8 @@
     "graphql-tag": "^2.11.0",
     "history": "^4.10.1",
     "prop-types": "^15.7.2",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-i18next": "^11.2.2",
     "react-iframe": "1.8.0",
     "react-redux": "^7.2.0",
