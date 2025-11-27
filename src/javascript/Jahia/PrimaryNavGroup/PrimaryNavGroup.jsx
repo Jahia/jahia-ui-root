@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
 import {registry} from '@jahia/ui-extender';
 import {useTranslation} from 'react-i18next';
-import {useHistory} from 'react-router';
+import {useHistory, useLocation} from 'react-router';
 import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
 
@@ -67,6 +67,7 @@ export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
     const {t} = useTranslation('jahia-ui-root');
     const history = useHistory();
     const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
+    const location = useLocation();
     const navItems = registry.find({type: 'primary-nav-item', target});
     const filteredNavItems = usePermissionFilter(navItems, current.site, current.language);
 
@@ -88,7 +89,7 @@ export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
                 return (
                     <PrimaryNavItem key={item.key}
                                     {...props}
-                                    isSelected={history.location.pathname.startsWith(item.path)}
+                                    isSelected={location.pathname.startsWith(item.path)}
                                     icon={item.icon}
                                     label={t(item.label)}
                                     onClick={() => history.push(item.path)}/>

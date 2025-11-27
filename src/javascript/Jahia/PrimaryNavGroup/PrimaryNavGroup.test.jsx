@@ -5,7 +5,8 @@ import {registry} from '@jahia/ui-extender';
 
 jest.mock('react-router', () => {
     return {
-        useHistory: jest.fn(() => {})
+        useHistory: jest.fn(() => {}),
+        useLocation: jest.fn(() => {})
     };
 });
 
