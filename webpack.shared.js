@@ -49,7 +49,8 @@ const singletonDeps = [
     '@jahia/data-helper',
     '@apollo/react-common',
     '@apollo/react-components',
-    '@apollo/react-hooks'
+    '@apollo/react-hooks',
+    '@apollo/client'
 ];
 
 const notImported = [
