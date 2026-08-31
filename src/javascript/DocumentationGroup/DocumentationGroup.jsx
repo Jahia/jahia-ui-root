@@ -14,7 +14,7 @@ export const DocumentationGroup = () => {
 
     return (
         <>
-            {window.contextJsParameters.config.whatsNewDisplay === 'true' &&
+            {window.contextJsParameters.config.whatsNewDisplay &&
                 <PrimaryNavItem url={transformLink(links.whatsNew, siteInfo, displayLanguage)}
                                 label={t('jahia-ui-root:primaryNavigation.documentation.newAtJahia')}/>}
             <PrimaryNavItem url={transformLink(links.documentation, siteInfo, displayLanguage)}

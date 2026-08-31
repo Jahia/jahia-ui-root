@@ -7,4 +7,4 @@
 %>
 contextJsParameters.fullReadOnly = '<%= ReadOnlyModeController.getInstance().getReadOnlyStatus() %>'
 contextJsParameters.readOnly = '<%= SettingsBean.getInstance().isReadOnlyMode() ? "ON" : "OFF" %>'
-contextJsParameters.config.whatsNewDisplay = '<%=Boolean.parseBoolean(SettingsBean.getInstance().getString("whatsNew.display", "true")) %>'
+contextJsParameters.config.whatsNewDisplay = <%= Boolean.parseBoolean(SettingsBean.getInstance().getString("whatsNew.display", "true")) %>
