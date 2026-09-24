@@ -1,67 +1,11 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import {PrimaryNavItem, PrimaryNavItemsGroup} from '@jahia/moonstone';
 import {registry} from '@jahia/ui-extender';
 import {useTranslation} from 'react-i18next';
 import {useHistory, useLocation} from 'react-router';
-import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
-
-const usePermissionFilter = (navItems, site, language) => {
-    const {requiredPermission, requiredPaths} = useMemo(() => {
-        const reqPermission = ['jcr:read_default'];
-        const reqPaths = [];
-
-        navItems.filter(navItem => navItem.requiredPermission !== undefined).forEach(navItem => {
-            if (!reqPermission.includes(navItem.requiredPermission)) {
-                reqPermission.push(navItem.requiredPermission);
-                if (navItem.requiredPermissionPath === undefined) {
-                    reqPaths.push(`/sites/${site}`);
-                }
-            }
-
-            if (navItem.requiredPermissionPath !== undefined && !reqPaths.includes(navItem.requiredPermissionPath)) {
-                reqPaths.push(navItem.requiredPermissionPath);
-            }
-        });
-
-        if (reqPaths.length === 0) {
-            reqPaths.push('/sites/' + site);
-        }
-
-        return {requiredPermission: reqPermission, requiredPaths: reqPaths};
-    }, [navItems, site]);
-
-    const {loading, nodes, error} = useNodeInfo(
-        {paths: requiredPaths, language: language},
-        {getPermissions: requiredPermission});
-
-    if (error) {
-        console.error('An error occur while getting permissions ' + requiredPermission + ' for nodes ' + requiredPaths, error);
-        return [];
-    }
-
-    if (loading || !nodes) {
-        // Wait for the query to be done.
-        return [];
-    }
-
-    return navItems.filter(navItem => {
-        if (!navItem.requiredPermission) {
-            return true;
-        }
-
-        const permissionNode = nodes.find(node => {
-            if (navItem.requiredPermissionPath !== undefined) {
-                return node.path === navItem.requiredPermissionPath;
-            }
-
-            return node.path === '/sites/' + site;
-        });
-
-        return permissionNode && permissionNode[navItem.requiredPermission];
-    });
-};
+import {usePermissionFilter} from '../../shared/hooks';
 
 export const PrimaryNavGroup = ({isDisplayedWhenCollapsed, target}) => {
     const {t} = useTranslation('jahia-ui-root');
