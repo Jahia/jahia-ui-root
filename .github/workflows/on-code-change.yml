@@ -29,10 +29,9 @@ jobs:
     needs: update-signature
     runs-on: ubuntu-latest
     container:
+      # The image is public: no registry credentials needed, and providing them
+      # breaks PRs from forks (secrets are empty there, which fails the workflow template).
       image: ghcr.io/jahia/jahia-docker-mvn-cache:11-jdk-noble-mvn-loaded
-      credentials:
-        username: ${{ secrets.GH_PACKAGES_USERNAME }}
-        password: ${{ secrets.GH_PACKAGES_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: jahia/jahia-modules-action/build@v2
