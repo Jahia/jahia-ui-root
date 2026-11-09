@@ -5,6 +5,13 @@
       "newAtJahia": "New at Jahia.com"
     }
   },
+  "taxonomy": {
+    "label": "Taxonomy",
+    "empty": "No taxonomy section is available.",
+    "tags": {
+      "label": "Tags"
+    }
+  },
   "licenceTermsViolation": {
     "title": "License terms violation",
     "text": "Please contact your system administrator"
