@@ -1,6 +1,6 @@
 {
   "name": "@jahia/jahia-ui-root",
-  "version": "1.13.0-SNAPSHOT",
+  "version": "2.0.0-SNAPSHOT",
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint"
@@ -52,6 +52,7 @@
     "react-redux": "^7.2.0",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
+    "react-router-dom-v5-compat": "^6.30.6",
     "redux": "^4.0.5",
     "redux-actions": "^2.6.5",
     "redux-batched-actions": "^0.4.1",

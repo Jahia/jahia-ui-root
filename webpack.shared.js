@@ -53,7 +53,9 @@ const singletonDeps = [
     '@apollo/client'
 ];
 
+// Provided by app-shell 4 as a singleton: no copy of the module may be bundled as a fallback
 const notImported = [
+    'react-router-dom-v5-compat'
 ];
 
 module.exports = {
@@ -74,6 +76,7 @@ module.exports = {
         ...acc,
         [item]: {
             import: false,
+            singleton: true,
             requiredVersion: deps[item]
         }
     }), {})
