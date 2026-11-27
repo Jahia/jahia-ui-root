@@ -1,6 +1,7 @@
 // Register redux
 import React from 'react';
 import {ConnectedRouter, connectRouter, routerMiddleware} from 'connected-react-router';
+import {CompatRouter} from 'react-router-dom-v5-compat';
 import {ComponentRendererProvider} from '@jahia/ui-extender';
 
 import Jahia from './Jahia';
@@ -17,7 +18,7 @@ export const jahiaApps = (registry, jahiaCtx) => {
 
     registry.add('app', 'router', {
         targets: ['root:2'],
-        render: next => <ConnectedRouter history={history}>{next}</ConnectedRouter>
+        render: next => <ConnectedRouter history={history}><CompatRouter>{next}</CompatRouter></ConnectedRouter>
     });
     registry.add('app', 'component-renderer', {
         targets: ['root:16'],

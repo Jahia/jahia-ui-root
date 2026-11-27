@@ -7,6 +7,7 @@ import {useNodeInfo} from '@jahia/data-helper';
 import {shallowEqual, useSelector} from 'react-redux';
 import {LoginCheck} from './LoginCheck';
 import {Error404, Error503, ErrorBoundary, LoaderOverlay, LoaderSuspense, RouteWithTitle} from '../shared';
+import {toV5Path} from '../shared/components/RouteWithTitle/toCompatPath';
 
 const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
     const current = useSelector(state => ({language: state.language, site: state.site}), shallowEqual);
@@ -112,7 +113,7 @@ const Jahia = ({routes, topNavGroups, bottomNavGroups}) => {
                                     <RouteWithTitle
                                         key={r.key}
                                         routeTitle={title}
-                                        path={r.path}
+                                        path={toV5Path(r.path)}
                                         render={p => {
                                            if (readonly && !r.supportsReadOnly) {
                                                return <Error503/>;
