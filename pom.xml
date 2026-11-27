@@ -29,11 +29,11 @@
     <parent>
         <artifactId>jahia-modules</artifactId>
         <groupId>org.jahia.modules</groupId>
-        <version>8.2.1.0</version>
+        <version>8.2.2.0</version>
     </parent>
     <artifactId>jahia-ui-root</artifactId>
     <name>Jahia UI</name>
-    <version>1.13.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <description>This is the custom module (jahia-ui-root) for running on a Jahia server.</description>
 
@@ -45,7 +45,7 @@
     </scm>
 
     <properties>
-        <jahia-module-signature>MC0CFFK/JQZ8mQBAuR1m0o2itWffx4a1AhUAjbCKigbbaY6YQS/RhJBHhnot/Xg=</jahia-module-signature>
+        <jahia-module-signature>MC0CFQCTO+3lYvNbo5u4KHnifMK8g54PhAIUJ+zrViF9SQotfXsT1O6ku4bLS0U=</jahia-module-signature>
         <jahia-module-type>system</jahia-module-type>
         <yarn.arguments>build:production</yarn.arguments>
         <jahia-depends>app-shell=4.0</jahia-depends>

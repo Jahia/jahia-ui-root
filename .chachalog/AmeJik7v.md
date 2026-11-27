@@ -1,6 +1,6 @@
 ---
 # Allowed version bumps: patch, minor, major
-jahia-ui-root: minor
+jahia-ui-root: major
 ---
 
-Added support for the navigation hooks of `react-router-dom-v5-compat` in UI extensions, such as `useNavigate()` and `useParams()`. This version requires app-shell 4.0.
+Added support for the react-router 6 navigation hooks, such as `useNavigate()`, in UI extensions. This version requires Jahia 8.2.2.0 and app-shell 4.0, or later versions: upgrade them first.
