@@ -4,14 +4,14 @@ import renderer, {act} from 'react-test-renderer';
 import {MemoryRouter, Switch, useHistory, useParams as useV5Params} from 'react-router-dom';
 import {CompatRouter, Route, Routes, useNavigate, useParams} from 'react-router-dom-v5-compat';
 import {RouteWithTitle} from './RouteWithTitle';
-import {toCompatPath, toV5Path} from './toCompatPath';
+import {toCompatPath, toV5Path} from './RouteWithTitle.utils';
 
 // Renders a registry route the way Jahia.jsx does under app-shell 4
-const renderAt = (url, path, Screen) => renderer.create(
+const renderAt = (url, path, Screen, routeProps = {}) => renderer.create(
     <MemoryRouter initialEntries={[url]}>
         <CompatRouter>
             <Switch>
-                <RouteWithTitle routeTitle="Jahia - test" path={toV5Path(path)} render={props => <Screen {...props}/>}/>
+                <RouteWithTitle routeTitle="Jahia - test" path={toV5Path(path)} {...routeProps} render={props => <Screen {...props}/>}/>
             </Switch>
         </CompatRouter>
     </MemoryRouter>
@@ -42,14 +42,14 @@ const V5Child = ({match}) => {
 
 V5Child.propTypes = {match: PropTypes.shape({params: PropTypes.object})};
 
-// A host written with react-router 5, like jahia-administration and jContent today
+// A host written with react-router 5, like jahia-administration and jContent
 const v5Host = Child => () => (
     <Switch>
         <RouteWithTitle exact strict routeTitle="Jahia - child" path="/administration/:site/:key" render={props => <Child {...props}/>}/>
     </Switch>
 );
 
-// A host written with the react-router 6 API only, compatible with app-shell 4 and 5
+// A host written with the react-router 6 API only
 const v6Host = Child => () => (
     <Routes>
         <Route index element={<span>empty</span>}/>
@@ -75,6 +75,9 @@ describe('toCompatPath', () => {
         ['/dashboard/*', '/dashboard'],
         ['/sites/:site/:path*', null],
         ['/item/:id(\\d+)', null],
+        ['/item/:id+', null],
+        ['/a*/b', null],
+        ['/file.:ext', null],
         [['/a', '/b'], null]
     ])('converts %p to %p', (path, expected) => {
         expect(toCompatPath(path)).toBe(expected);
@@ -84,8 +87,8 @@ describe('toCompatPath', () => {
 describe('toV5Path', () => {
     it.each([
         ['/administration*', '/administration*'],
-        ['/dashboard/*', '/dashboard'],
-        ['/*', '/'],
+        ['/dashboard/*', ['/dashboard/*', '/dashboard']],
+        ['/*', ['/*', '/']],
         [['/a', '/b'], ['/a', '/b']]
     ])('converts %p to %p', (path, expected) => {
         expect(toV5Path(path)).toEqual(expected);
@@ -115,8 +118,69 @@ describe('RouteWithTitle as a registry route', () => {
         expect(texts(renderAt('/dashboard/projects/2', '/dashboard/*', V6Child))).toEqual(['v6 {"*":"projects/2"}']);
     });
 
-    it('renders a path that react-router 6 cannot read with react-router 5 only', () => {
-        expect(texts(renderAt('/item/42', '/item/:id(\\d+)', V5Child))).toEqual(['v5 {"id":"42"} {"id":"42"}']);
+    it('gives a v5 child the rest of the URL in the unnamed param of a path that ends with /*', () => {
+        const params = '{"0":"projects/2"}';
+        expect(texts(renderAt('/dashboard/projects/2', '/dashboard/*', V5Child))).toEqual([`v5 ${params} ${params}`]);
+    });
+
+    it('renders the bare path of a path that ends with /*', () => {
+        expect(texts(renderAt('/dashboard', '/dashboard/*', V6Child))).toEqual(['v6 {"*":""}']);
+    });
+
+    it.each([
+        ['/dashboard/projects/2', '/dashboard/*', '{"0":"projects/2"}'],
+        ['/administration/digitall', '/administration*', '{"0":"/digitall"}']
+    ])('renders %p under the exact path %p', (url, path, params) => {
+        expect(texts(renderAt(url, path, V5Child, {exact: true}))).toEqual([`v5 ${params} ${params}`]);
+    });
+
+    it('renders a URL that only react-router 5 matches with react-router 5', () => {
+        const params = '{"0":"foo"}';
+        expect(texts(renderAt('/administrationfoo', '/administration*', V5Child))).toEqual([`v5 ${params} ${params}`]);
+    });
+
+    it.each([
+        ['/item/42', '/item/:id(\\d+)', '{"id":"42"}'],
+        ['/file.png', '/file.:ext', '{"ext":"png"}']
+    ])('renders %p under %p, which react-router 6 cannot read, with react-router 5 only', (url, path, params) => {
+        expect(texts(renderAt(url, path, V5Child))).toEqual([`v5 ${params} ${params}`]);
+    });
+
+    it('reads the location that the Switch gives', () => {
+        const tree = renderer.create(
+            <MemoryRouter initialEntries={['/test/1']}>
+                <CompatRouter>
+                    <Switch location={{pathname: '/test/2', search: '', hash: '', state: null}}>
+                        <RouteWithTitle routeTitle="Jahia - test" path="/test/:id" render={() => <V6Child/>}/>
+                    </Switch>
+                </CompatRouter>
+            </MemoryRouter>
+        );
+        expect(texts(tree)).toEqual(['v6 {"id":"2","*":""}']);
+    });
+});
+
+describe('RouteWithTitle outside a registry route', () => {
+    it('renders with react-router 5 only outside a react-router 6 router', () => {
+        const tree = renderer.create(
+            <MemoryRouter initialEntries={['/test/1']}>
+                <RouteWithTitle routeTitle="Jahia - test" path="/test/:id" render={props => <V5Child {...props}/>}/>
+            </MemoryRouter>
+        );
+        expect(texts(tree)).toEqual(['v5 {"id":"1"} {"id":"1"}']);
+    });
+
+    it('calls a children function with no match when the URL does not match', () => {
+        const tree = renderer.create(
+            <MemoryRouter initialEntries={['/other']}>
+                <CompatRouter>
+                    <RouteWithTitle routeTitle="Jahia - test" path="/test/:id">
+                        {({match}) => <span>{`match ${JSON.stringify(match)}`}</span>}
+                    </RouteWithTitle>
+                </CompatRouter>
+            </MemoryRouter>
+        );
+        expect(texts(tree)).toEqual(['match null']);
     });
 });
 
@@ -156,7 +220,8 @@ describe.each(['/administration*', '/administration/*'])('under the registry rou
         it('lets a v5 child navigate', () => {
             const tree = renderAt('/administration/digitall/users', registryPath, v6Host(V5Child));
             click(tree);
-            expect(tree.root.findAllByType('span')).toHaveLength(1);
+            const rest = registryPath === '/administration*' ? '/acme/users' : 'acme/users';
+            expect(texts(tree)).toEqual([`v5 {"0":"${rest}"} undefined`]);
         });
 
         it('gives a v5 child its match and params through RouteWithTitle', () => {
